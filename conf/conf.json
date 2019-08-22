@@ -1,0 +1,58 @@
+{
+  "Common": {
+    "Log": {
+      "LogPath": "./log",
+      "LogName": "crawler"
+    },
+    "Download": {
+      "OutPath": "./download",
+      "ChanSize": 2048,
+      "GoroutineCount": 2
+    },
+    "Analysis": {
+      "ChanSize": 1024,
+      "GoroutineCount": 1
+    }
+  },
+
+  "Crawler": {
+    "Urls": [
+      {
+        "Index": "http://www.silisili.me",
+        "Selectors": [
+          {
+            "Type": "attr",
+            "Attr": "src",
+            "Dom": ".time_con li img"
+          },{
+            "Type": "attr",
+            "Attr": "",
+            "Dom":""
+          }
+        ]
+      }
+    ]
+  },
+
+  "Search": {
+    "Urls": [
+      {
+        "Index": "http://www.silisili.me",
+        "Selectors": [
+          {
+            "Type": "attr",
+            "Attr": "src",
+            "Dom": ".time_con li img"
+          },{
+            "Type": "attr",
+            "Attr": "",
+            "Dom":""
+          }
+        ]
+      }
+    ]
+  }
+
+
+
+}
