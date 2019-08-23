@@ -66,9 +66,9 @@ func (s *Service) InitAnalysis() {
 
 	go func() {
 		for list := range respCh {
-			//for _, url := range list {
-			logger.Infoln(list[0], list[1])
-			//}
+			for _, url := range list {
+				logger.Infoln(url[0], url[1])
+			}
 		}
 	}()
 

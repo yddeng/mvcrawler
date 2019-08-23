@@ -1,5 +1,6 @@
 # 日志文件
 /log
+crawler.log
 
 # 下载的文件
 /download
