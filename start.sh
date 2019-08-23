@@ -1,0 +1,1 @@
+ nohup bin/crawler > crawler.log 2>&1 &

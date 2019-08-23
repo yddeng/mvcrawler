@@ -1,9 +1,9 @@
 package mvcrawler
 
 import (
-	"github.com/tagDong/crawler/util"
 	"github.com/tagDong/mvcrawler/conf"
-	"net/http"
+	"github.com/tagDong/mvcrawler/dhttp"
+	"github.com/tagDong/mvcrawler/util"
 	"path"
 	"strings"
 )
@@ -11,7 +11,7 @@ import (
 type Downloader struct {
 	downloadPath   string
 	goroutineCount int
-	downloadQueue  chan Node
+	downloadQueue  chan *Node
 	downloadSize   int
 }
 
@@ -26,7 +26,7 @@ func NewDownLoader() *Downloader {
 	d := &Downloader{
 		downloadPath:   downConf.OutPath,
 		goroutineCount: downConf.GoroutineCount,
-		downloadQueue:  make(chan Node, downConf.ChanSize),
+		downloadQueue:  make(chan *Node, downConf.ChanSize),
 		downloadSize:   downConf.ChanSize,
 	}
 
@@ -41,9 +41,9 @@ func NewDownLoader() *Downloader {
  像队列中添加下载事件
  队列满，丢弃
 */
-func (d *Downloader) Push(node Node) {
+func (d *Downloader) Push(node *Node) {
 	if len(d.downloadQueue) == d.downloadSize {
-		logger.Errorf("downloadQueue is full, discard %s %s", node.name, node.url)
+		logger.Errorf("downloadQueue is full, discard %s %s", node.Name, node.Url)
 	} else {
 		d.downloadQueue <- node
 	}
@@ -55,9 +55,9 @@ func (d *Downloader) run() {
 		case node := <-d.downloadQueue:
 			n, err := d.download(node)
 			if err != nil {
-				logger.Errorf("url: %s, err: %s", node.url, err)
+				logger.Errorf("download url:%s err:%s", node.Url, err)
 			} else {
-				logger.Debugln("type: %s, size: %d, url: %s", node.GetTTString(), n, node.url)
+				logger.Debugf("download url:%s size:%s\n", node.Url, util.SiezToString(n))
 			}
 		}
 	}
@@ -68,67 +68,37 @@ func (d *Downloader) run() {
 * 参数：资源的URL地址
 * 返回值：大小，错误
  */
-func (d *Downloader) download(node Node) (n int64, err error) {
+func (d *Downloader) download(node *Node) (n int64, err error) {
 
-	resp, err := http.Get(node.url)
+	resp, err := dhttp.Get(node.Url)
 	if err != nil {
 		return
 	}
 
 	defer resp.Body.Close()
-	return util.WriteFile(path.Join(d.downloadPath, node.tt.ToString()), node.name, resp.Body)
 
-}
+	//文件的类型，作为存储目录
+	context := resp.Header.Get("Content-Type")
+	nextpath := strings.Split(context, ";")[0]
 
-/****************************************************************************/
-
-//下载文件类型
-type DownType int
-
-const (
-	ImageType DownType = iota
-	VideoType
-	HtmlType
-)
-
-var TypeString = [...]string{
-	"image",
-	"video",
-	"html",
+	return util.WriteFile(path.Join(d.downloadPath, nextpath), node.Name, resp.Body)
+	//return 0, nil
 }
 
 type Node struct {
-	tt   DownType
-	name string
-	url  string
+	Name string
+	Url  string
 }
 
-func NewNode(url, name string, t DownType) Node {
+func NewNode(url, name string) *Node {
 
 	if name == "" {
 		s := strings.Split(url, "/")
 		name = s[len(s)-1]
 	}
 
-	return Node{
-		tt:   t,
-		name: name,
-		url:  url,
+	return &Node{
+		Name: name,
+		Url:  url,
 	}
-}
-
-func (t DownType) ToString() string {
-	return TypeString[t]
-}
-
-func (n Node) GetTTString() string {
-	return n.tt.ToString()
-}
-
-func (n Node) GetName() string {
-	return n.name
-}
-
-func (n Node) GetUrl() string {
-	return n.url
 }
