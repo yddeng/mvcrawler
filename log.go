@@ -12,6 +12,6 @@ var logger *util.Logger
 
 func InitLogger() {
 	logConf := conf.GetConfig().Common.Log
-	logger = util.NewLogger(logConf.LogPath, logConf.LogPath)
+	logger = util.NewLogger(logConf.LogPath, logConf.LogName)
 	logger.Infoln("crawler logger init")
 }
