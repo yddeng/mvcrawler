@@ -3,6 +3,7 @@ package mvcrawler_test
 import (
 	"fmt"
 	"github.com/tagDong/mvcrawler"
+	"net/http"
 	"testing"
 )
 
@@ -31,8 +32,10 @@ func TestNewAnalysis(t *testing.T) {
 
 	})
 
+	hreap, _ := http.Get("http://www.silisili.me")
 	resp, _ := analysis.SyncPost(&mvcrawler.AnalysisReq{
-		Url: "http://www.silisili.me",
+		Url:      "http://www.silisili.me",
+		HttpResp: hreap,
 		Selector: &mvcrawler.Selector{
 			Dom: ".time_con li",
 			Exec: []struct {

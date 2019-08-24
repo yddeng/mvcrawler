@@ -5,13 +5,15 @@ import (
 	"github.com/PuerkitoBio/goquery"
 	"net/http"
 	"strings"
+	"sync/atomic"
 )
 
 //分析器
 type Analysis struct {
 	processQue     chan *AnalysisReq
-	processSize    int //队列的容量
-	goroutineCount int //队列消费者数量
+	processSize    int   //队列的容量
+	goroutineCount int   //队列消费者数量
+	flag           int32 //状态
 	chStop         chan struct{}
 }
 
@@ -19,7 +21,7 @@ type Analysis struct {
 type Selector struct {
 	Dom  string // DOM元素 选择器条件
 	Exec []struct {
-		//这一个选择器应该具体到哪一个标签
+		//这一个Dom应该具体到哪一个标签
 		Dom string
 		//Attr获取指定属性,如果为空则获取Text
 		Attr string
@@ -27,11 +29,25 @@ type Selector struct {
 }
 
 type AnalysisReq struct {
-	Url string
+	Url      string
+	HttpResp *http.Response
 	// 选择器
 	Selector *Selector
 	// 异步回调
 	callBack func(resp *AnalysisReap)
+}
+
+func (req *AnalysisReq) getResp() error {
+	resp, err := http.Get(req.Url)
+	if err != nil {
+		return err
+	}
+	if resp.StatusCode != http.StatusOK {
+		return fmt.Errorf("http %s StatusCode %d", req.Url, resp.StatusCode)
+	}
+
+	req.HttpResp = resp
+	return nil
 }
 
 type AnalysisReap struct {
@@ -49,8 +65,9 @@ func NewAnalysis(size, goroutineCount int) *Analysis {
 		processQue:     make(chan *AnalysisReq, size),
 		processSize:    size,
 		goroutineCount: goroutineCount,
-		chStop:         make(chan struct{}),
+		chStop:         make(chan struct{}, 1),
 	}
+	atomic.StoreInt32(&a.flag, 1)
 
 	//启动相应的处理线程
 	for i := 1; i <= goroutineCount; i++ {
@@ -62,12 +79,15 @@ func NewAnalysis(size, goroutineCount int) *Analysis {
 
 //非阻塞异步投递，队列满丢弃
 func (a *Analysis) Post(req *AnalysisReq, callback func(resp *AnalysisReap)) error {
+	if atomic.LoadInt32(&a.flag) == 0 {
+		return fmt.Errorf("analysis is stoped")
+	}
 	if len(a.processQue) == a.processSize {
-		return fmt.Errorf("processQue is full, discard %s", req.Url)
+		return fmt.Errorf("analysis processQue is full, discard %s", req.Url)
 	}
 
 	if callback == nil {
-		return fmt.Errorf("callback is nil")
+		return fmt.Errorf("analysis post callback is nil")
 	}
 
 	req.callBack = callback
@@ -88,6 +108,9 @@ func (a *Analysis) SyncPost(req *AnalysisReq) (resp *AnalysisReap, err error) {
 }
 
 func (a *Analysis) Stop() {
+	if atomic.CompareAndSwapInt32(&a.flag, 1, 0) {
+		return
+	}
 	close(a.chStop)
 }
 
@@ -110,16 +133,13 @@ func (a *Analysis) run(id int) {
 }
 
 func (a *Analysis) exec(req *AnalysisReq) (ret [][]string, err error) {
-	var resp *http.Response
-	resp, err = http.Get(req.Url)
-	if err != nil {
-		return
+	if req.HttpResp == nil {
+		err = req.getResp()
+		if err != nil {
+			return
+		}
 	}
-
-	if resp.StatusCode != http.StatusOK {
-		err = fmt.Errorf("http %s StatusCode %d", req.Url, resp.StatusCode)
-		return
-	}
+	resp := req.HttpResp
 
 	defer resp.Body.Close()
 	var doc *goquery.Document
