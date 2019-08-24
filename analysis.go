@@ -12,6 +12,7 @@ type Analysis struct {
 	processQue     chan *AnalysisReq
 	processSize    int //队列的容量
 	goroutineCount int //队列消费者数量
+	chStop         chan struct{}
 }
 
 //选择器
@@ -30,7 +31,7 @@ type AnalysisReq struct {
 	// 选择器
 	Selector *Selector
 	// 异步回调
-	CallBack func(resp *AnalysisReap)
+	callBack func(resp *AnalysisReap)
 }
 
 type AnalysisReap struct {
@@ -48,36 +49,63 @@ func NewAnalysis(size, goroutineCount int) *Analysis {
 		processQue:     make(chan *AnalysisReq, size),
 		processSize:    size,
 		goroutineCount: goroutineCount,
+		chStop:         make(chan struct{}),
 	}
 
-	for i := 0; i < goroutineCount; i++ {
-		go a.run()
+	//启动相应的处理线程
+	for i := 1; i <= goroutineCount; i++ {
+		id := i
+		go a.run(id)
 	}
 	return a
 }
 
-//非阻塞投递，队列满丢弃
-func (a *Analysis) Push(req *AnalysisReq) error {
+//非阻塞异步投递，队列满丢弃
+func (a *Analysis) Post(req *AnalysisReq, callback func(resp *AnalysisReap)) error {
 	if len(a.processQue) == a.processSize {
 		return fmt.Errorf("processQue is full, discard %s", req.Url)
 	}
+
+	if callback == nil {
+		return fmt.Errorf("callback is nil")
+	}
+
+	req.callBack = callback
 	a.processQue <- req
 	return nil
 }
 
-func (a *Analysis) run() {
+//同步投递
+func (a *Analysis) SyncPost(req *AnalysisReq) (resp *AnalysisReap, err error) {
+	ch := make(chan *AnalysisReap)
+	if err = a.Post(req, func(resp *AnalysisReap) {
+		ch <- resp
+	}); err != nil {
+		return
+	}
+	resp = <-ch
+	return resp, err
+}
+
+func (a *Analysis) Stop() {
+	close(a.chStop)
+}
+
+func (a *Analysis) run(id int) {
+	fmt.Printf("analysis consumer(%d) run\n", id)
 	for {
-		req := <-a.processQue
-		if req.CallBack == nil {
-			//log
-			continue
+		select {
+		case <-a.chStop:
+			fmt.Printf("analysis consumer(%d) close\n", id)
+			return
+		case req := <-a.processQue:
+			ret, err := a.exec(req)
+			req.callBack(&AnalysisReap{
+				Url:      req.Url,
+				RespData: ret,
+				Err:      err,
+			})
 		}
-		ret, err := a.exec(req)
-		req.CallBack(&AnalysisReap{
-			Url:      req.Url,
-			RespData: ret,
-			Err:      err,
-		})
 	}
 }
 
