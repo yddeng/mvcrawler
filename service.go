@@ -1,29 +1,27 @@
 package mvcrawler
 
 import (
+	"fmt"
 	"github.com/tagDong/mvcrawler/conf"
 	"github.com/tagDong/mvcrawler/dhttp"
 	"time"
 )
 
 var (
-	tickDur time.Duration
+	tickDur time.Duration = 60 * time.Second
 )
 
 type Service struct {
-	hServer  *dhttp.HttpServer
-	analysis *Analysis
+	modules map[ModuleType]Module
 
-	idxReq []*Request
+	analysis *Analysis
+	hServer  *dhttp.HttpServer
 }
 
 func NewService() *Service {
-
-	tickDur = 60 * time.Second
-
 	InitLogger()
 	s := new(Service)
-	s.initReq()
+	s.initModules()
 
 	s.InitAnalysis()
 	s.InitHttpServer()
@@ -32,23 +30,15 @@ func NewService() *Service {
 	return s
 }
 
-func (s *Service) initReq() {
-	config := conf.GetConfig().Update
-	reqs := []*Request{}
-	for _, v := range config.Urls {
-		reqs = append(reqs, &Request{
-			Url:      v.Index,
-			Selector: v.Selectors[0],
-			Depth:    1,
-		})
+func (s *Service) initModules() {
+	for mt, fn := range moduleFunc {
+		s.modules[mt] = fn()
 	}
-	s.idxReq = reqs
 }
 
 func (s *Service) InitHttpServer() {
 	config := conf.GetConfig()
 	s.hServer = dhttp.NewHttpServer(config.Common.HttpAddr)
-	s.hServer.Register(config.Update.Route, update)
 
 	go func() {
 		err := s.hServer.Listen()
@@ -62,7 +52,6 @@ func (s *Service) InitHttpServer() {
 
 func (s *Service) InitAnalysis() {
 	respCh := make(chan [][]string, 100)
-	s.analysis = NewAnalysis(respCh)
 
 	go func() {
 		for list := range respCh {
@@ -81,6 +70,9 @@ func (s *Service) tick() {
 	for {
 		now := <-tick.C
 		logger.Infof("-------- tick %s------", now.String())
-		s.analysis.Push(s.idxReq)
+		for mt, module := range s.modules {
+			module.Update()
+			fmt.Printf("%s update", MT2String(mt))
+		}
 	}
 }

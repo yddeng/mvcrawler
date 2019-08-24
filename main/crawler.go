@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/tagDong/mvcrawler"
 	"github.com/tagDong/mvcrawler/conf"
+	_ "github.com/tagDong/mvcrawler/module"
 )
 
 func main() {

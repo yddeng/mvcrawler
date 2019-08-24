@@ -3,75 +3,87 @@ package mvcrawler
 import (
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
-	"github.com/tagDong/mvcrawler/conf"
-	"github.com/tagDong/mvcrawler/dhttp"
 	"net/http"
 	"strings"
 )
 
 //分析器
 type Analysis struct {
-	processQue  chan []*Request
-	processSize int
+	processQue     chan *AnalysisReq
+	processSize    int //队列的容量
+	goroutineCount int //队列消费者数量
 }
 
-type Request struct {
+//选择器
+type Selector struct {
+	Dom  string // DOM元素 选择器条件
+	Exec []struct {
+		//这一个选择器应该具体到哪一个标签
+		Dom string
+		//Attr获取指定属性,如果为空则获取Text
+		Attr string
+	}
+}
+
+type AnalysisReq struct {
 	Url string
 	// 选择器
-	Selector *conf.Selector
-	// 请求深度
-	Depth int
+	Selector *Selector
+	// 异步回调
+	CallBack func(resp *AnalysisReap)
 }
 
-func NewAnalysis(chResp chan<- [][]string) *Analysis {
-	analConf := conf.GetConfig().Common.Analysis
+type AnalysisReap struct {
+	Url string
+	// 结果集
+	RespData [][]string
+	// 错误信息
+	Err error
+}
+
+//NewAnalysis
+//size:队列的容量，goroutineCount:队列消费者数量
+func NewAnalysis(size, goroutineCount int) *Analysis {
 	a := &Analysis{
-		processQue:  make(chan []*Request, analConf.ChanSize),
-		processSize: analConf.ChanSize,
+		processQue:     make(chan *AnalysisReq, size),
+		processSize:    size,
+		goroutineCount: goroutineCount,
 	}
 
-	for i := 0; i < analConf.GoroutineCount; i++ {
-		go a.run(chResp)
+	for i := 0; i < goroutineCount; i++ {
+		go a.run()
 	}
-
 	return a
 }
 
-func (a *Analysis) Push(req []*Request) {
+//非阻塞投递，队列满丢弃
+func (a *Analysis) Push(req *AnalysisReq) error {
 	if len(a.processQue) == a.processSize {
-		logger.Errorf("processQue is full, discard")
-	} else {
-		a.processQue <- req
+		return fmt.Errorf("processQue is full, discard %s", req.Url)
 	}
+	a.processQue <- req
+	return nil
 }
 
-func (a *Analysis) run(chResp chan<- [][]string) {
+func (a *Analysis) run() {
 	for {
-		reqs := <-a.processQue
-		for _, req := range reqs {
-			ret, err := a.exec(req)
-			if err != nil {
-				logger.Errorf("analysis: err %s", err)
-			} else {
-				resp := [][]string{}
-				for _, msg := range ret {
-					resp = append(resp, msg.data)
-				}
-				chResp <- resp
-			}
+		req := <-a.processQue
+		if req.CallBack == nil {
+			//log
+			continue
 		}
+		ret, err := a.exec(req)
+		req.CallBack(&AnalysisReap{
+			Url:      req.Url,
+			RespData: ret,
+			Err:      err,
+		})
 	}
 }
 
-type message struct {
-	depth int
-	data  []string
-}
-
-func (a *Analysis) exec(req *Request) (ret []*message, err error) {
-
+func (a *Analysis) exec(req *AnalysisReq) (ret [][]string, err error) {
 	var resp *http.Response
-	resp, err = dhttp.Get(req.Url)
+	resp, err = http.Get(req.Url)
 	if err != nil {
 		return
 	}
@@ -88,29 +100,27 @@ func (a *Analysis) exec(req *Request) (ret []*message, err error) {
 		return
 	}
 
-	ret = []*message{}
+	ret = [][]string{}
 	doc.Find(req.Selector.Dom).Each(func(i int, selection *goquery.Selection) {
-		msg := new(message)
-		msg.depth = req.Depth + 1
+		msg := []string{}
 		for _, sel := range req.Selector.Exec {
-			var s = selection
+			var sele = selection
 			var txt string
 			// 内容搜集
 			if sel.Dom != "" {
-				s = selection.Find(sel.Dom)
+				sele = selection.Find(sel.Dom)
 			}
 
 			if sel.Attr != "" {
-				if attr, ok := s.Attr(sel.Attr); ok {
+				if attr, ok := sele.Attr(sel.Attr); ok {
 					txt = strings.TrimSpace(attr)
 				}
 			} else {
-				txt = s.Text()
+				txt = sele.Text()
 			}
-			msg.data = append(msg.data, txt)
+			msg = append(msg, txt)
 		}
 		ret = append(ret, msg)
 	})
-
 	return
 }

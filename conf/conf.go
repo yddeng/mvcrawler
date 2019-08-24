@@ -55,30 +55,3 @@ func LoadConfig(path string) {
 func GetConfig() *Config {
 	return config
 }
-
-var siliWeek = []int{
-	6, 0, 1, 2, 3, 4, 5,
-}
-
-func GetSilisili() *Selector {
-	//n := util.GetWeekDay()
-	//dom := fmt.Sprintf(".swiper-container xfswiper%d li", siliWeek[n])
-	dom := ".time_con li"
-
-	return &Selector{
-		Dom: dom,
-		Exec: []struct {
-			Dom  string
-			Attr string
-		}{
-			{
-				Dom:  "p",
-				Attr: "",
-			},
-			{
-				Dom:  "img",
-				Attr: "src",
-			},
-		},
-	}
-}

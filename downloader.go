@@ -1,64 +1,69 @@
 package mvcrawler
 
 import (
-	"github.com/tagDong/mvcrawler/conf"
-	"github.com/tagDong/mvcrawler/dhttp"
+	"fmt"
 	"github.com/tagDong/mvcrawler/util"
+	"net/http"
 	"path"
 	"strings"
 )
 
 type Downloader struct {
 	downloadPath   string
-	goroutineCount int
-	downloadQueue  chan *Node
+	downloadQueue  chan *DownloadReq
 	downloadSize   int
+	goroutineCount int
+	logger         *util.Logger
 }
 
-/*
- 一个下载器
- 有多个消费者处理队列下载事件
-*/
-func NewDownLoader() *Downloader {
+type DownloadReq struct {
+	Name string
+	Url  string
+}
 
-	downConf := conf.GetConfig().Common.DownLoad
+func (req *DownloadReq) GetName() string {
+	name := req.Name
+	if name == "" {
+		s := strings.Split(req.Url, "/")
+		name = s[len(s)-1]
+	}
+	return name
+}
 
+//NewDownLoader
+//size:队列的容量，goroutineCount:队列消费者数量
+func NewDownLoader(outPath string, size, goroutineCount int, logger *util.Logger) *Downloader {
 	d := &Downloader{
-		downloadPath:   downConf.OutPath,
-		goroutineCount: downConf.GoroutineCount,
-		downloadQueue:  make(chan *Node, downConf.ChanSize),
-		downloadSize:   downConf.ChanSize,
+		downloadPath:   outPath,
+		downloadQueue:  make(chan *DownloadReq, size),
+		downloadSize:   size,
+		goroutineCount: goroutineCount,
+		logger:         logger,
 	}
 
-	for i := 0; i < downConf.GoroutineCount; i++ {
+	for i := 0; i < goroutineCount; i++ {
 		go d.run()
 	}
-
 	return d
 }
 
-/*
- 像队列中添加下载事件
- 队列满，丢弃
-*/
-func (d *Downloader) Push(node *Node) {
+//非阻塞投递，队列满丢弃
+func (d *Downloader) Push(node *DownloadReq) error {
 	if len(d.downloadQueue) == d.downloadSize {
-		logger.Errorf("downloadQueue is full, discard %s %s", node.Name, node.Url)
-	} else {
-		d.downloadQueue <- node
+		return fmt.Errorf("downloadQueue is full, discard %s %s", node.Name, node.Url)
 	}
+	d.downloadQueue <- node
+	return nil
 }
 
 func (d *Downloader) run() {
 	for {
-		select {
-		case node := <-d.downloadQueue:
-			n, err := d.download(node)
-			if err != nil {
-				logger.Errorf("download url:%s err:%s", node.Url, err)
-			} else {
-				logger.Debugf("download url:%s size:%s\n", node.Url, util.SiezToString(n))
-			}
+		node := <-d.downloadQueue
+		n, err := d.download(node)
+		if err != nil {
+			d.logger.Errorf("download err:%s", err)
+		} else {
+			d.logger.Debugf("download url:%s size:%s\n", node.Url, util.SiezToString(n))
 		}
 	}
 }
@@ -68,9 +73,9 @@ func (d *Downloader) run() {
 * 参数：资源的URL地址
 * 返回值：大小，错误
  */
-func (d *Downloader) download(node *Node) (n int64, err error) {
-
-	resp, err := dhttp.Get(node.Url)
+func (d *Downloader) download(req *DownloadReq) (n int64, err error) {
+	var resp *http.Response
+	resp, err = http.Get(req.Url)
 	if err != nil {
 		return
 	}
@@ -81,24 +86,5 @@ func (d *Downloader) download(node *Node) (n int64, err error) {
 	context := resp.Header.Get("Content-Type")
 	nextpath := strings.Split(context, ";")[0]
 
-	return util.WriteFile(path.Join(d.downloadPath, nextpath), node.Name, resp.Body)
-	//return 0, nil
-}
-
-type Node struct {
-	Name string
-	Url  string
-}
-
-func NewNode(url, name string) *Node {
-
-	if name == "" {
-		s := strings.Split(url, "/")
-		name = s[len(s)-1]
-	}
-
-	return &Node{
-		Name: name,
-		Url:  url,
-	}
+	return util.WriteFile(path.Join(d.downloadPath, nextpath), req.GetName(), resp.Body)
 }
