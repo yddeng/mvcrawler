@@ -9,6 +9,11 @@ import (
 	"sync/atomic"
 )
 
+var (
+	started = int32(1)
+	stopped = int32(0)
+)
+
 //分析器
 type Analysis struct {
 	processQue     chan *AnalysisReq
@@ -29,6 +34,7 @@ type Selector struct {
 	}
 }
 
+//分析请求
 type AnalysisReq struct {
 	Url      string
 	HttpResp *http.Response
@@ -38,6 +44,7 @@ type AnalysisReq struct {
 	callBack func(resp *AnalysisReap)
 }
 
+//分析结果
 type AnalysisReap struct {
 	Url string
 	// 结果集
@@ -53,9 +60,9 @@ func NewAnalysis(size, goroutineCount int) *Analysis {
 		processQue:     make(chan *AnalysisReq, size),
 		processSize:    size,
 		goroutineCount: goroutineCount,
-		chStop:         make(chan struct{}, 1),
+		chStop:         make(chan struct{}),
 	}
-	atomic.StoreInt32(&a.flag, 1)
+	atomic.StoreInt32(&a.flag, started)
 
 	//启动相应的处理线程
 	for i := 1; i <= goroutineCount; i++ {
@@ -67,8 +74,8 @@ func NewAnalysis(size, goroutineCount int) *Analysis {
 
 //非阻塞异步投递，队列满丢弃
 func (a *Analysis) Post(req *AnalysisReq, callback func(resp *AnalysisReap)) error {
-	if atomic.LoadInt32(&a.flag) == 0 {
-		return fmt.Errorf("analysis is stoped")
+	if atomic.LoadInt32(&a.flag) == stopped {
+		return fmt.Errorf("analysis is stopped")
 	}
 	if len(a.processQue) == a.processSize {
 		return fmt.Errorf("analysis processQue is full, discard %s", req.Url)
@@ -95,11 +102,11 @@ func (a *Analysis) SyncPost(req *AnalysisReq) (resp *AnalysisReap, err error) {
 	return resp, err
 }
 
+//停止分析器
 func (a *Analysis) Stop() {
-	if atomic.CompareAndSwapInt32(&a.flag, 1, 0) {
-		return
+	if atomic.CompareAndSwapInt32(&a.flag, started, stopped) {
+		close(a.chStop)
 	}
-	close(a.chStop)
 }
 
 func (a *Analysis) run(id int) {
@@ -107,7 +114,7 @@ func (a *Analysis) run(id int) {
 	for {
 		select {
 		case <-a.chStop:
-			fmt.Printf("analysis consumer(%d) close\n", id)
+			fmt.Printf("analysis consumer(%d) stop\n", id)
 			return
 		case req := <-a.processQue:
 			ret, err := a.exec(req)

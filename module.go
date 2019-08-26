@@ -1,5 +1,7 @@
 package mvcrawler
 
+import "github.com/tagDong/mvcrawler/util"
+
 type Module interface {
 	Search(context string) []*Message
 	Update()
@@ -19,11 +21,11 @@ var (
 		"silisili",
 	}
 
-	moduleFunc = map[ModuleType]func() Module{}
+	moduleFunc = map[ModuleType]func(anal *Analysis, down *Downloader, l *util.Logger) Module{}
 )
 
 //非安全的注册，需启动时完成注册
-func Register(mt ModuleType, fn func() Module) {
+func Register(mt ModuleType, fn func(anal *Analysis, down *Downloader, l *util.Logger) Module) {
 	if _, ok := moduleFunc[mt]; !ok {
 		moduleFunc[mt] = fn
 	}

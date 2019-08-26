@@ -3,16 +3,19 @@ package module
 import (
 	"fmt"
 	"github.com/tagDong/mvcrawler"
+	"github.com/tagDong/mvcrawler/dhttp"
 	"github.com/tagDong/mvcrawler/util"
-	"net/http"
 	"net/url"
 )
 
 type Silisili struct {
-	baseUrl  string
-	update   *mvcrawler.Selector
-	search   *mvcrawler.Selector
-	analysis *mvcrawler.Analysis
+	baseUrl string
+	update  *mvcrawler.Selector
+	search  *mvcrawler.Selector
+
+	analysis   *mvcrawler.Analysis
+	downloader *mvcrawler.Downloader
+	logger     *util.Logger
 }
 
 func (sl *Silisili) Search(txt string) []*mvcrawler.Message {
@@ -26,9 +29,9 @@ func (sl *Silisili) Search(txt string) []*mvcrawler.Message {
 	//data["keyboard"] = []string{"海"}
 
 	//把post表单发送给目标服务器
-	resp, err := http.PostForm("http://www.silisili.me/e/search/index.php", data)
+	resp, err := dhttp.Post("http://www.silisili.me/e/search/index.php", 0, data)
 	if err != nil {
-		fmt.Printf("silisili search err:%s", err)
+		sl.logger.Errorf("silisili search err:%s", err)
 		return ret
 	}
 
@@ -41,7 +44,7 @@ func (sl *Silisili) Search(txt string) []*mvcrawler.Message {
 		ret = append(ret, &mvcrawler.Message{
 			Title: msg[0],
 			Img:   msg[1],
-			Url:   msg[2],
+			Url:   util.MergeString(sl.baseUrl, msg[2]),
 		})
 	}
 	return ret
@@ -87,12 +90,17 @@ func searchSilisili() *mvcrawler.Selector {
 }
 
 func init() {
-	mvcrawler.Register(mvcrawler.Silisili, func() mvcrawler.Module {
+	mvcrawler.Register(mvcrawler.Silisili, func(
+		anal *mvcrawler.Analysis, down *mvcrawler.Downloader, l *util.Logger) mvcrawler.Module {
 
 		return &Silisili{
 			baseUrl: "www.silisili.me",
 			update:  updateSilisili(),
 			search:  searchSilisili(),
+
+			analysis:   anal,
+			downloader: down,
+			logger:     l,
 		}
 	})
 }

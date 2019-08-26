@@ -8,23 +8,27 @@ import (
 )
 
 var (
-	tickDur time.Duration = 60 * time.Second
+	tickDur = 60 * time.Second
 )
 
 type Service struct {
 	modules map[ModuleType]Module
 
-	analysis *Analysis
-	hServer  *dhttp.HttpServer
+	analysis   *Analysis
+	downloader *Downloader
+	hServer    *dhttp.HttpServer
 }
 
 func NewService() *Service {
 	InitLogger()
 	s := new(Service)
+
+	s.initAnalysis()
+	s.initDownloader()
 	s.initModules()
 
-	s.InitAnalysis()
-	s.InitHttpServer()
+	//
+	s.initHttpServer()
 
 	go s.tick()
 	return s
@@ -32,25 +36,12 @@ func NewService() *Service {
 
 func (s *Service) initModules() {
 	for mt, fn := range moduleFunc {
-		s.modules[mt] = fn()
+		s.modules[mt] = fn(s.analysis, s.downloader, logger)
 	}
 }
 
-func (s *Service) InitHttpServer() {
-	config := conf.GetConfig()
-	s.hServer = dhttp.NewHttpServer(config.Common.HttpAddr)
-
-	go func() {
-		err := s.hServer.Listen()
-		if err != nil {
-			panic(err)
-		}
-	}()
-
-	logger.Infoln("init httpServer ok")
-}
-
-func (s *Service) InitAnalysis() {
+//初始化分析器
+func (s *Service) initAnalysis() {
 	respCh := make(chan [][]string, 100)
 
 	go func() {
@@ -62,6 +53,26 @@ func (s *Service) InitAnalysis() {
 	}()
 
 	logger.Infoln("init analysis ok")
+}
+
+//初始化下载器
+func (s *Service) initDownloader() {
+
+}
+
+//http服务
+func (s *Service) initHttpServer() {
+	config := conf.GetConfig()
+	s.hServer = dhttp.NewHttpServer(config.Common.HttpAddr)
+
+	go func() {
+		err := s.hServer.Listen()
+		if err != nil {
+			panic(err)
+		}
+	}()
+
+	logger.Infoln("init httpServer ok")
 }
 
 //定时抓取

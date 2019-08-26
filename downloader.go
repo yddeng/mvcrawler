@@ -9,14 +9,16 @@ import (
 	"strings"
 )
 
+//下载器
 type Downloader struct {
-	downloadPath   string
+	downloadPath   string //下载地址
 	downloadQueue  chan *DownloadReq
-	downloadSize   int
-	goroutineCount int
-	logger         *util.Logger
+	downloadSize   int          //队列容量
+	goroutineCount int          //队列处理线程数目
+	logger         *util.Logger //日志
 }
 
+//下载请求
 type DownloadReq struct {
 	Name string
 	Url  string
