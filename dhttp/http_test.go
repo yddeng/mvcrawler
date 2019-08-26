@@ -23,12 +23,9 @@ func TestHttp(t *testing.T) {
 	data["keyboard"] = []string{"海"}
 
 	//把post表单发送给目标服务器
-	resp, err := dhttp.Post("http://www.silisili.me/e/search/index.php", 0, data)
+	resp, err := dhttp.PostUrlencoded("http://www.silisili.me/e/search/index.php", data, 0)
 	result, _ := ioutil.ReadAll(resp.Body)
 	content := string(result)
 	fmt.Println("qq", content, err)
 
-	//n, err := util.WriteFile("./", "resp.html", resp.Body)
-	//fmt.Println("dddd", n, err)
-	//resp.Body.Close()
 }
