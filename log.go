@@ -11,7 +11,7 @@ import (
 var logger *util.Logger
 
 func InitLogger() {
-	logConf := conf.GetConfig().Common.Log
+	logConf := conf.GetConfig().Log
 	logger = util.NewLogger(logConf.LogPath, logConf.LogName)
 	logger.Infoln("crawler logger init")
 }

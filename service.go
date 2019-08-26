@@ -42,17 +42,17 @@ func (s *Service) initModules() {
 
 //初始化分析器
 func (s *Service) initAnalysis() {
-	config := conf.GetConfig().Common.Analysis
-	s.analysis = NewAnalysis(config.ChanSize, config.GoroutineCount)
+	config := conf.GetConfig().Analysis
+	s.analysis = NewAnalysis(config.QueueSize, config.GoroutineCount)
 
 	logger.Infoln("init analysis ok")
 }
 
 //初始化下载器
 func (s *Service) initDownloader() {
-	config := conf.GetConfig().Common.DownLoad
+	config := conf.GetConfig().DownLoad
 	s.downloader = NewDownLoader(
-		config.OutPath, config.ChanSize, config.GoroutineCount, logger)
+		config.OutPath, config.QueueSize, config.GoroutineCount, logger)
 
 	logger.Infoln("init analysis ok")
 }
@@ -60,7 +60,7 @@ func (s *Service) initDownloader() {
 //http服务
 func (s *Service) initHttpServer() {
 	config := conf.GetConfig()
-	s.hServer = dhttp.NewHttpServer(config.Common.HttpAddr)
+	s.hServer = dhttp.NewHttpServer(config.HttpAddr)
 
 	//注册路由
 	s.hServer.Register("/search", s.search)
@@ -73,7 +73,7 @@ func (s *Service) initHttpServer() {
 		}
 	}()
 
-	logger.Infof("httpServer start on %s", config.Common.HttpAddr)
+	logger.Infof("httpServer start on %s", config.HttpAddr)
 }
 
 //定时抓取

@@ -1,32 +1,29 @@
 package conf
 
-import (
-	"github.com/tagDong/mvcrawler/util"
-)
+import "github.com/BurntSushi/toml"
 
 type Config struct {
-	Common struct {
-		HttpAddr string
-		Log      struct {
-			LogPath string
-			LogName string
-		}
-		DownLoad struct {
-			OutPath        string
-			ChanSize       int
-			GoroutineCount int
-		}
-		Analysis struct {
-			ChanSize       int
-			GoroutineCount int
-		}
+	HttpAddr string
+	Log      struct {
+		LogPath string
+		LogName string
+	}
+	DownLoad struct {
+		OutPath        string
+		QueueSize      int
+		GoroutineCount int
+	}
+	Analysis struct {
+		QueueSize      int
+		GoroutineCount int
 	}
 }
 
 var config *Config
 
 func LoadConfig(path string) {
-	err := util.DecodeJsonFile(path, &config)
+	config = &Config{}
+	_, err := toml.DecodeFile(path, config)
 	if err != nil {
 		panic(err)
 	}

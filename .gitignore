@@ -1,3 +1,6 @@
+# 配置文件
+conf/conf.toml
+
 # 日志文件
 /log
 crawler.log
@@ -7,3 +10,4 @@ crawler.log
 
 # 程序二进制文件
 /bin
+

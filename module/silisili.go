@@ -57,6 +57,7 @@ func (sl *Silisili) Update() []*mvcrawler.Message {
 
 	if util.GetWeekDay() != sl.today {
 		sl.update = updateSilisili()
+		sl.today = util.GetWeekDay()
 	}
 
 	ret := []*mvcrawler.Message{}

@@ -1,0 +1,15 @@
+HttpAddr       = "127.0.0.1:12345"
+
+[Log]
+LogPath        = "./log"
+LogName        = "crawler"
+
+[Download]
+OutPath        = "./download"
+QueueSize      = 2048
+GoroutineCount = 4
+
+[Analysis]
+QueueSize      = 2048
+GoroutineCount = 4
+

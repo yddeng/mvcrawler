@@ -11,7 +11,8 @@ type SearchReq struct {
 }
 
 func main() {
-	resp, err := dhttp.PostJson("http://127.0.0.1:2369/search", SearchReq{"海贼王"}, 0)
+	resp, err := dhttp.PostJson("http://127.0.0.1:12345/search", SearchReq{"海贼王"}, 0)
+	//resp, err := dhttp.PostJson("http://104.168.165.226:12345/search", SearchReq{"海贼王"}, 0)
 	if err != nil {
 		fmt.Println("1", err)
 	}
