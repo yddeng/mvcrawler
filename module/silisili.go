@@ -10,6 +10,7 @@ import (
 
 type Silisili struct {
 	baseUrl string
+	today   int
 	update  *mvcrawler.Selector
 	search  *mvcrawler.Selector
 
@@ -36,6 +37,11 @@ func (sl *Silisili) Search(txt string) []*mvcrawler.Message {
 		Selector: sl.search,
 	})
 
+	if err != nil {
+		sl.logger.Errorf("silisili analysis syncPost err:%s", err)
+		return ret
+	}
+
 	for _, msg := range result.RespData {
 		ret = append(ret, &mvcrawler.Message{
 			Title: msg[0],
@@ -47,8 +53,32 @@ func (sl *Silisili) Search(txt string) []*mvcrawler.Message {
 	return ret
 }
 
-func (sl *Silisili) Update() {
+func (sl *Silisili) Update() []*mvcrawler.Message {
 
+	if util.GetWeekDay() != sl.today {
+		sl.update = updateSilisili()
+	}
+
+	ret := []*mvcrawler.Message{}
+	result, err := sl.analysis.SyncPost(&mvcrawler.AnalysisReq{
+		Url:      sl.baseUrl,
+		Selector: sl.update,
+	})
+
+	if err != nil {
+		sl.logger.Errorf("silisili analysis syncPost err:%s", err)
+		return ret
+	}
+
+	for _, msg := range result.RespData {
+		ret = append(ret, &mvcrawler.Message{
+			Title: msg[0],
+			From:  "silisili",
+			Img:   msg[1],
+			Url:   util.MergeString(sl.baseUrl, msg[2]),
+		})
+	}
+	return ret
 }
 
 // silisili日更新
@@ -66,8 +96,9 @@ func updateSilisili() *mvcrawler.Selector {
 			Dom  string
 			Attr string
 		}{
-			{Dom: "p", Attr: ""},
-			{Dom: "img", Attr: "src"},
+			{Dom: "p", Attr: ""},      //title
+			{Dom: "img", Attr: "src"}, //img src
+			{Dom: "a", Attr: "href"},  //url
 		},
 	}
 }
@@ -79,9 +110,9 @@ func searchSilisili() *mvcrawler.Selector {
 			Dom  string
 			Attr string
 		}{
-			{Dom: "dd h3 a", Attr: ""},
-			{Dom: "dt img", Attr: "src"},
-			{Dom: "dd h3 a", Attr: "href"},
+			{Dom: "dd h3 a", Attr: ""},     //title
+			{Dom: "dt img", Attr: "src"},   //img src
+			{Dom: "dd h3 a", Attr: "href"}, //url
 		},
 	}
 }
@@ -91,7 +122,8 @@ func init() {
 		anal *mvcrawler.Analysis, down *mvcrawler.Downloader, l *util.Logger) mvcrawler.Module {
 
 		return &Silisili{
-			baseUrl: "www.silisili.me",
+			baseUrl: "http://www.silisili.me",
+			today:   util.GetWeekDay(),
 			update:  updateSilisili(),
 			search:  searchSilisili(),
 

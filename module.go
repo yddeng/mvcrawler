@@ -4,7 +4,7 @@ import "github.com/tagDong/mvcrawler/util"
 
 type Module interface {
 	Search(context string) []*Message
-	Update()
+	Update() []*Message
 }
 
 type ModuleType int32

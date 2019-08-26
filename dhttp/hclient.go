@@ -23,10 +23,13 @@ func Get(url string, timeout time.Duration) (*http.Response, error) {
 		return nil, err
 	}
 	resp, rerr := client.Do(req)
-	if resp.StatusCode != http.StatusOK || rerr != nil {
-		return nil, fmt.Errorf("http url %s get StatusCode %d err %s", url, resp.StatusCode, rerr)
+	if rerr != nil {
+		return nil, fmt.Errorf("http url %s get rerr %s", url, rerr)
 	}
 
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("http url %s get status code %d", url, resp.StatusCode)
+	}
 	return resp, nil
 }
 
@@ -60,8 +63,12 @@ func Post(url string, contentType string, reader io.Reader, timeout time.Duratio
 	req.Header.Set("Content-Type", contentType)
 
 	resp, rerr := client.Do(req)
-	if resp.StatusCode != http.StatusOK || rerr != nil {
-		return nil, fmt.Errorf("http url %s post statuscode %d err %s", url, resp.StatusCode, rerr)
+	if rerr != nil {
+		return nil, fmt.Errorf("http url %s post rerr %s", url, rerr)
+	}
+
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("http url %s post status code %d", url, resp.StatusCode)
 	}
 
 	return resp, nil

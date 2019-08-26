@@ -17,7 +17,7 @@ func main() {
 	conf.LoadConfig(os.Args[1])
 	mvcrawler.NewService()
 
-	fmt.Print("------------------- start ------------------")
+	fmt.Println("------------------- start ------------------")
 	stop := make(chan struct{}, 1)
 	select {
 	case <-stop:

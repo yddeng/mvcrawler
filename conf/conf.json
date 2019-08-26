@@ -14,57 +14,6 @@
       "ChanSize": 2048,
       "GoroutineCount": 4
     }
-  },
-
-  "Update": {
-    "Route": "/update",
-    "Urls": [
-      {
-        "Index": "http://www.silisili.me",
-        "Selectors": [
-          {
-            "Dom": ".time_con li",
-            "Exec": [
-              {
-                "Dom": "p",
-                "Attr": ""
-              },
-              {
-                "Dom": "img",
-                "Attr": "src"
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-
-  "Search": {
-    "Route": "/search",
-    "Urls": [
-      {
-        "Index": "http://www.silisili.me",
-        "Selectors": [
-          {
-            "Type": "attr",
-            "Dom": ".time_con li img",
-            "Attr": "src"
-          },{
-            "Type": "attr",
-            "Dom":"",
-            "Attr": ""
-          }
-        ]
-      }
-    ]
-  },
-  "Silisili": {
-    "Search": {
-
-    }
   }
-
-
 
 }

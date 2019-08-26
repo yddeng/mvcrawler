@@ -64,6 +64,7 @@ func (s *Service) initHttpServer() {
 
 	//注册路由
 	s.hServer.Register("/search", s.search)
+	s.hServer.Register("/update", s.update)
 
 	go func() {
 		err := s.hServer.Listen()
@@ -77,10 +78,16 @@ func (s *Service) initHttpServer() {
 
 //定时抓取
 func (s *Service) tick() {
+	_updata = &UpdateResp{
+		resp: map[ModuleType][]*Message{},
+	}
+
 	tick := time.NewTicker(tickDur)
 	for {
+		for k, m := range s.modules {
+			_updata.resp[k] = m.Update()
+		}
 		now := <-tick.C
-		logger.Infof("-------- tick %s------", now.String())
-
+		logger.Infof("-------- tick %s------\n", now.String())
 	}
 }

@@ -21,26 +21,6 @@ type Config struct {
 			GoroutineCount int
 		}
 	}
-
-	Update struct {
-		Route string
-		Urls  []struct {
-			Index string
-			//数组表示深度
-			Selectors []*Selector
-		}
-	}
-}
-
-//选择器
-type Selector struct {
-	Dom  string // DOM元素 选择器条件
-	Exec []struct {
-		//这一个选择器应该具体到哪一个标签
-		Dom string
-		//Attr获取指定属性,如果为空则获取Text
-		Attr string
-	}
 }
 
 var config *Config
