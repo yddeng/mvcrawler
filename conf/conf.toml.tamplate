@@ -1,15 +1,17 @@
-HttpAddr       = "127.0.0.1:12345"
+# 配置模版，正式去掉后缀tamplate
+
+HttpAddr       = "127.0.0.1:12345"    # 服务器地址
 
 [Log]
-LogPath        = "./log"
-LogName        = "crawler"
+LogPath        = "./log"              # 日志输出路径
+LogName        = "crawler"            # 日志名字
 
 [Download]
-OutPath        = "./download"
-QueueSize      = 2048
-GoroutineCount = 4
+OutPath        = "./download"         # 下载路径
+QueueSize      = 2048                 # 下载队列大小
+GoroutineCount = 4                    # 下载队列的处理线程数
 
 [Analysis]
-QueueSize      = 2048
-GoroutineCount = 4
+QueueSize      = 2048                 # 分析器队列大小
+GoroutineCount = 4                    # 分析器队列的处理线程数
 
