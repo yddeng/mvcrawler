@@ -78,7 +78,7 @@ func (d *Downloader) run() {
  */
 func (d *Downloader) download(req *DownloadReq) (n int64, err error) {
 	var resp *http.Response
-	resp, err = dhttp.Get(req.Url)
+	resp, err = dhttp.Get(req.Url, 0)
 	if err != nil {
 		return
 	}

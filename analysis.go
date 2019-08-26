@@ -124,7 +124,7 @@ func (a *Analysis) run(id int) {
 // 如果HttpResp为空，先请求
 func (a *Analysis) exec(req *AnalysisReq) (ret [][]string, err error) {
 	if req.HttpResp == nil {
-		req.HttpResp, err = dhttp.Get(req.Url)
+		req.HttpResp, err = dhttp.Get(req.Url, 0)
 		if err != nil {
 			return
 		}

@@ -11,11 +11,10 @@ import (
 var defTimeout = 5 * time.Second
 
 //发送GET请求
-//url:请求地址
+//url:请求地址; timeout:超时时间,小于等于0不设置超时
 //response:请求返回的内容
-func Get(url string) (*http.Response, error) {
-	client := &http.Client{}
-	//client := &http.Client{Timeout: defTimeout}
+func Get(url string, timeout time.Duration) (*http.Response, error) {
+	client := &http.Client{Timeout: timeout}
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return nil, err
@@ -30,11 +29,10 @@ func Get(url string) (*http.Response, error) {
 }
 
 //发送POST请求
-//url:请求地址，data:POST请求提交的数据
+//url:请求地址; timeout:超时时间,小于等于0不设置超时; data:POST请求提交的数据
 //Response:请求返回的内容，err，请求错误
-func Post(url string, data url.Values) (*http.Response, error) {
-	client := &http.Client{}
-	//client := &http.Client{Timeout: defTimeout}
+func Post(url string, timeout time.Duration, data url.Values) (*http.Response, error) {
+	client := &http.Client{Timeout: timeout}
 	req, err := http.NewRequest("POST", url, strings.NewReader(data.Encode())) //("bar=baz&foo=quux")
 	if err != nil {
 		return nil, err
