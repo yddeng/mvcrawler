@@ -20,5 +20,5 @@ func (s *HttpServer) Register(pattern string, handler func(http.ResponseWriter, 
 }
 
 func (s *HttpServer) Listen() error {
-	return http.ListenAndServe(s.listenAddr, nil)
+	return http.ListenAndServe(s.listenAddr, s.handler)
 }

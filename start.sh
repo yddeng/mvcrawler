@@ -1,1 +1,1 @@
- nohup bin/crawler > crawler.log 2>&1 &
+ nohup bin/crawler conf/conf.json > crawler.log 2>&1 &

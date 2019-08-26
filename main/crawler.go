@@ -5,10 +5,16 @@ import (
 	"github.com/tagDong/mvcrawler"
 	"github.com/tagDong/mvcrawler/conf"
 	_ "github.com/tagDong/mvcrawler/module"
+	"os"
 )
 
 func main() {
-	conf.LoadConfig("conf/conf.json")
+	if len(os.Args) < 1 {
+		fmt.Printf("usage config\n")
+		return
+	}
+
+	conf.LoadConfig(os.Args[1])
 	mvcrawler.NewService()
 
 	fmt.Print("------------------- start ------------------")

@@ -23,13 +23,9 @@ func (sl *Silisili) Search(txt string) []*mvcrawler.Message {
 	data := url.Values{
 		"show": {"title"}, "tbname": {"movie"}, "tempid": {"1"}, "keyboard": {txt},
 	}
-	//data["show"] = []string{"title"}
-	//data["tbname"] = []string{"movie"}
-	//data["tempid"] = []string{"1"}
-	//data["keyboard"] = []string{"海"}
 
 	//把post表单发送给目标服务器
-	resp, err := dhttp.Post("http://www.silisili.me/e/search/index.php", 0, data)
+	resp, err := dhttp.PostUrlencoded("http://www.silisili.me/e/search/index.php", data, 0)
 	if err != nil {
 		sl.logger.Errorf("silisili search err:%s", err)
 		return ret
@@ -43,6 +39,7 @@ func (sl *Silisili) Search(txt string) []*mvcrawler.Message {
 	for _, msg := range result.RespData {
 		ret = append(ret, &mvcrawler.Message{
 			Title: msg[0],
+			From:  "silisili",
 			Img:   msg[1],
 			Url:   util.MergeString(sl.baseUrl, msg[2]),
 		})

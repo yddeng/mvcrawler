@@ -1,7 +1,6 @@
 package mvcrawler
 
 import (
-	"fmt"
 	"github.com/tagDong/mvcrawler/conf"
 	"github.com/tagDong/mvcrawler/dhttp"
 	"time"
@@ -35,6 +34,7 @@ func NewService() *Service {
 }
 
 func (s *Service) initModules() {
+	s.modules = map[ModuleType]Module{}
 	for mt, fn := range moduleFunc {
 		s.modules[mt] = fn(s.analysis, s.downloader, logger)
 	}
@@ -42,28 +42,28 @@ func (s *Service) initModules() {
 
 //初始化分析器
 func (s *Service) initAnalysis() {
-	respCh := make(chan [][]string, 100)
-
-	go func() {
-		for list := range respCh {
-			for _, url := range list {
-				logger.Infoln(url[0], url[1])
-			}
-		}
-	}()
+	config := conf.GetConfig().Common.Analysis
+	s.analysis = NewAnalysis(config.ChanSize, config.GoroutineCount)
 
 	logger.Infoln("init analysis ok")
 }
 
 //初始化下载器
 func (s *Service) initDownloader() {
+	config := conf.GetConfig().Common.DownLoad
+	s.downloader = NewDownLoader(
+		config.OutPath, config.ChanSize, config.GoroutineCount, logger)
 
+	logger.Infoln("init analysis ok")
 }
 
 //http服务
 func (s *Service) initHttpServer() {
 	config := conf.GetConfig()
 	s.hServer = dhttp.NewHttpServer(config.Common.HttpAddr)
+
+	//注册路由
+	s.hServer.Register("/search", s.search)
 
 	go func() {
 		err := s.hServer.Listen()
@@ -72,7 +72,7 @@ func (s *Service) initHttpServer() {
 		}
 	}()
 
-	logger.Infoln("init httpServer ok")
+	logger.Infof("httpServer start on %s", config.Common.HttpAddr)
 }
 
 //定时抓取
@@ -81,9 +81,6 @@ func (s *Service) tick() {
 	for {
 		now := <-tick.C
 		logger.Infof("-------- tick %s------", now.String())
-		for mt, module := range s.modules {
-			module.Update()
-			fmt.Printf("%s update", MT2String(mt))
-		}
+
 	}
 }

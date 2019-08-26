@@ -1,7 +1,10 @@
 package dhttp
 
 import (
+	"bytes"
+	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -19,7 +22,6 @@ func Get(url string, timeout time.Duration) (*http.Response, error) {
 	if err != nil {
 		return nil, err
 	}
-
 	resp, rerr := client.Do(req)
 	if resp.StatusCode != http.StatusOK || rerr != nil {
 		return nil, fmt.Errorf("http url %s get StatusCode %d err %s", url, resp.StatusCode, rerr)
@@ -28,21 +30,38 @@ func Get(url string, timeout time.Duration) (*http.Response, error) {
 	return resp, nil
 }
 
-//发送POST请求
-//url:请求地址; timeout:超时时间,小于等于0不设置超时; data:POST请求提交的数据
+//发送Urlencoded POST请求
+//url:请求地址; data:POST请求提交的数据; timeout:超时时间,小于等于0不设置超时;
 //Response:请求返回的内容，err，请求错误
-func Post(url string, timeout time.Duration, data url.Values) (*http.Response, error) {
-	client := &http.Client{Timeout: timeout}
-	req, err := http.NewRequest("POST", url, strings.NewReader(data.Encode())) //("bar=baz&foo=quux")
+func PostUrlencoded(url string, data url.Values, timeout time.Duration) (*http.Response, error) {
+	return Post(url, "application/x-www-form-urlencoded", strings.NewReader(data.Encode()), timeout)
+}
+
+//发送Json POST请求
+//url:请求地址; data:POST请求提交的json数据; timeout:超时时间,小于等于0不设置超时;
+//Response:请求返回的内容，err，请求错误
+func PostJson(url string, req interface{}, timeout time.Duration) (*http.Response, error) {
+	data, err := json.Marshal(req)
 	if err != nil {
 		return nil, err
 	}
-	//contentType:请求体格式，如：application/json
-	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+	return Post(url, "application/json", bytes.NewReader(data), timeout)
+}
+
+//发送POST请求
+//url:请求地址; data:POST请求提交的json数据; timeout:超时时间,小于等于0不设置超时;
+//Response:请求返回的内容，err，请求错误
+func Post(url string, contentType string, reader io.Reader, timeout time.Duration) (*http.Response, error) {
+	client := &http.Client{Timeout: timeout}
+	req, err := http.NewRequest("POST", url, reader)
+	if err != nil {
+		return nil, err
+	}
+	req.Header.Set("Content-Type", contentType)
 
 	resp, rerr := client.Do(req)
 	if resp.StatusCode != http.StatusOK || rerr != nil {
-		return nil, fmt.Errorf("http url %s post StatusCode %d err %s", url, resp.StatusCode, rerr)
+		return nil, fmt.Errorf("http url %s post statuscode %d err %s", url, resp.StatusCode, rerr)
 	}
 
 	return resp, nil
