@@ -3,6 +3,7 @@ package mvcrawler
 import (
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
+	"github.com/tagDong/mvcrawler/dhttp"
 	"net/http"
 	"strings"
 	"sync/atomic"
@@ -35,19 +36,6 @@ type AnalysisReq struct {
 	Selector *Selector
 	// 异步回调
 	callBack func(resp *AnalysisReap)
-}
-
-func (req *AnalysisReq) getResp() error {
-	resp, err := http.Get(req.Url)
-	if err != nil {
-		return err
-	}
-	if resp.StatusCode != http.StatusOK {
-		return fmt.Errorf("http %s StatusCode %d", req.Url, resp.StatusCode)
-	}
-
-	req.HttpResp = resp
-	return nil
 }
 
 type AnalysisReap struct {
@@ -132,9 +120,11 @@ func (a *Analysis) run(id int) {
 	}
 }
 
+// 页面分析处理
+// 如果HttpResp为空，先请求
 func (a *Analysis) exec(req *AnalysisReq) (ret [][]string, err error) {
 	if req.HttpResp == nil {
-		err = req.getResp()
+		req.HttpResp, err = dhttp.Get(req.Url)
 		if err != nil {
 			return
 		}

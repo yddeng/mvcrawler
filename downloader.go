@@ -2,6 +2,7 @@ package mvcrawler
 
 import (
 	"fmt"
+	"github.com/tagDong/mvcrawler/dhttp"
 	"github.com/tagDong/mvcrawler/util"
 	"net/http"
 	"path"
@@ -30,8 +31,10 @@ func (req *DownloadReq) GetName() string {
 	return name
 }
 
-//NewDownLoader
-//size:队列的容量，goroutineCount:队列消费者数量
+// NewDownLoader
+// outPath:文件输出目录
+// size:队列的容量，goroutineCount:队列消费者数量
+// logger:日志
 func NewDownLoader(outPath string, size, goroutineCount int, logger *util.Logger) *Downloader {
 	d := &Downloader{
 		downloadPath:   outPath,
@@ -75,7 +78,7 @@ func (d *Downloader) run() {
  */
 func (d *Downloader) download(req *DownloadReq) (n int64, err error) {
 	var resp *http.Response
-	resp, err = http.Get(req.Url)
+	resp, err = dhttp.Get(req.Url)
 	if err != nil {
 		return
 	}
