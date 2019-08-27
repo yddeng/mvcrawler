@@ -19,16 +19,48 @@ a{
   border: none;
   background: #f1f3f4;
 }
+.listBox{
+  width: 1200px;
+  margin: 0 auto;
+}
 .listBox ul{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: start;
 }
 .listBox li{
-  flex: 0 0 200px;
+  flex: 0 0 220px;
   list-style: none;
+  margin: 20px 20px;
+  padding: 10px;
+  background: #f6f7f8;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+.listBox li:hover{
+  background: #fffae8;
 }
 .box img{
   width: 200px;
-  height: 100px;
+  height: 250px;
+}
+input:focus{
+
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
+
+  -webkit-user-modify:read-write-plaintext-only;
+}
+a {
+  color: #666;
+}
+.title{
+  font-size: 16px;
+  color: #000;
+  margin: 10px 0;
+}
+.from{
+  font-size: 14px;
+}
+.from-detail{
+  color: #d76e43;
 }
