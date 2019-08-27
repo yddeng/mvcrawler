@@ -21,10 +21,6 @@ func DecodeJsonFile(filePath string, i interface{}) error {
 	return json.Unmarshal(data, i)
 }
 
-func EncodeJson() {
-
-}
-
 func WriteFile(filePath, fileName string, reader io.Reader) (n int64, err error) {
 	os.MkdirAll(filePath, os.ModePerm)
 

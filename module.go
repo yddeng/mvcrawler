@@ -12,13 +12,15 @@ type ModuleType int32
 const (
 	Invaild  = ModuleType(0)
 	Silisili = ModuleType(1)
-	End      = ModuleType(2)
+	Bimibimi = ModuleType(2)
+	End      = ModuleType(3)
 )
 
 var (
 	mt2String = []string{
 		"",
 		"silisili",
+		"bimibimi",
 	}
 
 	moduleFunc = map[ModuleType]func(anal *Analysis, down *Downloader, l *util.Logger) Module{}

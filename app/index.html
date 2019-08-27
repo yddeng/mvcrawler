@@ -1,12 +1,73 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <title>视频合集</title>
+    <script src="dist/jquery-2.2.4.js"></script>
+    <link rel="stylesheet" href="font/font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
-
-<body >
-<div>
-
-</div>
-
+<body>
+    <div class="header">
+       <div class="search">
+          <i id="search" class="fa fa-search" aria-hidden="true" onclick="search()"></i>
+         <input id="searchInp" type="text" name="Txt" autofocus="true" placeholder="请输入视频名称" />
+       </div>
+    </div>
+    <div class="listBox">
+      <ul>
+          <a href="home.html" target="con">
+              <li class="active">
+                <div class="box">
+                  <div>
+                    <img src="template/images/grey_pc.png"></img>
+                  </div>
+                  <div class="detail">
+                    <div class="title">海泽王成都市</div>
+                    <div class="from">来源：bilibili</div>
+                  </div>
+                </div>
+              </li>
+          </a>
+          <a href="home.html" target="con">
+              <li class="active">
+                <div class="box">
+                  <div>
+                    <img src="template/images/grey_pc.png"></img>
+                  </div>
+                  <div class="detail">
+                    <div class="title">海泽王成都市</div>
+                    <div class="from">来源：bilibili</div>
+                  </div>
+                </div>
+              </li>
+          </a>
+      </ul>
+    </div>
 </body>
+<script>
+window.onload = function(){
+	let data = {"txt":"海贼王"}
+
+ 
+ $.ajax({
+                type: "post",
+                async: false,
+                url: "http://127.0.0.1:12345/search",
+                dataType: "json",
+				data: JSON.stringify(data),
+                success: function (result) {
+                    console.log(result);
+                },
+                error: function (e) {
+                    var test = e;
+                }
+            });
+}
+function search(){
+	let txt = $("#searchInp").val();
+	
+}
+
+</script>
 </html>

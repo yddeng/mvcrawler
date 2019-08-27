@@ -2,8 +2,6 @@ package mvcrawler
 
 import (
 	"encoding/json"
-	"fmt"
-	"io/ioutil"
 	"net/http"
 )
 
@@ -22,26 +20,13 @@ func (s *Service) search(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("content-type", "application/json")             //返回数据格式是json
 
 	var req SearchReq
-	//defer r.Body.Close()
-	data, err := ioutil.ReadAll(r.Body)
-	if err != nil {
-		logger.Errorf("readall err:%s", err)
+	defer r.Body.Close()
+	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+		logger.Errorf("json err: %s", err)
+		return
 	}
-	logger.Infoln("data", data)
-	logger.Infoln("string(data)", string(data))
+	logger.Infoln("search request", req)
 
-	err = json.Unmarshal(data, &req)
-	if err != nil {
-		logger.Errorf("json err:%s", err)
-	}
-	logger.Infoln("req", req)
-	//defer r.Body.Close()
-	//if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-	//	logger.Errorf("search read err: %s", err)
-	//	return
-	//}
-	//fmt.Println("search", req)
-	//
 	resp := []*Message{}
 	for _, m := range s.modules {
 		resp = append(resp, m.Search(req.Txt)...)
@@ -63,7 +48,12 @@ type UpdateResp struct {
 var _updata *UpdateResp
 
 func (s *Service) update(w http.ResponseWriter, r *http.Request) {
-	logger.Infoln("http update request")
+	logger.Infoln("http update request", r.Method)
+
+	//跨域
+	w.Header().Set("Access-Control-Allow-Origin", "*")             //允许访问所有域
+	w.Header().Add("Access-Control-Allow-Headers", "Content-Type") //header的类型
+	w.Header().Set("content-type", "application/json")             //返回数据格式是json
 
 	if _updata.resp == nil {
 		logger.Errorf("http update _update is nil")
@@ -73,10 +63,10 @@ func (s *Service) update(w http.ResponseWriter, r *http.Request) {
 	var req UpdateReq
 	defer r.Body.Close()
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-		logger.Errorf("update read err: %s", err)
+		logger.Errorf("json read err: %s", err)
 		return
 	}
-	fmt.Print("update", req)
+	logger.Infoln("update request", req)
 
 	//获取全部
 	if req.Modules == 0 {

@@ -4,7 +4,7 @@ import "github.com/BurntSushi/toml"
 
 type Config struct {
 	HttpAddr string
-	TichDur  int
+	TickDur  int
 	Log      struct {
 		LogPath string
 		LogName string

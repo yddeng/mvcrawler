@@ -21,20 +21,20 @@
 #### 目录结构
 ```
 mvcrawler/
-├── client             前端展示页
-│   
-├── conf               配置文件
+├── app                       前端展示页   
+│   └── index.html     
+├── conf                      配置文件
 │   |── conf.go       
 │   └── conf.toml.tamplate   
-├── dhttp              http简单封装
+├── dhttp                     http简单封装
 │   ├── hclient.go    
 │   └── hserver.go  
-├── main               程序入口
+├── main                      程序入口
 │   └── crawler.go 
-├── module             爬取模块
+├── module                    爬取模块
 │   ├── bimibimi.go
 │   └── silisili.go
-├── util               工具包
+├── util                      工具包
 │  
 └── README.md
 ```

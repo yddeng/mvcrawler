@@ -3,6 +3,7 @@ package util
 import (
 	"bytes"
 	"fmt"
+	"strings"
 )
 
 var ts = []string{
@@ -32,4 +33,18 @@ func MergeString(args ...string) string {
 		buffer.WriteString(str)
 	}
 	return buffer.String()
+}
+
+//检查s串中是否有str子串
+func CheckString(s, substr string) bool {
+	return strings.Contains(s, substr)
+}
+
+//判读s串中是否有str子串
+//有返回，没有在头部添加
+func ComperAndInsertHead(s, substr string) string {
+	if CheckString(s, substr) {
+		return s
+	}
+	return MergeString(substr, s)
 }

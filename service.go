@@ -6,10 +6,6 @@ import (
 	"time"
 )
 
-var (
-	tickDur = 60 * time.Second
-)
-
 type Service struct {
 	modules map[ModuleType]Module
 
@@ -82,12 +78,13 @@ func (s *Service) tick() {
 		resp: map[ModuleType][]*Message{},
 	}
 
-	tick := time.NewTicker(tickDur)
+	config := conf.GetConfig()
+	tick := time.NewTicker(time.Duration(config.TickDur) * time.Second)
 	for {
 		for k, m := range s.modules {
 			_updata.resp[k] = m.Update()
 		}
-		now := <-tick.C
-		logger.Infof("-------- tick %s------\n", now.String())
+		<-tick.C
+		//logger.Infof("-- tick %s\n", now.String())
 	}
 }
