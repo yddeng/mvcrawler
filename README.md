@@ -7,7 +7,7 @@
 #### 收录网站
 
 - www.silisili.me
-- www.dimidimi.tv
+- www.bimibimi.tv
 
 #### 安装
 

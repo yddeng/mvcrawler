@@ -84,4 +84,4 @@ mvcrawler.Register(mvcrawler.Silisili, func(
 #### 收录的网站
 
 - www.silisili.me
-- www.dimidimi.tv
+- www.bimibimi.tv
