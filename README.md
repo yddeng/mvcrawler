@@ -77,3 +77,7 @@ func (a *Analysis) SyncPost(req *AnalysisReq) (resp *AnalysisReap, err error)
 
 [更新日志](./UPDATE.md)
 
+#### 网页部署
+
+一个简单的目录服务器。配置启动后，加载html文件，可供外网访问。
+[网站部署](./fileSev/README.md)
