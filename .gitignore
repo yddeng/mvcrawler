@@ -10,5 +10,6 @@ crawler.log
 
 # 程序二进制文件
 /bin
+/fileSev/bin
 
 # 测试文件

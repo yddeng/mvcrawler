@@ -25,7 +25,10 @@ mvcrawler/
 │   └── index.html     
 ├── conf                      配置文件
 │   |── conf.go       
-│   └── conf.toml.tamplate   
+│   └── conf.toml.template   
+├── fileSev                   文件服务器   
+│   ├── conf.toml.template 
+│   └── httpSev.go      
 ├── dhttp                     http简单封装
 │   ├── hclient.go    
 │   └── hserver.go  

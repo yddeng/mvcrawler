@@ -11,8 +11,8 @@ type UpdateReq struct {
 }
 
 func main() {
-	//resp, err := dhttp.PostJson("http://127.0.0.1:12345/update", UpdateReq{}, 0)
-	resp, err := dhttp.PostJson("http://104.168.165.226:12345/update", UpdateReq{}, 0)
+	resp, err := dhttp.PostJson("http://127.0.0.1:12345/update", UpdateReq{}, 0)
+	//resp, err := dhttp.PostJson("http://104.168.165.226:12345/update", UpdateReq{}, 0)
 	if err != nil {
 		fmt.Println("1", err)
 	}
