@@ -69,6 +69,11 @@ func (a *Analysis) SyncPost(req *AnalysisReq) (resp *AnalysisReap, err error)
 
 #### Modele
 
-收录的网站
+收录网站：添加网站方法
 
 [网站模块注册](./module/README.md)
+
+#### 更新
+
+[更新日志](./UPDATE.md)
+

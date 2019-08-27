@@ -3,31 +3,52 @@ package mvcrawler
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 )
 
 //搜索
 type SearchReq struct {
-	Txt     string `json:"txt"`
-	Modules []int  `json:"modules"`
+	Txt string `json:"txt"`
+	//Modules []int  `json:"modules"`
 }
 
 func (s *Service) search(w http.ResponseWriter, r *http.Request) {
-	logger.Infoln("http search request")
+	logger.Infoln("http search request", r.Method)
+
+	//跨域
+	w.Header().Set("Access-Control-Allow-Origin", "*")             //允许访问所有域
+	w.Header().Add("Access-Control-Allow-Headers", "Content-Type") //header的类型
+	w.Header().Set("content-type", "application/json")             //返回数据格式是json
 
 	var req SearchReq
-	defer r.Body.Close()
-	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-		logger.Errorf("search read err: %s", err)
-		return
+	//defer r.Body.Close()
+	data, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		logger.Errorf("readall err:%s", err)
 	}
-	fmt.Print("search", req)
+	logger.Infoln("data", data)
+	logger.Infoln("string(data)", string(data))
 
+	err = json.Unmarshal(data, &req)
+	if err != nil {
+		logger.Errorf("json err:%s", err)
+	}
+	logger.Infoln("req", req)
+	//defer r.Body.Close()
+	//if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+	//	logger.Errorf("search read err: %s", err)
+	//	return
+	//}
+	//fmt.Println("search", req)
+	//
+	resp := []*Message{}
 	for _, m := range s.modules {
-		ret := m.Search(req.Txt)
-		if err := json.NewEncoder(w).Encode(ret); err != nil {
-			logger.Errorf("search write err: %s", err)
-		}
+		resp = append(resp, m.Search(req.Txt)...)
+
+	}
+	if err := json.NewEncoder(w).Encode(resp); err != nil {
+		logger.Errorf("search write err: %s", err)
 	}
 }
 
