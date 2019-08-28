@@ -1,4 +1,4 @@
-package mvcrawler
+package downloader
 
 import (
 	"fmt"
@@ -68,7 +68,7 @@ func (d *Downloader) run() {
 		if err != nil {
 			d.logger.Errorf("download err:%s", err)
 		} else {
-			d.logger.Debugf("download url:%s size:%s\n", node.Url, util.SiezToString(n))
+			d.logger.Debugf("download url:%s size:%s\n", node.Url, util.SizeToString(n))
 		}
 	}
 }

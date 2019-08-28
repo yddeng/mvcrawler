@@ -22,8 +22,10 @@ func DecodeJsonFile(filePath string, i interface{}) error {
 }
 
 func WriteFile(filePath, fileName string, reader io.Reader) (n int64, err error) {
-	os.MkdirAll(filePath, os.ModePerm)
-
+	err = os.MkdirAll(filePath, os.ModePerm)
+	if err != nil {
+		return
+	}
 	f, err := os.Create(path.Join(filePath, fileName))
 	defer f.Close()
 	n, err = io.Copy(f, reader)

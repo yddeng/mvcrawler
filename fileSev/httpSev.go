@@ -16,7 +16,7 @@ func getConfig(path string) *Config {
 	cfg := &Config{}
 	_, err := toml.DecodeFile(path, cfg)
 	if err != nil {
-		panic("./conf.toml not found")
+		panic("config file is not found")
 	}
 	return cfg
 }
@@ -28,7 +28,7 @@ func main() {
 	}
 
 	conf := getConfig(os.Args[1])
-	fmt.Printf("HttpServer On %s, LoadPath On %s\n", conf.Addr, conf.LoadPath)
+	fmt.Printf("httpServer on %s, loadPath on %s\n", conf.Addr, conf.LoadPath)
 
 	http.Handle("/", http.FileServer(http.Dir(conf.LoadPath)))
 	err := http.ListenAndServe(conf.Addr, nil)

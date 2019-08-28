@@ -1,4 +1,4 @@
-package mvcrawler
+package analysis
 
 import (
 	"fmt"

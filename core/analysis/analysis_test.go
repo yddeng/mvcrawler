@@ -1,18 +1,18 @@
-package mvcrawler_test
+package analysis_test
 
 import (
 	"fmt"
-	"github.com/tagDong/mvcrawler"
+	analysis2 "github.com/tagDong/mvcrawler/core/analysis"
 	"net/http"
 	"testing"
 )
 
 func TestNewAnalysis(t *testing.T) {
-	analysis := mvcrawler.NewAnalysis(10, 2)
+	analysis := analysis2.NewAnalysis(10, 2)
 
-	_ = analysis.Post(&mvcrawler.AnalysisReq{
+	_ = analysis.Post(&analysis2.AnalysisReq{
 		Url: "http://www.silisili.me",
-		Selector: &mvcrawler.Selector{
+		Selector: &analysis2.Selector{
 			Dom: ".time_con li",
 			Exec: []struct {
 				Dom  string
@@ -22,7 +22,7 @@ func TestNewAnalysis(t *testing.T) {
 				{Dom: "img", Attr: "src"},
 			},
 		},
-	}, func(resp *mvcrawler.AnalysisReap) {
+	}, func(resp *analysis2.AnalysisReap) {
 		fmt.Println("--------- post ------", resp.Url, resp.Err)
 		for _, msg := range resp.RespData {
 			for _, v := range msg {
@@ -33,10 +33,10 @@ func TestNewAnalysis(t *testing.T) {
 	})
 
 	hreap, _ := http.Get("http://www.silisili.me")
-	resp, _ := analysis.SyncPost(&mvcrawler.AnalysisReq{
+	resp, _ := analysis.SyncPost(&analysis2.AnalysisReq{
 		Url:      "http://www.silisili.me",
 		HttpResp: hreap,
-		Selector: &mvcrawler.Selector{
+		Selector: &analysis2.Selector{
 			Dom: ".time_con li",
 			Exec: []struct {
 				Dom  string

@@ -8,21 +8,14 @@ import (
 
 type Service struct {
 	modules map[ModuleType]Module
-
-	analysis   *Analysis
-	downloader *Downloader
-	hServer    *dhttp.HttpServer
+	hServer *dhttp.HttpServer
 }
 
 func NewService() *Service {
 	InitLogger()
 	s := new(Service)
 
-	s.initAnalysis()
-	s.initDownloader()
 	s.initModules()
-
-	//
 	s.initHttpServer()
 
 	go s.tick()
@@ -32,25 +25,8 @@ func NewService() *Service {
 func (s *Service) initModules() {
 	s.modules = map[ModuleType]Module{}
 	for mt, fn := range moduleFunc {
-		s.modules[mt] = fn(s.analysis, s.downloader, logger)
+		s.modules[mt] = fn(logger)
 	}
-}
-
-//初始化分析器
-func (s *Service) initAnalysis() {
-	config := conf.GetConfig().Analysis
-	s.analysis = NewAnalysis(config.QueueSize, config.GoroutineCount)
-
-	logger.Infoln("init analysis ok")
-}
-
-//初始化下载器
-func (s *Service) initDownloader() {
-	config := conf.GetConfig().DownLoad
-	s.downloader = NewDownLoader(
-		config.OutPath, config.QueueSize, config.GoroutineCount, logger)
-
-	logger.Infoln("init analysis ok")
 }
 
 //http服务
@@ -75,7 +51,7 @@ func (s *Service) initHttpServer() {
 //定时抓取
 func (s *Service) tick() {
 	_updata = &UpdateResp{
-		resp: map[ModuleType][]*Message{},
+		resp: map[ModuleType][][]*Message{},
 	}
 
 	config := conf.GetConfig()
@@ -85,6 +61,5 @@ func (s *Service) tick() {
 			_updata.resp[k] = m.Update()
 		}
 		<-tick.C
-		//logger.Infof("-- tick %s\n", now.String())
 	}
 }

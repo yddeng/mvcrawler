@@ -3,10 +3,12 @@
 需实现对外的两个的接口
 
 ```
+//url
+GetUrl()string
 //搜索接口
 Search(context string) []*Message
 //获取日更新接口
-Update() []*Message
+Update() [][]*Message
 ```
 
 实现过程
@@ -47,33 +49,46 @@ Update() []*Message
      </dl>			
  </div>			
 
-/* 
- 确定item选择器
- Dom: ".anime_list dl",
- 确定具体选择器
- {Dom: "dd h3 a", Attr: ""},     //title
- {Dom: "dt img", Attr: "src"},   //img src
- {Dom: "dd h3 a", Attr: "href"}, //url
-*/
 ```
 
 2）更新选择器
 
 ```
-1.选取网站上每日更新的部分代码分析。
+1.选取网站上更新的部分代码分析。
 2.定位每一个选取内容的标签，制作选择器。(步骤同上）
-3.日更新会有时间的变化，要选择具体的标签，需与时间计算。
+3.由于是显示一周内每日的内容，故为一个双层选择器。
 
-如：item选择器的定义
-dom := fmt.Sprintf(".xfswiper%d li", siliWeek[n])
+<div class="time_con" style="display:none">
+            <div class="swiper-container xfswiper0">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <ul class="clear">
+                    <li> <a href="/anime/2191.html" title="少女☆寸剧 All Starlight"><img src="https://wxt.sinaimg.cn/orj360/006bnWk0ly1g5a2hzzhx6j30hs0p0n2a.jpg" alt="少女☆寸剧 All Starlight" />
+                      <p>少女☆寸剧 All Sta...</p>
+                      <i>更新至07话</i><b>new</b>
+                      <div class="fc_m"><strong></strong></div>
+                      </a> </li>
+                    <li> <a href="/anime/2168.html" title="暗芝居第七季"><img src="http://wxt.sinaimg.cn/large/777d58c0gy1g3vvyy9ldlj205006omx5.jpg" alt="暗芝居第七季" />
+                      <p>暗芝居第七季</p>
+                      <i>更新至08话</i><b>new</b>
+                      <div class="fc_m"><strong></strong></div>
+                      </a> </li>
+                    <li> <a href="/anime/2147.html" title="猎兽神兵"><img src="https://wxt.sinaimg.cn/orj360/006bnWk0gy1g08hhe4qw2j30jg0rk40r.jpg" alt="猎兽神兵" />
+                      <p>猎兽神兵</p>
+                      <i>更新至08话</i>
+                      <div class="fc_m"><strong></strong></div>
+                      </a> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
 ```
 
 3）注册到模块
 
 ```
-mvcrawler.Register(mvcrawler.Silisili, func(
-	anal *mvcrawler.Analysis, down *mvcrawler.Downloader, l *util.Logger) mvcrawler.Module {
-
+mvcrawler.Register(mvcrawler.Silisili, func(l *util.Logger) mvcrawler.Module {
 	return &Silisili{
 		...
 	}

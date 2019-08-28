@@ -15,7 +15,7 @@ var ts = []string{
 
 // 字节长度格式化输出
 // 例：2566b -> 2.50Kb
-func SiezToString(b int64) string {
+func SizeToString(b int64) string {
 	n := float64(b)
 	i := 0
 	for n > 1024 {

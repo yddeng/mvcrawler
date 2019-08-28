@@ -11,8 +11,6 @@ import (
 	"time"
 )
 
-var defTimeout = 5 * time.Second
-
 //发送GET请求
 //url:请求地址; timeout:超时时间,小于等于0不设置超时
 //response:请求返回的内容
