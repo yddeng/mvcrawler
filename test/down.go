@@ -7,10 +7,10 @@ import (
 )
 
 func main() {
-	resp, err := dhttp.Get("http://10.128.2.252:2323", 0)
+	resp, err := dhttp.Get("https://www.5dm.tv/timeline", 0)
 	fmt.Println(err)
 
-	n, err := util.WriteFile("./", "index.html", resp.Body)
+	n, err := util.WriteFile("./", "www.5dm.tv.html", resp.Body)
 	fmt.Println(n, err)
 	_ = resp.Body.Close()
 }

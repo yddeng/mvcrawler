@@ -9,15 +9,20 @@ import (
 )
 
 type Bimibimi struct {
+	name    string
 	baseUrl string
 	logger  *util.Logger
 }
 
-func (sl *Bimibimi) GetUrl() string {
-	return sl.baseUrl
+func (this *Bimibimi) GetName() string {
+	return this.name
 }
 
-func (sl *Bimibimi) Search(txt string) []*mvcrawler.Message {
+func (this *Bimibimi) GetUrl() string {
+	return this.baseUrl
+}
+
+func (this *Bimibimi) Search(txt string) []*mvcrawler.Message {
 	ret := []*mvcrawler.Message{}
 	data := url.Values{
 		"wd": {txt},
@@ -25,13 +30,13 @@ func (sl *Bimibimi) Search(txt string) []*mvcrawler.Message {
 
 	resp, err := dhttp.PostUrlencoded("http://www.bimibimi.tv/vod/search/", data, 0)
 	if err != nil {
-		sl.logger.Errorln(err)
+		this.logger.Errorln(err)
 		return ret
 	}
 
 	doc, err := goquery.NewDocumentFromReader(resp.Body)
 	if err != nil {
-		sl.logger.Errorln(err)
+		this.logger.Errorln(err)
 		return ret
 	}
 	_ = resp.Body.Close()
@@ -49,25 +54,25 @@ func (sl *Bimibimi) Search(txt string) []*mvcrawler.Message {
 
 		ret = append(ret, &mvcrawler.Message{
 			Title: title,
-			From:  "bimibimi",
-			Img:   util.MergeString(sl.baseUrl, img),
-			Url:   util.MergeString(sl.baseUrl, url),
+			From:  this.GetName(),
+			Img:   util.MergeString(this.baseUrl, img),
+			Url:   util.MergeString(this.baseUrl, url),
 		})
 	})
 	return ret
 }
 
-func (sl *Bimibimi) Update() [][]*mvcrawler.Message {
+func (this *Bimibimi) Update() [][]*mvcrawler.Message {
 	ret := [][]*mvcrawler.Message{}
-	resp, err := dhttp.Get(sl.baseUrl, 0)
+	resp, err := dhttp.Get(this.baseUrl, 0)
 	if err != nil {
-		sl.logger.Errorln(err)
+		this.logger.Errorln(err)
 		return ret
 	}
 
 	doc, err := goquery.NewDocumentFromReader(resp.Body)
 	if err != nil {
-		sl.logger.Errorln(err)
+		this.logger.Errorln(err)
 		return ret
 	}
 	_ = resp.Body.Close()
@@ -89,9 +94,9 @@ func (sl *Bimibimi) Update() [][]*mvcrawler.Message {
 
 			msgs = append(msgs, &mvcrawler.Message{
 				Title: title,
-				From:  "bimibimi",
-				Img:   util.MergeString(sl.baseUrl, img),
-				Url:   util.MergeString(sl.baseUrl, url),
+				From:  this.GetName(),
+				Img:   util.MergeString(this.baseUrl, img),
+				Url:   util.MergeString(this.baseUrl, url),
 			})
 		})
 		ret = append(ret, msgs)
@@ -102,6 +107,7 @@ func (sl *Bimibimi) Update() [][]*mvcrawler.Message {
 func init() {
 	mvcrawler.Register(mvcrawler.Bimibimi, func(l *util.Logger) mvcrawler.Module {
 		return &Bimibimi{
+			name:    "bimibimi",
 			baseUrl: "http://www.bimibimi.tv",
 			logger:  l,
 		}

@@ -3,6 +3,7 @@ package mvcrawler
 import "github.com/tagDong/mvcrawler/util"
 
 type Module interface {
+	GetName() string
 	// url
 	GetUrl() string
 	// 周一至周日的集合
@@ -17,16 +18,11 @@ const (
 	Invaild  = ModuleType(0)
 	Silisili = ModuleType(1)
 	Bimibimi = ModuleType(2)
-	End      = ModuleType(3)
+	Dm5      = ModuleType(3)
+	End      = ModuleType(4)
 )
 
 var (
-	mt2String = []string{
-		"",
-		"silisili",
-		"bimibimi",
-	}
-
 	moduleFunc = map[ModuleType]func(l *util.Logger) Module{}
 )
 
@@ -35,11 +31,4 @@ func Register(mt ModuleType, fn func(l *util.Logger) Module) {
 	if _, ok := moduleFunc[mt]; !ok {
 		moduleFunc[mt] = fn
 	}
-}
-
-func MT2String(mt ModuleType) string {
-	if int(mt) > len(mt2String) {
-		return ""
-	}
-	return mt2String[mt]
 }

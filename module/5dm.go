@@ -1,3 +1,6 @@
+/*
+ *
+ */
 package module
 
 import (
@@ -8,27 +11,27 @@ import (
 	"net/url"
 )
 
-type Silisili struct {
+type Dm5 struct {
 	name    string
 	baseUrl string
 	logger  *util.Logger
 }
 
-func (this *Silisili) GetName() string {
+func (this *Dm5) GetName() string {
 	return this.name
 }
 
-func (this *Silisili) GetUrl() string {
+func (this *Dm5) GetUrl() string {
 	return this.baseUrl
 }
 
-func (this *Silisili) Search(txt string) []*mvcrawler.Message {
+func (this *Dm5) Search(txt string) []*mvcrawler.Message {
 	ret := []*mvcrawler.Message{}
 	data := url.Values{
-		"show": {"title"}, "tbname": {"movie"}, "tempid": {"1"}, "keyboard": {txt},
+		"s": {txt},
 	}
 
-	resp, err := dhttp.PostUrlencoded("http://www.silisili.me/e/search/index.php", data, 0)
+	resp, err := dhttp.PostUrlencoded("https://www.5dm.tv", data, 0)
 	if err != nil {
 		this.logger.Errorln(err)
 		return ret
@@ -41,14 +44,15 @@ func (this *Silisili) Search(txt string) []*mvcrawler.Message {
 	}
 	_ = resp.Body.Close()
 
-	doc.Find(".anime_list dl").Each(func(i int, selection *goquery.Selection) {
+	doc.Find(".video-listing-content .video-item").Each(func(i int, selection *goquery.Selection) {
 		var title, img, url string
 		var ok bool
-		title = selection.Find("dd h3 a").Text()
-		if img, ok = selection.Find("dt img").Attr("src"); !ok {
+		title = selection.Find(".item-head h3 a").Text()
+
+		if img, ok = selection.Find(".item-thumbnail a img").Attr("data-original"); !ok {
 			return
 		}
-		if url, ok = selection.Find("dd h3 a").Attr("href"); !ok {
+		if url, ok = selection.Find(".item-thumbnail a").Attr("href"); !ok {
 			return
 		}
 
@@ -56,17 +60,17 @@ func (this *Silisili) Search(txt string) []*mvcrawler.Message {
 			Title: title,
 			From:  this.GetName(),
 			Img:   img,
-			Url:   util.MergeString(this.baseUrl, url),
+			Url:   url,
 		})
 	})
 
 	return ret
 }
 
-func (this *Silisili) Update() [][]*mvcrawler.Message {
+func (this *Dm5) Update() [][]*mvcrawler.Message {
 	ret := [][]*mvcrawler.Message{}
 
-	resp, err := dhttp.Get(this.baseUrl, 0)
+	resp, err := dhttp.Get("https://www.5dm.tv/timeline", 0)
 	if err != nil {
 		this.logger.Errorln(err)
 		return ret
@@ -79,18 +83,17 @@ func (this *Silisili) Update() [][]*mvcrawler.Message {
 	}
 	_ = resp.Body.Close()
 
-	doc.Find(".time_con").Each(func(i int, sele1 *goquery.Selection) {
+	doc.Find(".is-carousel").Each(func(i int, sele1 *goquery.Selection) {
 		msgs := []*mvcrawler.Message{}
-		sele1.Find("li").Each(func(_ int, sele2 *goquery.Selection) {
+		sele1.Find(".video-item").Each(func(_ int, sele2 *goquery.Selection) {
 			var title, img, url string
 			var ok bool
-			if title, ok = sele2.Find("a").Attr("title"); !ok {
+			title = sele2.Find(".item-head h3 a").Text()
+
+			if img, ok = sele2.Find(".item-thumbnail a img").Attr("data-original"); !ok {
 				return
 			}
-			if img, ok = sele2.Find("img").Attr("src"); !ok {
-				return
-			}
-			if url, ok = sele2.Find("a").Attr("href"); !ok {
+			if url, ok = sele2.Find(".item-thumbnail a").Attr("href"); !ok {
 				return
 			}
 
@@ -98,7 +101,7 @@ func (this *Silisili) Update() [][]*mvcrawler.Message {
 				Title: title,
 				From:  this.GetName(),
 				Img:   img,
-				Url:   util.MergeString(this.baseUrl, url),
+				Url:   url,
 			})
 		})
 		ret = append(ret, msgs)
@@ -107,10 +110,10 @@ func (this *Silisili) Update() [][]*mvcrawler.Message {
 }
 
 func init() {
-	mvcrawler.Register(mvcrawler.Silisili, func(l *util.Logger) mvcrawler.Module {
-		return &Silisili{
-			name:    "silisili",
-			baseUrl: "http://www.silisili.me",
+	mvcrawler.Register(mvcrawler.Dm5, func(l *util.Logger) mvcrawler.Module {
+		return &Dm5{
+			name:    "5dm",
+			baseUrl: "https://www.5dm.tv",
 			logger:  l,
 		}
 	})

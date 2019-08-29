@@ -3,6 +3,8 @@
 需实现对外的两个的接口
 
 ```
+//name 
+GetName()string
 //url
 GetUrl()string
 //搜索接口
@@ -100,3 +102,4 @@ mvcrawler.Register(mvcrawler.Silisili, func(l *util.Logger) mvcrawler.Module {
 
 - www.silisili.me
 - www.bimibimi.tv
+- www.5dm.tv

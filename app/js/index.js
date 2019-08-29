@@ -1,6 +1,6 @@
 window.onload = function(){
-    let url = 'http://104.168.165.226:12345/update';
-    //let url = 'http://127.0.0.1:12345/update';
+    //let url = 'http://104.168.165.226:12345/update';
+    let url = 'http://127.0.0.1:12345/update';
     let data = {
         modules: 0
     }
@@ -23,7 +23,7 @@ function getData(data,url){
                     oLi.innerHTML = `
 				<a href="${res[i].url}" target="con">
 				    <div class="box">
-				        <div><img src="${res[i].img}" onerror="this.src='./template/images/default_grey_pc.png'"></div>
+				        <div><img src="${res[i].img}"  onerror="this.src='./template/images/default_grey_pc.png'"></div>
 				        <div class="detail">
 					        <div class="title">${res[i].title}</div>
 					        <div class="from">来源:<text class="from-detail">${res[i].from}</text></div>
@@ -44,8 +44,8 @@ function getData(data,url){
 function search(){
     let txt = $("#keyboard").val();
     let data = {"txt":txt};
-    let url = "http://104.168.165.226:12345/search";
-    //let url = "http://127.0.0.1:12345/search";
+    //let url = "http://104.168.165.226:12345/search";
+    let url = "http://127.0.0.1:12345/search";
     getData(data,url);
 }
 function keySearch(){
