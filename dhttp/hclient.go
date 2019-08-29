@@ -62,7 +62,7 @@ func Post(url string, contentType string, reader io.Reader, timeout time.Duratio
 
 	resp, rerr := client.Do(req)
 	if rerr != nil {
-		return nil, fmt.Errorf("http url %s post rerr %s", url, rerr)
+		return nil, rerr
 	}
 
 	if resp.StatusCode != http.StatusOK {

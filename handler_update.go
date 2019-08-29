@@ -50,17 +50,27 @@ func (s *Service) update(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	logger.Infoln("update request", req)
-
+	if req.Modules >= int(End) {
+		logger.Errorf("update request module:%d failed", req.Modules)
+		return
+	}
 	//获取全部
 	ret := []*Message{}
 	if req.Modules == 0 {
 		for _, m := range _updata.resp {
-			ret = append(ret, m[GetWebWeekDay()]...)
+			if len(m) == 7 {
+				msgs := m[GetWebWeekDay()]
+				ret = append(ret, msgs...)
+			}
 		}
-
 	} else {
-		ret = _updata.resp[ModuleType(req.Modules)][GetWebWeekDay()]
+		m := _updata.resp[ModuleType(req.Modules)]
+		if len(m) == 7 {
+			msgs := m[GetWebWeekDay()]
+			ret = append(ret, msgs...)
+		}
 	}
+
 	if err := json.NewEncoder(w).Encode(ret); err != nil {
 		logger.Errorf("update write err: %s", err)
 	}

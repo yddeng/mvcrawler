@@ -4,7 +4,7 @@ fileSev/conf.toml
 
 # 日志文件
 /log
-crawler.log
+*.log
 
 # 下载的文件
 /download

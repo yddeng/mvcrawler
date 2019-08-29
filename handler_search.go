@@ -30,6 +30,10 @@ func (s *Service) search(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	logger.Infoln("search request", req)
+	if req.Txt == "" {
+		logger.Errorln("search txt is nil")
+		return
+	}
 
 	resp := []*Message{}
 	for _, m := range s.modules {
