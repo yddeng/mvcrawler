@@ -43,17 +43,16 @@ function getData(data,url){
 }
 function search(){
     let txt = $("#keyboard").val();
-    let data = {"txt":txt};
-    let url = "http://104.168.165.226:12345/search";
-    //let url = "http://127.0.0.1:12345/search";
-    getData(data,url);
+    if (txt != "") {
+        let data = {"txt": txt};
+        let url = "http://104.168.165.226:12345/search";
+        //let url = "http://127.0.0.1:12345/search";
+        getData(data, url);
+        $('#title-top').text('全网搜索结果')
+    }
 }
 function keySearch(){
     if (event.keyCode == 13){
-        let txt = $("#keyboard").val();
-        let data = {"txt":txt};
-        let url = "http://104.168.165.226:12345/search";
-        getData(data,url);
-        $('#title-top').text('全网搜索结果')
+        search()
     }
 }
