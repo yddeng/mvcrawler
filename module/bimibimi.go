@@ -92,11 +92,16 @@ func (this *Bimibimi) Update() [][]*mvcrawler.Message {
 				return
 			}
 
+			//更新状态
+			var status string
+			status = sele2.Find(".item-info p").Text()
+
 			msgs = append(msgs, &mvcrawler.Message{
-				Title: title,
-				From:  this.GetName(),
-				Img:   util.MergeString(this.baseUrl, img),
-				Url:   util.MergeString(this.baseUrl, url),
+				Title:  title,
+				From:   this.GetName(),
+				Img:    util.MergeString(this.baseUrl, img),
+				Url:    util.MergeString(this.baseUrl, url),
+				Status: status,
 			})
 		})
 		ret = append(ret, msgs)

@@ -9,6 +9,7 @@ import (
 	"github.com/tagDong/mvcrawler/dhttp"
 	"github.com/tagDong/mvcrawler/util"
 	"net/url"
+	"strings"
 )
 
 type Dm5 struct {
@@ -97,16 +98,37 @@ func (this *Dm5) Update() [][]*mvcrawler.Message {
 				return
 			}
 
+			//更新状态
+			var status string
+			title, status = _5dmTitleStatus(title)
+
 			msgs = append(msgs, &mvcrawler.Message{
-				Title: title,
-				From:  this.GetName(),
-				Img:   img,
-				Url:   url,
+				Title:  title,
+				From:   this.GetName(),
+				Img:    img,
+				Url:    url,
+				Status: status,
 			})
 		})
 		ret = append(ret, msgs)
 	})
 	return ret
+}
+
+//拆分标题与更新状态
+func _5dmTitleStatus(s string) (title, status string) {
+	s1 := strings.Split(s, "【")
+	if len(s1) != 2 {
+		return s, "更新中..."
+	}
+	title = s1[0]
+
+	s2 := strings.Split(s1[1], "】")
+	if len(s2) != 2 {
+		return title, "更新中..."
+	}
+	status = s2[0]
+	return
 }
 
 func init() {

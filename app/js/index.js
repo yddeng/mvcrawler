@@ -27,6 +27,7 @@ function getData(data,url){
 				        <div class="detail">
 					        <div class="title">${res[i].title}</div>
 					        <div class="from">来源:<text class="from-detail">${res[i].from}</text></div>
+					        <i>${res[i].status}</i>
 				        </div>
 				    </div>
 				</a>`;

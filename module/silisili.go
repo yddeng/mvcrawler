@@ -94,11 +94,16 @@ func (this *Silisili) Update() [][]*mvcrawler.Message {
 				return
 			}
 
+			//更新状态
+			var status string
+			status = sele2.Find("a i").Text()
+
 			msgs = append(msgs, &mvcrawler.Message{
-				Title: title,
-				From:  this.GetName(),
-				Img:   img,
-				Url:   util.MergeString(this.baseUrl, url),
+				Title:  title,
+				From:   this.GetName(),
+				Img:    img,
+				Url:    util.MergeString(this.baseUrl, url),
+				Status: status,
 			})
 		})
 		ret = append(ret, msgs)
