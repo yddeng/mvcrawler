@@ -2,6 +2,7 @@ package module
 
 import (
 	"github.com/PuerkitoBio/goquery"
+	"github.com/tagDong/dutil/log"
 	"github.com/tagDong/mvcrawler"
 	"github.com/tagDong/mvcrawler/dhttp"
 	"github.com/tagDong/mvcrawler/util"
@@ -11,7 +12,7 @@ import (
 type Bimibimi struct {
 	name    string
 	baseUrl string
-	logger  *util.Logger
+	logger  *log.Logger
 }
 
 func (this *Bimibimi) GetName() string {
@@ -110,7 +111,7 @@ func (this *Bimibimi) Update() [][]*mvcrawler.Message {
 }
 
 func init() {
-	mvcrawler.Register(mvcrawler.Bimibimi, func(l *util.Logger) mvcrawler.Module {
+	mvcrawler.Register(mvcrawler.Bimibimi, func(l *log.Logger) mvcrawler.Module {
 		return &Bimibimi{
 			name:    "bimibimi",
 			baseUrl: "http://www.bimibimi.tv",

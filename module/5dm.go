@@ -5,9 +5,9 @@ package module
 
 import (
 	"github.com/PuerkitoBio/goquery"
+	"github.com/tagDong/dutil/log"
 	"github.com/tagDong/mvcrawler"
 	"github.com/tagDong/mvcrawler/dhttp"
-	"github.com/tagDong/mvcrawler/util"
 	"net/url"
 	"strings"
 )
@@ -15,7 +15,7 @@ import (
 type Dm5 struct {
 	name    string
 	baseUrl string
-	logger  *util.Logger
+	logger  *log.Logger
 }
 
 func (this *Dm5) GetName() string {
@@ -112,7 +112,18 @@ func (this *Dm5) Update() [][]*mvcrawler.Message {
 		})
 		ret = append(ret, msgs)
 	})
+	_5dmSort(&ret)
 	return ret
+}
+
+//该网站爬取顺序为周日，周一，二 。。。 周六
+//排序为周一，周二 。。。 周日
+func _5dmSort(msgs *[][]*mvcrawler.Message) {
+	if len(*msgs) > 0 {
+		tmp := *msgs
+		*msgs = tmp[1:]
+		*msgs = append(*msgs, tmp[0])
+	}
 }
 
 //拆分标题与更新状态
@@ -132,7 +143,7 @@ func _5dmTitleStatus(s string) (title, status string) {
 }
 
 func init() {
-	mvcrawler.Register(mvcrawler.Dm5, func(l *util.Logger) mvcrawler.Module {
+	mvcrawler.Register(mvcrawler.Dm5, func(l *log.Logger) mvcrawler.Module {
 		return &Dm5{
 			name:    "5dm",
 			baseUrl: "https://www.5dm.tv",

@@ -2,6 +2,7 @@ package module
 
 import (
 	"github.com/PuerkitoBio/goquery"
+	"github.com/tagDong/dutil/log"
 	"github.com/tagDong/mvcrawler"
 	"github.com/tagDong/mvcrawler/dhttp"
 	"github.com/tagDong/mvcrawler/util"
@@ -11,7 +12,7 @@ import (
 type Silisili struct {
 	name    string
 	baseUrl string
-	logger  *util.Logger
+	logger  *log.Logger
 }
 
 func (this *Silisili) GetName() string {
@@ -112,7 +113,7 @@ func (this *Silisili) Update() [][]*mvcrawler.Message {
 }
 
 func init() {
-	mvcrawler.Register(mvcrawler.Silisili, func(l *util.Logger) mvcrawler.Module {
+	mvcrawler.Register(mvcrawler.Silisili, func(l *log.Logger) mvcrawler.Module {
 		return &Silisili{
 			name:    "silisili",
 			baseUrl: "http://www.silisili.me",

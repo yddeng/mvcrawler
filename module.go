@@ -1,6 +1,8 @@
 package mvcrawler
 
-import "github.com/tagDong/mvcrawler/util"
+import (
+	"github.com/tagDong/dutil/log"
+)
 
 type Module interface {
 	GetName() string
@@ -23,11 +25,11 @@ const (
 )
 
 var (
-	moduleFunc = map[ModuleType]func(l *util.Logger) Module{}
+	moduleFunc = map[ModuleType]func(l *log.Logger) Module{}
 )
 
 //非安全的注册，需启动时完成注册
-func Register(mt ModuleType, fn func(l *util.Logger) Module) {
+func Register(mt ModuleType, fn func(l *log.Logger) Module) {
 	if _, ok := moduleFunc[mt]; !ok {
 		moduleFunc[mt] = fn
 	}

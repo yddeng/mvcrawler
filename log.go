@@ -4,14 +4,15 @@ package mvcrawler
  mvcrawler logger 日志
 */
 import (
+	"github.com/tagDong/dutil/log"
 	"github.com/tagDong/mvcrawler/conf"
-	"github.com/tagDong/mvcrawler/util"
 )
 
-var logger *util.Logger
+var logger *log.Logger
 
 func InitLogger() {
 	logConf := conf.GetConfig().Log
-	logger = util.NewLogger(logConf.LogPath, logConf.LogName)
+	logger = log.NewLogger(logConf.LogPath, logConf.LogName, 1024*1024)
+	logger.AsyncOut()
 	logger.Infoln("crawler logger init")
 }
