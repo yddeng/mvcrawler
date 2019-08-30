@@ -22,7 +22,7 @@ func Get(url string, timeout time.Duration) (*http.Response, error) {
 	}
 	resp, rerr := client.Do(req)
 	if rerr != nil {
-		return nil, fmt.Errorf("http url %s get rerr %s", url, rerr)
+		return nil, rerr
 	}
 
 	if resp.StatusCode != http.StatusOK {

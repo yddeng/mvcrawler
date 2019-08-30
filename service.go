@@ -58,7 +58,12 @@ func (s *Service) tick() {
 	tick := time.NewTicker(time.Duration(config.TickDur) * time.Second)
 	for {
 		for k, m := range s.modules {
-			_updata.resp[k] = m.Update()
+			ret := m.Update()
+			if len(ret) != 0 {
+				_updata.resp[k] = ret
+			} else {
+				logger.Errorf("module:%s data len:%d failed", m.GetName(), len(ret))
+			}
 		}
 		<-tick.C
 	}

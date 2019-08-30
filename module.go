@@ -26,6 +26,13 @@ const (
 
 var (
 	moduleFunc = map[ModuleType]func(l *log.Logger) Module{}
+
+	mt2Name = []string{
+		"invaild",
+		"silisili",
+		"bimibimi",
+		"5dm",
+	}
 )
 
 //非安全的注册，需启动时完成注册
@@ -33,4 +40,11 @@ func Register(mt ModuleType, fn func(l *log.Logger) Module) {
 	if _, ok := moduleFunc[mt]; !ok {
 		moduleFunc[mt] = fn
 	}
+}
+
+func GetName(mt ModuleType) string {
+	if mt > 0 && mt < End {
+		return mt2Name[mt]
+	}
+	return "invaild"
 }

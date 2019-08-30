@@ -49,7 +49,7 @@ func (s *Service) update(w http.ResponseWriter, r *http.Request) {
 		logger.Errorf("json read err: %s", err)
 		return
 	}
-	logger.Infoln("update request", req)
+	logger.Infoln("update request", req, "update data len", len(_updata.resp))
 	if req.Modules >= int(End) {
 		logger.Errorf("update request module:%d failed", req.Modules)
 		return
@@ -57,10 +57,12 @@ func (s *Service) update(w http.ResponseWriter, r *http.Request) {
 	//获取全部
 	ret := []*Message{}
 	if req.Modules == 0 {
-		for _, m := range _updata.resp {
+		for k, m := range _updata.resp {
 			if len(m) == 7 {
 				msgs := m[GetWebWeekDay()]
 				ret = append(ret, msgs...)
+			} else {
+				logger.Errorf("module name:%s data len:%d failed", GetName(k), len(m))
 			}
 		}
 	} else {
@@ -68,6 +70,8 @@ func (s *Service) update(w http.ResponseWriter, r *http.Request) {
 		if len(m) == 7 {
 			msgs := m[GetWebWeekDay()]
 			ret = append(ret, msgs...)
+		} else {
+			logger.Errorf("module name:%s data len:%d failed", GetName(ModuleType(req.Modules)), len(m))
 		}
 	}
 
