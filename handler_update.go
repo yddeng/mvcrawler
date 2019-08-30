@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"github.com/tagDong/mvcrawler/util"
 	"net/http"
+	"sync"
 )
 
 /*
@@ -26,12 +27,15 @@ type UpdateReq struct {
 
 type UpdateResp struct {
 	resp map[ModuleType][][]*Message
+	mu   sync.Mutex
 }
 
 var _updata *UpdateResp
 
 func (s *Service) update(w http.ResponseWriter, r *http.Request) {
 	logger.Infoln("http update request", r.Method)
+	_updata.mu.Lock()
+	defer _updata.mu.Unlock()
 
 	//跨域
 	w.Header().Set("Access-Control-Allow-Origin", "*")             //允许访问所有域

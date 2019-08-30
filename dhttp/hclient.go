@@ -20,6 +20,9 @@ func Get(url string, timeout time.Duration) (*http.Response, error) {
 	if err != nil {
 		return nil, err
 	}
+	//Http的短连接，防止链接重用。解决 Connection reset by peer
+	req.Close = true
+
 	resp, rerr := client.Do(req)
 	if rerr != nil {
 		return nil, rerr
@@ -59,6 +62,8 @@ func Post(url string, contentType string, reader io.Reader, timeout time.Duratio
 		return nil, err
 	}
 	req.Header.Set("Content-Type", contentType)
+	//Http的短连接，防止链接重用。解决 Connection reset by peer
+	req.Close = true
 
 	resp, rerr := client.Do(req)
 	if rerr != nil {

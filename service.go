@@ -60,7 +60,9 @@ func (s *Service) tick() {
 		for k, m := range s.modules {
 			ret := m.Update()
 			if len(ret) != 0 {
+				_updata.mu.Lock()
 				_updata.resp[k] = ret
+				_updata.mu.Unlock()
 			} else {
 				logger.Errorf("module:%s data len:%d failed", m.GetName(), len(ret))
 			}
