@@ -8,7 +8,7 @@
 
 - www.silisili.me
 - www.bimibimi.tv
-- www.5dm.tv
+- www.5dm.tv (由于服务器在境外，访问该网站有权限问题)
 
 #### 安装
 
@@ -56,12 +56,16 @@ mvcrawler/
 
 [网站模块注册](./module/README.md)
 
-#### 更新
+#### 更新日志
 
 [更新日志](./UPDATE.md)
 
+#### TODO
+
+[TODO](./TODO.md)
+
 #### 交流反馈
 
-有什么好的网站收录或建议 提交Issues:[Issues](https://github.com/tagDong/mvcrawler/issues)
+网站收录或建议 提交Issues:[Issues](https://github.com/tagDong/mvcrawler/issues)
 
 
