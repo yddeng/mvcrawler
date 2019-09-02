@@ -7,6 +7,7 @@ import (
 	"github.com/tagDong/mvcrawler/dhttp"
 	"github.com/tagDong/mvcrawler/util"
 	"net/url"
+	"strings"
 )
 
 type Silisili struct {
@@ -42,6 +43,7 @@ func (this *Silisili) Search(txt string) []*mvcrawler.Message {
 	}
 	_ = resp.Body.Close()
 
+	// 结果第一页
 	doc.Find(".anime_list dl").Each(func(i int, selection *goquery.Selection) {
 		var title, img, url string
 		var ok bool
@@ -56,12 +58,76 @@ func (this *Silisili) Search(txt string) []*mvcrawler.Message {
 		ret = append(ret, &mvcrawler.Message{
 			Title: title,
 			From:  this.GetName(),
-			Img:   img,
-			Url:   util.MergeString(this.baseUrl, url),
+			Img:   util.CheckAndInsertHead(img, "http", this.baseUrl),
+			Url:   util.CheckAndInsertHead(url, "http", this.baseUrl),
 		})
 	})
 
+	//分页
+	page := doc.Find(".page").Eq(0)
+	page.Find("a").EachWithBreak(func(i int, selection *goquery.Selection) bool {
+		if selection.Text() == "下一页" {
+			var url string
+			var ok bool
+			if url, ok = selection.Attr("href"); ok {
+				url = strings.Replace(url, "&amp;", "&", -1)
+				this.logger.Debugln("next page", url)
+				this.searchPage(util.MergeString(this.baseUrl, url), &ret)
+			}
+			return false
+		}
+		return true
+	})
 	return ret
+}
+
+// 搜索结果的分页处理
+func (this *Silisili) searchPage(getUrl string, result *[]*mvcrawler.Message) {
+	resp, err := dhttp.Get(getUrl, 0)
+	if err != nil {
+		return
+	}
+
+	doc, err := goquery.NewDocumentFromReader(resp.Body)
+	if err != nil {
+		return
+	}
+	_ = resp.Body.Close()
+
+	//
+	doc.Find(".anime_list dl").Each(func(i int, selection *goquery.Selection) {
+		var title, img, url string
+		var ok bool
+		title = selection.Find("dd h3 a").Text()
+		if img, ok = selection.Find("dt img").Attr("src"); !ok {
+			return
+		}
+		if url, ok = selection.Find("dd h3 a").Attr("href"); !ok {
+			return
+		}
+
+		*result = append(*result, &mvcrawler.Message{
+			Title: title,
+			From:  this.GetName(),
+			Img:   util.CheckAndInsertHead(img, "http", this.baseUrl),
+			Url:   util.CheckAndInsertHead(url, "http", this.baseUrl),
+		})
+	})
+
+	page := doc.Find(".page").Eq(0)
+	page.Find("a").EachWithBreak(func(i int, selection *goquery.Selection) bool {
+		if selection.Text() == "下一页" {
+			var url string
+			var ok bool
+			if url, ok = selection.Attr("href"); ok {
+				url = strings.Replace(url, "&amp;", "&", -1)
+				this.logger.Debugln("next page", url)
+				this.searchPage(util.MergeString(this.baseUrl, url), result)
+			}
+			return false
+		}
+		return true
+	})
 }
 
 func (this *Silisili) Update() [][]*mvcrawler.Message {
@@ -102,8 +168,8 @@ func (this *Silisili) Update() [][]*mvcrawler.Message {
 			msgs = append(msgs, &mvcrawler.Message{
 				Title:  title,
 				From:   this.GetName(),
-				Img:    img,
-				Url:    util.MergeString(this.baseUrl, url),
+				Img:    util.CheckAndInsertHead(img, "http", this.baseUrl),
+				Url:    util.CheckAndInsertHead(url, "http", this.baseUrl),
 				Status: status,
 			})
 		})

@@ -1,7 +1,8 @@
 # 配置模版，正式去掉后缀template
 
 HttpAddr       = "127.0.0.1:12345"    # 服务器地址
-TickDur        = 60                   # 日更新爬取时间间隔,单位秒
+UpdateDur      = 600                  # 日更新爬取时间间隔,单位秒
+SearchDur      = 24                   # 搜索爬取时间间隔,单位小时
 
 [Log]
 LogPath        = "./log"              # 日志输出路径

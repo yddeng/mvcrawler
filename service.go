@@ -2,6 +2,7 @@ package mvcrawler
 
 import (
 	"github.com/tagDong/mvcrawler/conf"
+	"github.com/tagDong/mvcrawler/db"
 	"github.com/tagDong/mvcrawler/dhttp"
 	"time"
 )
@@ -12,26 +13,21 @@ type Service struct {
 }
 
 func NewService() *Service {
+	config := conf.GetConfig()
 	InitLogger()
 	s := new(Service)
 
-	s.initModules()
-	s.initHttpServer()
+	//db
+	db.NewDB("update")
+	db.NewDB("search")
 
-	go s.tick()
-	return s
-}
-
-func (s *Service) initModules() {
+	//module
 	s.modules = map[ModuleType]Module{}
 	for mt, fn := range moduleFunc {
 		s.modules[mt] = fn(logger)
 	}
-}
 
-//http服务
-func (s *Service) initHttpServer() {
-	config := conf.GetConfig()
+	//httpServer
 	s.hServer = dhttp.NewHttpServer(config.HttpAddr)
 
 	//注册路由
@@ -46,25 +42,46 @@ func (s *Service) initHttpServer() {
 	}()
 
 	logger.Infof("httpServer start on %s", config.HttpAddr)
+
+	go s.updateLoop(time.Duration(config.UpdateDur) * time.Second)
+	go s.searchLoop(time.Duration(config.SearchDur) * time.Hour)
+	return s
 }
 
-//定时抓取
-func (s *Service) tick() {
-	_updata = &UpdateResp{
-		resp: map[ModuleType][][]*Message{},
-	}
-
-	config := conf.GetConfig()
-	tick := time.NewTicker(time.Duration(config.TickDur) * time.Second)
+//update 抓取
+func (s *Service) updateLoop(dur time.Duration) {
+	tick := time.NewTicker(dur)
+	updateDB := db.GetDB("update")
 	for {
-		for k, m := range s.modules {
+		result := [][]*Message{}
+		for i := 0; i < 7; i++ {
+			result = append(result, []*Message{})
+		}
+		for _, m := range s.modules {
 			ret := m.Update()
-			if len(ret) != 0 {
-				_updata.mu.Lock()
-				_updata.resp[k] = ret
-				_updata.mu.Unlock()
-			} else {
-				logger.Errorf("module:%s data len:%d failed", m.GetName(), len(ret))
+			for i, v1 := range ret {
+				result[i] = append(result[i], v1...)
+			}
+		}
+		updateDB.Set("update", result)
+		<-tick.C
+	}
+}
+
+// search
+// 只更新缓存中的热数据
+func (s *Service) searchLoop(dur time.Duration) {
+	tick := time.NewTicker(dur)
+	searchDB := db.GetDB("search")
+	for {
+		kv := searchDB.GetAll()
+		for k := range kv {
+			result := []*Message{}
+			for _, m := range s.modules {
+				result = append(result, m.Search(k)...)
+			}
+			if len(result) > 0 {
+				searchDB.Set(k, result)
 			}
 		}
 		<-tick.C

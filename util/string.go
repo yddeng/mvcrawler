@@ -41,10 +41,10 @@ func CheckString(s, substr string) bool {
 }
 
 // 判读s串中是否有str子串
-// 有返回，没有在头部添加
-func ComperAndInsertHead(s, substr string) string {
+// 有返回，没有在头部添加再返回
+func CheckAndInsertHead(s, substr, headStr string) string {
 	if CheckString(s, substr) {
 		return s
 	}
-	return MergeString(substr, s)
+	return MergeString(headStr, s)
 }

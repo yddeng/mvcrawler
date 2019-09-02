@@ -3,9 +3,10 @@ package conf
 import "github.com/BurntSushi/toml"
 
 type Config struct {
-	HttpAddr string
-	TickDur  int
-	Log      struct {
+	HttpAddr  string
+	UpdateDur int
+	SearchDur int
+	Log       struct {
 		LogPath string
 		LogName string
 	}

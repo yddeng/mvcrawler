@@ -56,11 +56,71 @@ func (this *Bimibimi) Search(txt string) []*mvcrawler.Message {
 		ret = append(ret, &mvcrawler.Message{
 			Title: title,
 			From:  this.GetName(),
-			Img:   util.MergeString(this.baseUrl, img),
-			Url:   util.MergeString(this.baseUrl, url),
+			Img:   util.CheckAndInsertHead(img, "http", this.baseUrl),
+			Url:   util.CheckAndInsertHead(url, "http", this.baseUrl),
 		})
 	})
+
+	doc.Find("#long-page li a").EachWithBreak(func(i int, selection *goquery.Selection) bool {
+		if selection.Text() == "下一页" {
+			var url string
+			var ok bool
+			if url, ok = selection.Attr("href"); ok {
+				this.logger.Debugln("next page", url)
+				this.searchPage(util.MergeString(this.baseUrl, url), &ret)
+			}
+			return false
+		}
+		return true
+	})
 	return ret
+}
+
+// 搜索结果的分页处理
+func (this *Bimibimi) searchPage(getUrl string, result *[]*mvcrawler.Message) {
+	resp, err := dhttp.Get(getUrl, 0)
+	if err != nil {
+		return
+	}
+
+	doc, err := goquery.NewDocumentFromReader(resp.Body)
+	if err != nil {
+		return
+	}
+	_ = resp.Body.Close()
+
+	//
+	doc.Find(".v_tb .item").Each(func(i int, selection *goquery.Selection) {
+		var title, img, url string
+		var ok bool
+		title = selection.Find(".info a").Text()
+		if img, ok = selection.Find("img").Attr("data-original"); !ok {
+			return
+		}
+		if url, ok = selection.Find(".info a").Attr("href"); !ok {
+			return
+		}
+
+		*result = append(*result, &mvcrawler.Message{
+			Title: title,
+			From:  this.GetName(),
+			Img:   util.CheckAndInsertHead(img, "http", this.baseUrl),
+			Url:   util.CheckAndInsertHead(url, "http", this.baseUrl),
+		})
+	})
+
+	doc.Find("#long-page li a").EachWithBreak(func(i int, selection *goquery.Selection) bool {
+		if selection.Text() == "下一页" {
+			var url string
+			var ok bool
+			if url, ok = selection.Attr("href"); ok {
+				this.logger.Debugln("next page", url)
+				this.searchPage(util.MergeString(this.baseUrl, url), result)
+			}
+			return false
+		}
+		return true
+	})
 }
 
 func (this *Bimibimi) Update() [][]*mvcrawler.Message {

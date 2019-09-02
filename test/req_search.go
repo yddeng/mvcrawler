@@ -9,10 +9,10 @@ import (
 
 func main() {
 	data := url.Values{
-		"show": {"title"}, "tbname": {"movie"}, "tempid": {"1"}, "keyboard": {"海贼王"},
+		"wd": {"海贼王"},
 	}
 
-	resp, err := dhttp.PostUrlencoded("http://www.silisili.me/e/search/index.php", data, 0)
+	resp, err := dhttp.PostUrlencoded("http://www.bimibimi.tv/vod/search/", data, 0)
 	if err != nil {
 		fmt.Println("1", err)
 	}
@@ -21,5 +21,5 @@ func main() {
 	//if err != nil {
 	//	fmt.Println("2", err)
 	//}
-	util.WriteFile("./", "sili.html", resp.Body)
+	util.WriteFile("./", "bimi_search_海贼王.html", resp.Body)
 }
