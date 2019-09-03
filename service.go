@@ -64,6 +64,8 @@ func (s *Service) updateLoop(dur time.Duration) {
 			}
 		}
 		updateDB.Set("update", result)
+
+		logger.Infoln("updateLoop ok")
 		<-tick.C
 	}
 }
@@ -71,19 +73,15 @@ func (s *Service) updateLoop(dur time.Duration) {
 // search
 // 只更新缓存中的热数据
 func (s *Service) searchLoop(dur time.Duration) {
-	tick := time.NewTicker(dur)
+	tick := time.NewTicker(60 * time.Second) //dur)
 	searchDB := db.GetDB("search")
 	for {
 		kv := searchDB.GetAll()
 		for k := range kv {
-			result := []*Message{}
-			for _, m := range s.modules {
-				result = append(result, m.Search(k)...)
-			}
-			if len(result) > 0 {
-				searchDB.Set(k, result)
-			}
+			s.searchOnWeb(k)
 		}
+
+		logger.Infof("searchLoop len %d ok\n", len(kv))
 		<-tick.C
 	}
 }

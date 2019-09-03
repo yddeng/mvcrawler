@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"github.com/tagDong/mvcrawler/db"
 	"net/http"
+	"sync"
 )
 
 /*
@@ -12,14 +13,23 @@ import (
 
 var pageNum = 20
 
+// 存储结构
+type SearchDB struct {
+	Name     string
+	MsgNum   int
+	Messages []*Message
+	PageNum  int
+}
+
 //搜索
 type SearchReq struct {
 	Txt  string `json:"txt"`
 	Page int    `json:"page"`
 }
 
+//todo msgs 的数量大于一页显示的数量 立即返回给客户端，后端继续抓取所有数据
 func (s *Service) search(w http.ResponseWriter, r *http.Request) {
-	logger.Infoln("http search request", r.Method)
+	//logger.Infoln("http search request", r.Method)
 
 	//跨域
 	w.Header().Set("Access-Control-Allow-Origin", "*")             //允许访问所有域
@@ -33,43 +43,80 @@ func (s *Service) search(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	logger.Infoln("search request", req)
+
+	resp := &SearchRespone{Code: 0}
 	if req.Txt == "" {
 		logger.Errorln("search txt is nil")
+
+		if err := json.NewEncoder(w).Encode(resp); err != nil {
+			logger.Errorf("search write err: %s", err)
+		}
 		return
 	}
 
+	var ret *SearchDB
 	data, ok := db.GetDB("search").Get(req.Txt)
-	resp := &SearchRespone{Code: 0}
-	var ret []*Message
 	if ok {
-		ret = data.([]*Message)
+		ret = data.(*SearchDB)
 	} else {
-		for _, m := range s.modules {
-			ret = append(ret, m.Search(req.Txt)...)
+		ret = s.searchOnWeb(req.Txt)
+	}
+
+	if req.Page >= 0 && req.Page <= ret.PageNum {
+		result := []*Message{}
+		for i := req.Page * pageNum; i < (req.Page+1)*pageNum && i < ret.MsgNum; i++ {
+			result = append(result, ret.Messages[i])
 		}
-		db.GetDB("search").Set(req.Txt, ret)
+		resp.Code = 1
+		resp.MsgNum = ret.MsgNum
+		resp.Messages = result
 
 	}
 
+	logger.Debugln("search respone", *resp)
+	if err := json.NewEncoder(w).Encode(resp); err != nil {
+		logger.Errorf("search write err: %s", err)
+	}
+}
+
+var webMtx sync.Mutex
+
+func (s *Service) searchOnWeb(txt string) *SearchDB {
+	logger.Infof("search txt:%s on web\n", txt)
+
+	msgs := []*Message{}
+	wg := sync.WaitGroup{}
+	wg.Add(len(s.modules))
+	for _, v := range s.modules {
+		m := v
+		go func() {
+			ret := m.Search(txt)
+			webMtx.Lock()
+			msgs = append(msgs, ret...)
+			webMtx.Unlock()
+			wg.Done()
+		}()
+	}
+	wg.Wait()
+	logger.Infof("search txt:%s on web ok\n", txt)
+
 	// 分页
-	length := len(ret)
+	length := len(msgs)
 	page := length / pageNum
 	if length%pageNum != 0 {
 		page += 1
 	}
 
-	if req.Page >= 0 && req.Page <= page {
-		result := []*Message{}
-		for i := req.Page * pageNum; i < (req.Page+1)*pageNum && i < length; i++ {
-			result = append(result, ret[i])
-		}
-		resp.Code = 1
-		resp.MsgNum = length
-		resp.Messages = result
+	sdb := &SearchDB{
+		Name:     txt,
+		MsgNum:   length,
+		PageNum:  page,
+		Messages: msgs,
 	}
-	logger.Debugln("search respone", *resp)
 
-	if err := json.NewEncoder(w).Encode(resp); err != nil {
-		logger.Errorf("search write err: %s", err)
+	if length > 0 {
+		db.GetDB("search").Set(sdb.Name, sdb)
 	}
+
+	return sdb
 }

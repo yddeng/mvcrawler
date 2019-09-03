@@ -86,6 +86,8 @@ func (c *Cache) Get(key string) (interface{}, bool) {
 		_val.lastUsedTime = time.Now()
 		c.minHeap.Fix(_val)
 		return _val.value, true
+	} else {
+		//todo 从数据库拉取
 	}
 	return "", false
 }
@@ -108,37 +110,7 @@ func (c *Cache) checkAndRemove() {
 	if len(c.data) >= c.size {
 		min := c.minHeap.Pop()
 		delete(c.data, min.(*val).key)
+
+		//todo 刷新到数据库
 	}
 }
-
-/*
-func (c *Cache) run() {
-	defaultSleepTime := 10 * time.Second
-	var timer = time.NewTimer(defaultSleepTime)
-	var elem heap.Element
-	for {
-		now := time.Now()
-		for {
-			c.mu.Lock()
-			elem = c.minHeap.Peek()
-			if nil != elem && now.After(elem.(*val).expiredTime) {
-				t := elem.(*val)
-				c.minHeap.Pop()
-				delete(c.data, t.key)
-				c.mu.Unlock()
-			} else {
-				c.mu.Unlock()
-				break
-			}
-		}
-
-		sleepTime := defaultSleepTime
-		if nil != elem {
-			sleepTime = elem.(*val).expiredTime.Sub(now)
-		}
-		timer.Reset(sleepTime)
-		<-timer.C
-	}
-}
-
-*/

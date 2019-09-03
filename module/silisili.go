@@ -37,64 +37,19 @@ func (this *Silisili) Search(txt string) []*mvcrawler.Message {
 	}
 
 	doc, err := goquery.NewDocumentFromReader(resp.Body)
+	_ = resp.Body.Close()
 	if err != nil {
 		this.logger.Errorln(err)
 		return ret
 	}
-	_ = resp.Body.Close()
 
-	// 结果第一页
-	doc.Find(".anime_list dl").Each(func(i int, selection *goquery.Selection) {
-		var title, img, url string
-		var ok bool
-		title = selection.Find("dd h3 a").Text()
-		if img, ok = selection.Find("dt img").Attr("src"); !ok {
-			return
-		}
-		if url, ok = selection.Find("dd h3 a").Attr("href"); !ok {
-			return
-		}
-
-		ret = append(ret, &mvcrawler.Message{
-			Title: title,
-			From:  this.GetName(),
-			Img:   util.CheckAndInsertHead(img, "http", this.baseUrl),
-			Url:   util.CheckAndInsertHead(url, "http", this.baseUrl),
-		})
-	})
-
-	//分页
-	page := doc.Find(".page").Eq(0)
-	page.Find("a").EachWithBreak(func(i int, selection *goquery.Selection) bool {
-		if selection.Text() == "下一页" {
-			var url string
-			var ok bool
-			if url, ok = selection.Attr("href"); ok {
-				url = strings.Replace(url, "&amp;", "&", -1)
-				this.logger.Debugln("next page", url)
-				this.searchPage(util.MergeString(this.baseUrl, url), &ret)
-			}
-			return false
-		}
-		return true
-	})
+	this.search(doc, &ret)
 	return ret
 }
 
 // 搜索结果的分页处理
-func (this *Silisili) searchPage(getUrl string, result *[]*mvcrawler.Message) {
-	resp, err := dhttp.Get(getUrl, 0)
-	if err != nil {
-		return
-	}
+func (this *Silisili) search(doc *goquery.Document, result *[]*mvcrawler.Message) {
 
-	doc, err := goquery.NewDocumentFromReader(resp.Body)
-	if err != nil {
-		return
-	}
-	_ = resp.Body.Close()
-
-	//
 	doc.Find(".anime_list dl").Each(func(i int, selection *goquery.Selection) {
 		var title, img, url string
 		var ok bool
@@ -117,12 +72,26 @@ func (this *Silisili) searchPage(getUrl string, result *[]*mvcrawler.Message) {
 	page := doc.Find(".page").Eq(0)
 	page.Find("a").EachWithBreak(func(i int, selection *goquery.Selection) bool {
 		if selection.Text() == "下一页" {
-			var url string
-			var ok bool
-			if url, ok = selection.Attr("href"); ok {
+			if url, ok := selection.Attr("href"); ok {
+
 				url = strings.Replace(url, "&amp;", "&", -1)
+				url = util.MergeString(this.baseUrl, url)
 				this.logger.Debugln("next page", url)
-				this.searchPage(util.MergeString(this.baseUrl, url), result)
+
+				resp, err := dhttp.Get(url, 0)
+				if err != nil {
+					this.logger.Errorln(err)
+					return false
+				}
+
+				doc, err := goquery.NewDocumentFromReader(resp.Body)
+				_ = resp.Body.Close()
+				if err != nil {
+					this.logger.Errorln(err)
+					return false
+				}
+
+				this.search(doc, result)
 			}
 			return false
 		}

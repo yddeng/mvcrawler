@@ -11,7 +11,7 @@ type Module interface {
 	// 周一至周日的集合
 	Update() [][]*Message
 	// 结果集合
-	Search(context string) []*Message
+	Search(txt string) []*Message
 }
 
 type ModuleType int32
@@ -26,13 +26,6 @@ const (
 
 var (
 	moduleFunc = map[ModuleType]func(l *log.Logger) Module{}
-
-	mt2Name = []string{
-		"invaild",
-		"silisili",
-		"bimibimi",
-		"5dm",
-	}
 )
 
 //非安全的注册，需启动时完成注册
@@ -40,11 +33,4 @@ func Register(mt ModuleType, fn func(l *log.Logger) Module) {
 	if _, ok := moduleFunc[mt]; !ok {
 		moduleFunc[mt] = fn
 	}
-}
-
-func GetName(mt ModuleType) string {
-	if mt > 0 && mt < End {
-		return mt2Name[mt]
-	}
-	return "invaild"
 }

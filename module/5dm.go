@@ -3,6 +3,7 @@
  */
 package module
 
+/*
 import (
 	"github.com/PuerkitoBio/goquery"
 	"github.com/tagDong/dutil/log"
@@ -142,7 +143,6 @@ func _5dmTitleStatus(s string) (title, status string) {
 	return
 }
 
-/*
 func init() {
 	mvcrawler.Register(mvcrawler.Dm5, func(l *log.Logger) mvcrawler.Module {
 		return &Dm5{
