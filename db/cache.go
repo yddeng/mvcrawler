@@ -91,6 +91,8 @@ func (c *Cache) Get(key string) (interface{}, bool) {
 }
 
 func (c *Cache) GetAll() map[string]interface{} {
+	c.mu.Lock()
+	defer c.mu.Unlock()
 	ret := map[string]interface{}{}
 	for _, v := range c.data {
 		ret[v.key] = v.value
