@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>动漫聚合小站</title>
-    <script src="./js/jquery-2.2.4.js"></script>
-    <script src="./js/index.js"></script>
     <link rel="stylesheet" href="./font/font-awesome-4.7.0/css/font-awesome.css">
     <link rel="stylesheet" href="./css/index.css">
-    <!--<script src="./js/dark.js"></script> -->
+	<link rel="stylesheet" href="dist/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <!--<script src="./js/safe.js"></script> -->
+	<style>
+	</style>
 </head>
 <body>
-    <div class="header">
-       <div class="search">
-         <input id="keyboard" type="text" name="Txt" autofocus="true" placeholder="搜索感兴趣的动漫" onkeydown="keySearch()" />
-         <i id="search" class="fa fa-search" aria-hidden="true" onclick="search()"></i>
-       </div>
-    </div>
+			  <div class="header">
+			   <div class="search">
+			     <input id="keyboard" type="text" name="Txt" autofocus="true" placeholder="搜索感兴趣的动漫" onkeydown="keySearch()" />
+			     <i id="search" class="fa fa-search" aria-hidden="true" onclick="search()"></i>
+			   </div>
+			</div>
+ 
     <div class="listBox">
 		<div id="title-top">
 			今日全网更新
@@ -25,4 +29,7 @@
       </ul>
     </div>
 </body>
+   <script src="./js/jquery-2.2.4.js"></script>
+   <script src="dist/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+   <script src="./js/index.js"></script>
 </html>

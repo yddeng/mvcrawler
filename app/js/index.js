@@ -6,7 +6,13 @@ window.onload = function(){
     }
     update(data,url)
 }
-
+/* (function(win,doc){
+	function change(){
+		doc.documentElement.style.fontsize = 10*doc.documentElement.clientWidth/320 + 'px';
+	}
+	change();
+	win.addEventListener('resize',change,false)
+})(window,document) */
 function update(data,url) {
     var list = document.getElementById('list')
     list.innerHTML = `<div id="tips"><i class="fa fa-spinner" aria-hidden="true"></i>搜索中，请稍后！</div>`
@@ -19,18 +25,18 @@ function update(data,url) {
         success: function (res) {
             list.innerHTML = '';
             if(res.code == 1){
-                for(var i=0;i<res.messages.length;i++) {
-                    var row = res.messages[i]
+                for(var i=0;i<res.items.length;i++) {
+                    var row = res.items[i]
                     for (var j = 0; j < row.length; j++) {
                         let oLi = document.createElement("li")
                         oLi.innerHTML = `
 				<a href="${row[j].url}" target="con">
 				    <div class="box">
-				        <div><img src="${row[j].img}"  onerror="this.src='./template/images/default_grey_pc.png'"></div>
+						<div class="status">${row[j].status}</div>
+				        <div class="box-img"><img src="${row[j].img}"  onerror="this.src='./template/images/default_grey_pc.png'"></div>
 				        <div class="detail">
 					        <div class="title">${row[j].title}</div>
 					        <div class="from">来源:<text class="from-detail">${row[j].from}</text></div>
-					        <i>${row[j].status}</i>
 				        </div>
 				    </div>
 				</a>`;
@@ -59,16 +65,16 @@ function getData(data,url){
         success: function (res) {
             list.innerHTML = "";
             if(res.code == 1){
-                for(var i=0;i<res.messages.length;i++){
+                for(var i=0;i<res.items.length;i++){
                     let  oLi = document.createElement("li")
                     oLi.innerHTML = `
-				<a href="${res.messages[i].url}" target="con">
+				<a href="${res.items[i].url}" target="con">
 				    <div class="box">
-				        <div><img src="${res.messages[i].img}"  onerror="this.src='./template/images/default_grey_pc.png'"></div>
+				        <div><img src="${res.items[i].img}"  onerror="this.src='./template/images/default_grey_pc.png'"></div>
 				        <div class="detail">
-					        <div class="title">${res.messages[i].title}</div>
-					        <div class="from">来源:<text class="from-detail">${res.messages[i].from}</text></div>
-					        <i>${res.messages[i].status}</i>
+					        <div class="title">${res.items[i].title}</div>
+					        <div class="from">来源:<text class="from-detail">${res.items[i].from}</text></div>
+					        <i>${res.items[i].status}</i>
 				        </div>
 				    </div>
 				</a>`;

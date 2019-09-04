@@ -1,48 +1,72 @@
+html{
+	font-size: 10px;
+}
 .header{
   text-align: center;
+  width; 100%;
 }
 .search{
-  width: 300px;
-  height: 40px;
-  margin: 0 auto;
+  width: 50%;
+  height: 4rem;
+  margin: 2rem auto;
   background: #f1f3f4; /*#f1f3f4*/
-  line-height: 40px;
-  border-radius: 20px;
+  line-height: 4rem;
+  border-radius: 2rem;
 }
 a{
   text-decoration: none;
 }
 .search input{
-  font-size: 14px;
-  height: 30px;
-  width: 250px;
+  font-size: 1.4rem;
+  height: 3rem;
+  width: 45%;
   border: none;
   background: #f1f3f4;
 }
-.listBox{
-  width: 1200px;
-  margin: 0 auto;
-}
-.listBox ul{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: start;
-}
-.listBox li{
-  flex: 0 0 220px;
-  list-style: none;
-  margin: 20px 20px;
-  padding: 10px;
-  background: #f6f7f8;
-  box-sizing: border-box;
-  border-radius: 5px;
+@media screen and (min-width: 768px){
+	.listBox{
+	  width: 90%;
+	  margin: 0 auto;
+	}
+	.listBox ul{
+	  display: flex;
+	  flex-wrap: wrap;
+	  justify-content: start;
+	  padding: 0;
+	}
+	
+	.listBox li{
+	  flex: 0 0 30rem;
+	  list-style: none;
+	  padding: 2rem;
+	  margin: 2rem 2rem;
+	  background: #f6f7f8;
+	  box-sizing: border-box;
+	  border-radius: 0.5rem;
+	}
+	.listBox .box-img{
+		width: 20rem;
+	}
 }
 .listBox li:hover{
   background: #fffae8;
 }
 .box img{
-  width: 200px;
-  height: 250px;
+  width: 20rem;
+  height: 25rem;
+}
+.box{
+	position: relative;
+}
+.status{
+	position: absolute;
+	top: -2rem;
+	right: -4rem;
+	width: 8rem;
+	line-height: 1.6em;
+	background: rgba(0,0,0,.4);
+	color: #fff;
+	
 }
 input:focus{
 
@@ -54,31 +78,65 @@ a {
   color: #666;
 }
 .title{
-  font-size: 16px;
+  font-size: 1.6rem;
   color: #000;
-  margin: 10px 0;
+  margin: 1rem 0;
 }
 .from{
-  font-size: 14px;
+  font-size: 1.4rem;
 }
 .from-detail{
   color: #d76e43;
 }
 #title-top{
-	width: 1200px;
+	width: 120rem;
 	margin: 0 auto;
-	font-size: 18px;
+	font-size: 1.8rem;
+	text-indent: 1em;
 }
 .fa-search{
 	color: #888;
 }
 #tips{
-	width: 300px;
-	height: 200px;
+	width: 30rem;
+	height: 20rem;
 	margin: 0 auto;
-	font-size: 20px;
+	font-size: 2rem;
 	color: #666;
 }
 #tips .fa{
-	margin-right: 20px;
+	margin-right: 2rem;
+}
+@media screen and (max-width: 768px){
+	.listBox{
+	  width: 90%;
+	  margin: 0 auto;
+	}
+	.listBox ul{
+	  width: 100%;
+	  padding: 0;
+	}
+   .listBox li{
+	 width: 80%;
+     list-style: none;
+     padding: 2rem;
+     margin: 2rem 0;
+     background: #f6f7f8;
+     box-sizing: border-box;
+     border-radius: 0.5rem;
+   }
+   .search{
+     width: 60%;
+     height: 4rem;
+     margin: 2rem auto;
+     background: #f1f3f4; /*#f1f3f4*/
+     line-height: 4rem;
+     border-radius: 2rem;
+   }
+   #title-top{
+   	width: 120rem;
+   	margin: 0 auto;
+   	font-size: 1.8rem;
+   	text-indent: 0;
+   }
 }
