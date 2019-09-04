@@ -1,6 +1,7 @@
 package mvcrawler
 
-type Message struct {
+// 项目结构
+type Item struct {
 	Title  string `json:"title"`
 	From   string `json:"from"`
 	Img    string `json:"img"`
@@ -8,20 +9,22 @@ type Message struct {
 	Url    string `json:"url"`
 }
 
+// 搜索返回结构
 type SearchRespone struct {
-	Code     int        `json:"code"`
-	PageNum  int        `json:"page_num"`
-	Messages []*Message `json:"messages"`
+	Code    int     `json:"code"`
+	PageNum int     `json:"page_num"`
+	Items   []*Item `json:"items"`
 }
 
+//更新返回结构
 type UpdateRespone struct {
-	Code     int          `json:"code"`
-	Messages [][]*Message `json:"messages"`
+	Code  int       `json:"code"`
+	Items [][]*Item `json:"items"`
 }
 
 //去重
-func Process(data *[]*Message) {
-	tmp := []*Message{}
+func Process(data *[]*Item) {
+	tmp := []*Item{}
 	m := map[string]struct{}{}
 
 	for _, v := range *data {

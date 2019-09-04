@@ -2,7 +2,6 @@ package mvcrawler
 
 import (
 	"encoding/json"
-	"github.com/tagDong/mvcrawler/db"
 	"net/http"
 	"sync"
 )
@@ -12,14 +11,6 @@ import (
 */
 
 var pageNum = 20
-
-// 存储结构
-type SearchDB struct {
-	Name    string       //搜索字
-	MsgNum  int          //结果数量
-	PageNum int          //分页数量
-	PageMsg [][]*Message //分页后的项目集合
-}
 
 //搜索
 type SearchReq struct {
@@ -55,7 +46,7 @@ func (s *Service) search(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var ret *SearchDB
-	data, ok := db.GetClient("search").Get(req.Txt)
+	data, ok := GetClient("search").Get(req.Txt)
 	if ok {
 		ret = data.(*SearchDB)
 	} else {
@@ -65,7 +56,7 @@ func (s *Service) search(w http.ResponseWriter, r *http.Request) {
 	if req.Page >= 0 && req.Page < ret.PageNum {
 		resp.Code = 1
 		resp.PageNum = ret.PageNum
-		resp.Messages = ret.PageMsg[req.Page]
+		resp.Items = ret.PageMsg[req.Page]
 
 	}
 
@@ -80,7 +71,7 @@ var webMtx sync.Mutex
 func (s *Service) searchOnWeb(txt string) *SearchDB {
 	logger.Infof("search txt:%s on web\n", txt)
 
-	msgs := []*Message{}
+	msgs := []*Item{}
 	wg := sync.WaitGroup{}
 	wg.Add(len(s.modules))
 	for _, v := range s.modules {
@@ -97,12 +88,12 @@ func (s *Service) searchOnWeb(txt string) *SearchDB {
 	logger.Infof("search txt:%s on web ok\n", txt)
 
 	// 分页
-	pageMsg := [][]*Message{}
+	pageMsg := [][]*Item{}
 	length := len(msgs)
 	var i = 0
 	for i < length {
 		var k = 0
-		var msg = []*Message{}
+		var msg = []*Item{}
 		for k < pageNum && i < length {
 			msg = append(msg, msgs[i])
 			i++
@@ -121,7 +112,7 @@ func (s *Service) searchOnWeb(txt string) *SearchDB {
 	logger.Debugf("sdb name %s, page_num %d, msg_num %d \n", sdb.Name, sdb.PageNum, sdb.MsgNum)
 
 	if length > 0 {
-		db.GetClient("search").Set(sdb.Name, sdb)
+		GetClient("search").Set(sdb.Name, sdb)
 	}
 
 	return sdb

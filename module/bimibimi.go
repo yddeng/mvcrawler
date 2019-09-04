@@ -23,8 +23,8 @@ func (this *Bimibimi) GetUrl() string {
 	return this.baseUrl
 }
 
-func (this *Bimibimi) Search(txt string) []*mvcrawler.Message {
-	ret := []*mvcrawler.Message{}
+func (this *Bimibimi) Search(txt string) []*mvcrawler.Item {
+	ret := []*mvcrawler.Item{}
 	data := url.Values{
 		"wd": {txt},
 	}
@@ -46,7 +46,7 @@ func (this *Bimibimi) Search(txt string) []*mvcrawler.Message {
 }
 
 // 搜索结果的分页处理
-func (this *Bimibimi) search(doc *goquery.Document, result *[]*mvcrawler.Message) {
+func (this *Bimibimi) search(doc *goquery.Document, result *[]*mvcrawler.Item) {
 
 	doc.Find(".v_tb .item").Each(func(i int, selection *goquery.Selection) {
 		var title, img, url string
@@ -59,7 +59,7 @@ func (this *Bimibimi) search(doc *goquery.Document, result *[]*mvcrawler.Message
 			return
 		}
 
-		*result = append(*result, &mvcrawler.Message{
+		*result = append(*result, &mvcrawler.Item{
 			Title: title,
 			From:  this.GetName(),
 			Img:   util.CheckAndInsertHead(img, "http", this.baseUrl),
@@ -94,8 +94,8 @@ func (this *Bimibimi) search(doc *goquery.Document, result *[]*mvcrawler.Message
 	})
 }
 
-func (this *Bimibimi) Update() [][]*mvcrawler.Message {
-	ret := [][]*mvcrawler.Message{}
+func (this *Bimibimi) Update() [][]*mvcrawler.Item {
+	ret := [][]*mvcrawler.Item{}
 	resp, err := dhttp.Get(this.baseUrl, 0)
 	if err != nil {
 		this.logger.Errorln(err)
@@ -110,7 +110,7 @@ func (this *Bimibimi) Update() [][]*mvcrawler.Message {
 	_ = resp.Body.Close()
 
 	doc.Find(".tab-content").Each(func(i int, sele1 *goquery.Selection) {
-		msgs := []*mvcrawler.Message{}
+		msgs := []*mvcrawler.Item{}
 		sele1.Find(".bangumi-item").Each(func(_ int, sele2 *goquery.Selection) {
 			var title, img, url string
 			var ok bool
@@ -128,7 +128,7 @@ func (this *Bimibimi) Update() [][]*mvcrawler.Message {
 			var status string
 			status = sele2.Find(".item-info p").Text()
 
-			msgs = append(msgs, &mvcrawler.Message{
+			msgs = append(msgs, &mvcrawler.Item{
 				Title:  title,
 				From:   this.GetName(),
 				Img:    util.MergeString(this.baseUrl, img),

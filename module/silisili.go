@@ -24,8 +24,8 @@ func (this *Silisili) GetUrl() string {
 	return this.baseUrl
 }
 
-func (this *Silisili) Search(txt string) []*mvcrawler.Message {
-	ret := []*mvcrawler.Message{}
+func (this *Silisili) Search(txt string) []*mvcrawler.Item {
+	ret := []*mvcrawler.Item{}
 	data := url.Values{
 		"show": {"title"}, "tbname": {"movie"}, "tempid": {"1"}, "keyboard": {txt},
 	}
@@ -48,7 +48,7 @@ func (this *Silisili) Search(txt string) []*mvcrawler.Message {
 }
 
 // 搜索结果的分页处理
-func (this *Silisili) search(doc *goquery.Document, result *[]*mvcrawler.Message) {
+func (this *Silisili) search(doc *goquery.Document, result *[]*mvcrawler.Item) {
 
 	doc.Find(".anime_list dl").Each(func(i int, selection *goquery.Selection) {
 		var title, img, url string
@@ -61,7 +61,7 @@ func (this *Silisili) search(doc *goquery.Document, result *[]*mvcrawler.Message
 			return
 		}
 
-		*result = append(*result, &mvcrawler.Message{
+		*result = append(*result, &mvcrawler.Item{
 			Title: title,
 			From:  this.GetName(),
 			Img:   util.CheckAndInsertHead(img, "http", this.baseUrl),
@@ -99,8 +99,8 @@ func (this *Silisili) search(doc *goquery.Document, result *[]*mvcrawler.Message
 	})
 }
 
-func (this *Silisili) Update() [][]*mvcrawler.Message {
-	ret := [][]*mvcrawler.Message{}
+func (this *Silisili) Update() [][]*mvcrawler.Item {
+	ret := [][]*mvcrawler.Item{}
 
 	resp, err := dhttp.Get(this.baseUrl, 0)
 	if err != nil {
@@ -116,7 +116,7 @@ func (this *Silisili) Update() [][]*mvcrawler.Message {
 	_ = resp.Body.Close()
 
 	doc.Find(".time_con").Each(func(i int, sele1 *goquery.Selection) {
-		msgs := []*mvcrawler.Message{}
+		msgs := []*mvcrawler.Item{}
 		sele1.Find("li").Each(func(_ int, sele2 *goquery.Selection) {
 			var title, img, url string
 			var ok bool
@@ -134,7 +134,7 @@ func (this *Silisili) Update() [][]*mvcrawler.Message {
 			var status string
 			status = sele2.Find("a i").Text()
 
-			msgs = append(msgs, &mvcrawler.Message{
+			msgs = append(msgs, &mvcrawler.Item{
 				Title:  title,
 				From:   this.GetName(),
 				Img:    util.CheckAndInsertHead(img, "http", this.baseUrl),

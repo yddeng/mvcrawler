@@ -8,9 +8,9 @@ GetName()string
 //url
 GetUrl()string
 //搜索接口
-Search(context string) []*Message
+Search(context string) []*Item
 //获取日更新接口
-Update() [][]*Message
+Update() [][]*Item
 ```
 
 实现过程

@@ -27,8 +27,8 @@ func (this *Dm5) GetUrl() string {
 	return this.baseUrl
 }
 
-func (this *Dm5) Search(txt string) []*mvcrawler.Message {
-	ret := []*mvcrawler.Message{}
+func (this *Dm5) Search(txt string) []*mvcrawler.Item {
+	ret := []*mvcrawler.Item{}
 	data := url.Values{
 		"s": {txt},
 	}
@@ -58,7 +58,7 @@ func (this *Dm5) Search(txt string) []*mvcrawler.Message {
 			return
 		}
 
-		ret = append(ret, &mvcrawler.Message{
+		ret = append(ret, &mvcrawler.Item{
 			Title: title,
 			From:  this.GetName(),
 			Img:   img,
@@ -69,8 +69,8 @@ func (this *Dm5) Search(txt string) []*mvcrawler.Message {
 	return ret
 }
 
-func (this *Dm5) Update() [][]*mvcrawler.Message {
-	ret := [][]*mvcrawler.Message{}
+func (this *Dm5) Update() [][]*mvcrawler.Item {
+	ret := [][]*mvcrawler.Item{}
 
 	resp, err := dhttp.Get("https://www.5dm.tv/timeline", 0)
 	if err != nil {
@@ -86,7 +86,7 @@ func (this *Dm5) Update() [][]*mvcrawler.Message {
 	_ = resp.Body.Close()
 
 	doc.Find(".is-carousel").Each(func(i int, sele1 *goquery.Selection) {
-		msgs := []*mvcrawler.Message{}
+		msgs := []*mvcrawler.Item{}
 		sele1.Find(".video-item").Each(func(_ int, sele2 *goquery.Selection) {
 			var title, img, url string
 			var ok bool
@@ -103,7 +103,7 @@ func (this *Dm5) Update() [][]*mvcrawler.Message {
 			var status string
 			title, status = _5dmTitleStatus(title)
 
-			msgs = append(msgs, &mvcrawler.Message{
+			msgs = append(msgs, &mvcrawler.Item{
 				Title:  title,
 				From:   this.GetName(),
 				Img:    img,
@@ -119,7 +119,7 @@ func (this *Dm5) Update() [][]*mvcrawler.Message {
 
 //该网站爬取顺序为周日，周一，二 。。。 周六
 //排序为周一，周二 。。。 周日
-func _5dmSort(msgs *[][]*mvcrawler.Message) {
+func _5dmSort(msgs *[][]*mvcrawler.Item) {
 	if len(*msgs) > 0 {
 		tmp := *msgs
 		*msgs = tmp[1:]

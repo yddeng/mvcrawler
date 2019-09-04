@@ -9,9 +9,9 @@ type Module interface {
 	// url
 	GetUrl() string
 	// 周一至周日的集合
-	Update() [][]*Message
+	Update() [][]*Item
 	// 结果集合
-	Search(txt string) []*Message
+	Search(txt string) []*Item
 }
 
 type ModuleType int32

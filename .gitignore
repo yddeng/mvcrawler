@@ -14,3 +14,6 @@ fileSev/conf.toml
 /fileSev/bin
 
 # 测试文件
+
+# db数据
+/data/

@@ -12,9 +12,9 @@ LogName        = "crawler"            # 日志名字
 PageItemCount  = 20                   # 每页显示的项目数量，搜索
 
 [DB]
-CacheCount     = 1024                 # 缓存中保留的数据数量
-CacheSaveDur   = 60                   # 缓存数据落地时间间隔
-SavePath       = "./db/data"          # json文本存储地址
+CacheSize      = 1024                 # 缓存中保留的数据容量大小
+DBSaveDur      = 60                   # 缓存数据落地时间间隔
+SavePath       = "./data"          # json文本存储地址
 MySQLAddr      = ""                   # mysql数据库地址，暂不使用
 
 [Download]

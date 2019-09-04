@@ -2,7 +2,6 @@ package mvcrawler
 
 import (
 	"github.com/tagDong/mvcrawler/conf"
-	"github.com/tagDong/mvcrawler/db"
 	"github.com/tagDong/mvcrawler/dhttp"
 	"time"
 )
@@ -18,8 +17,8 @@ func NewService() *Service {
 	s := new(Service)
 
 	//db
-	db.NewClient("update", false, &UpdateDB{})
-	db.NewClient("search", true, &SearchDB{})
+	NewClient("update", false, &UpdateDB{})
+	NewClient("search", true, &SearchDB{})
 
 	//module
 	s.modules = map[ModuleType]Module{}
@@ -51,12 +50,12 @@ func NewService() *Service {
 //update 抓取
 func (s *Service) updateLoop(dur time.Duration) {
 	tick := time.NewTicker(dur)
-	updateDB := db.GetClient("update")
+	updateDB := GetClient("update")
 	for {
 		data := &UpdateDB{}
-		result := [][]*Message{}
+		result := [][]*Item{}
 		for i := 0; i < 7; i++ {
-			result = append(result, []*Message{})
+			result = append(result, []*Item{})
 		}
 		for _, m := range s.modules {
 			ret := m.Update()
@@ -76,7 +75,7 @@ func (s *Service) updateLoop(dur time.Duration) {
 // 只更新缓存中的热数据
 func (s *Service) searchLoop(dur time.Duration) {
 	tick := time.NewTicker(dur)
-	searchDB := db.GetClient("search")
+	searchDB := GetClient("search")
 	for {
 		kv := searchDB.GetAll()
 		for k := range kv {

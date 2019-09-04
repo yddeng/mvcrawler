@@ -2,7 +2,6 @@ package mvcrawler
 
 import (
 	"encoding/json"
-	"github.com/tagDong/mvcrawler/db"
 	"github.com/tagDong/mvcrawler/util"
 	"net/http"
 )
@@ -14,10 +13,6 @@ import (
 //更新
 type UpdateReq struct {
 	Modules int `json:"modules"`
-}
-
-type UpdateDB struct {
-	Msgs [][]*Message
 }
 
 func (s *Service) update(w http.ResponseWriter, r *http.Request) {
@@ -37,12 +32,12 @@ func (s *Service) update(w http.ResponseWriter, r *http.Request) {
 	logger.Infoln("update request", req)
 
 	var ret *UpdateDB
-	data, ok := db.GetClient("update").Get("update")
+	data, ok := GetClient("update").Get("update")
 	resp := &UpdateRespone{Code: 0}
 	if ok {
 		ret = data.(*UpdateDB)
 		resp.Code = 1
-		resp.Messages = ret.Msgs
+		resp.Items = ret.Msgs
 	}
 
 	logger.Debugln("update respone", *resp)

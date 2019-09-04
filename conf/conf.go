@@ -14,10 +14,10 @@ type Config struct {
 		PageItemCount int
 	}
 	DB struct {
-		CacheCount   int
-		CacheSaveDur int
-		SavePath     string
-		MySQLAddr    string
+		CacheSize int
+		DBSaveDur int
+		SavePath  string
+		MySQLAddr string
 	}
 	DownLoad struct {
 		OutPath        string
