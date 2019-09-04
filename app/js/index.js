@@ -1,6 +1,6 @@
 window.onload = function(){
-    //let url = 'http://104.168.165.226:12345/update';
-    let url = 'http://127.0.0.1:12345/update';
+    let url = 'http://104.168.165.226:12345/update';
+    //let url = 'http://127.0.0.1:12345/update';
     let data = {
         modules: 0
     }
@@ -96,8 +96,8 @@ function search(){
     let txt = $("#keyboard").val();
     if (txt != "") {
         let data = {"txt": txt,"page":0};
-        //let url = "http://104.168.165.226:12345/search";
-        let url = "http://127.0.0.1:12345/search";
+        let url = "http://104.168.165.226:12345/search";
+        //let url = "http://127.0.0.1:12345/search";
         getData(data, url);
         $('#title-top').text('全网搜索结果')
     }
