@@ -18,8 +18,8 @@ func NewService() *Service {
 	s := new(Service)
 
 	//db
-	db.NewDB("update")
-	db.NewDB("search")
+	db.NewClient("update", false, &UpdateDB{})
+	db.NewClient("search", true, &SearchDB{})
 
 	//module
 	s.modules = map[ModuleType]Module{}
@@ -51,8 +51,9 @@ func NewService() *Service {
 //update 抓取
 func (s *Service) updateLoop(dur time.Duration) {
 	tick := time.NewTicker(dur)
-	updateDB := db.GetDB("update")
+	updateDB := db.GetClient("update")
 	for {
+		data := &UpdateDB{}
 		result := [][]*Message{}
 		for i := 0; i < 7; i++ {
 			result = append(result, []*Message{})
@@ -63,7 +64,8 @@ func (s *Service) updateLoop(dur time.Duration) {
 				result[i] = append(result[i], v1...)
 			}
 		}
-		updateDB.Set("update", result)
+		data.Msgs = result
+		updateDB.Set("update", data)
 
 		logger.Infoln("updateLoop ok")
 		<-tick.C
@@ -73,8 +75,8 @@ func (s *Service) updateLoop(dur time.Duration) {
 // search
 // 只更新缓存中的热数据
 func (s *Service) searchLoop(dur time.Duration) {
-	tick := time.NewTicker(60 * time.Second) //dur)
-	searchDB := db.GetDB("search")
+	tick := time.NewTicker(dur)
+	searchDB := db.GetClient("search")
 	for {
 		kv := searchDB.GetAll()
 		for k := range kv {

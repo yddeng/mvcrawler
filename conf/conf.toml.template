@@ -8,6 +8,15 @@ SearchDur      = 24                   # 搜索爬取时间间隔,单位小时
 LogPath        = "./log"              # 日志输出路径
 LogName        = "crawler"            # 日志名字
 
+[Web]
+PageItemCount  = 20                   # 每页显示的项目数量，搜索
+
+[DB]
+CacheCount     = 1024                 # 缓存中保留的数据数量
+CacheSaveDur   = 60                   # 缓存数据落地时间间隔
+SavePath       = "./db/data"          # json文本存储地址
+MySQLAddr      = ""                   # mysql数据库地址，暂不使用
+
 [Download]
 OutPath        = "./download"         # 下载路径
 QueueSize      = 256                  # 下载队列大小

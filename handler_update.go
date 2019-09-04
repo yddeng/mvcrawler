@@ -16,6 +16,10 @@ type UpdateReq struct {
 	Modules int `json:"modules"`
 }
 
+type UpdateDB struct {
+	Msgs [][]*Message
+}
+
 func (s *Service) update(w http.ResponseWriter, r *http.Request) {
 	logger.Infoln("http update request", r.Method)
 
@@ -32,12 +36,15 @@ func (s *Service) update(w http.ResponseWriter, r *http.Request) {
 	}
 	logger.Infoln("update request", req)
 
-	data, ok := db.GetDB("update").Get("update")
+	var ret *UpdateDB
+	data, ok := db.GetClient("update").Get("update")
 	resp := &UpdateRespone{Code: 0}
 	if ok {
+		ret = data.(*UpdateDB)
 		resp.Code = 1
-		resp.Messages = data.([][]*Message)
+		resp.Messages = ret.Msgs
 	}
+
 	logger.Debugln("update respone", *resp)
 
 	if err := json.NewEncoder(w).Encode(resp); err != nil {

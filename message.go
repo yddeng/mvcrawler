@@ -10,7 +10,7 @@ type Message struct {
 
 type SearchRespone struct {
 	Code     int        `json:"code"`
-	MsgNum   int        `json:"msg_num"`
+	PageNum  int        `json:"page_num"`
 	Messages []*Message `json:"messages"`
 }
 

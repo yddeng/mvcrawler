@@ -4,7 +4,9 @@
 package db
 
 import (
+	"fmt"
 	"github.com/tagDong/dutil/heap"
+	"reflect"
 	"sync"
 	"time"
 )
@@ -18,8 +20,10 @@ const (
 
 // 字符串类型的缓存
 type Cache struct {
+	c       *Client
 	size    int //存储量
 	mu      sync.Mutex
+	valType reflect.Type
 	data    map[string]*val
 	minHeap *heap.Heap
 }
@@ -29,14 +33,12 @@ type val struct {
 	value        interface{}
 	lastUsedTime time.Time //最近使用时间，LRU算法
 	usedTimes    int       //使用次数，LFU算法
+	dbDirty      bool      //脏数据，存储
 }
 
 var (
 	cacheTT = LFU
 )
-
-func SetCacheTT(tt TT) { cacheTT = tt }
-func GetCacheTT() TT   { return cacheTT }
 
 func (v *val) Less(e heap.Element) bool {
 	switch cacheTT {
@@ -49,10 +51,9 @@ func (v *val) Less(e heap.Element) bool {
 	}
 }
 
-func New(size int, tt TT) *Cache {
-	cacheTT = tt
-	c := &Cache{size: size, data: map[string]*val{}, minHeap: heap.NewHeap()}
-	return c
+func New(c *Client, size int, vT interface{}) *Cache {
+	cache := &Cache{c: c, size: size, valType: reflect.TypeOf(vT), data: map[string]*val{}, minHeap: heap.NewHeap()}
+	return cache
 }
 
 func (c *Cache) Set(key string, value interface{}) {
@@ -73,6 +74,7 @@ func (c *Cache) Set(key string, value interface{}) {
 		c.data[key] = _val
 		c.minHeap.Push(_val)
 	}
+	_val.dbDirty = true
 	c.mu.Unlock()
 }
 
@@ -88,6 +90,24 @@ func (c *Cache) Get(key string) (interface{}, bool) {
 		return _val.value, true
 	} else {
 		//todo 从数据库拉取
+		data, err := c.c.get(key, c.valType)
+		if err != nil {
+			fmt.Println("dbget ", err)
+			return "", false
+		}
+
+		c.checkAndRemove()
+		_val = &val{
+			key:          key,
+			value:        data,
+			lastUsedTime: time.Now(),
+			usedTimes:    1,
+		}
+		c.data[key] = _val
+		c.minHeap.Push(_val)
+		_val.dbDirty = true
+
+		return data, true
 	}
 	return "", false
 }
@@ -112,5 +132,26 @@ func (c *Cache) checkAndRemove() {
 		delete(c.data, min.(*val).key)
 
 		//todo 刷新到数据库
+		c.c.save(min.(*val).key, min.(*val).value)
+	}
+}
+
+func (c *Cache) PackDirty(fields map[string]interface{}) {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+	for _, v := range c.data {
+		if v.dbDirty {
+			fields[v.key] = v.value
+		}
+	}
+}
+
+func (c *Cache) ClearDirty(key string) {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+
+	_val, ok := c.data[key]
+	if ok {
+		_val.dbDirty = false
 	}
 }

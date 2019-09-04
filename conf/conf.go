@@ -10,6 +10,15 @@ type Config struct {
 		LogPath string
 		LogName string
 	}
+	Web struct {
+		PageItemCount int
+	}
+	DB struct {
+		CacheCount   int
+		CacheSaveDur int
+		SavePath     string
+		MySQLAddr    string
+	}
 	DownLoad struct {
 		OutPath        string
 		QueueSize      int

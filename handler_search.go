@@ -15,10 +15,10 @@ var pageNum = 20
 
 // 存储结构
 type SearchDB struct {
-	Name     string
-	MsgNum   int
-	Messages []*Message
-	PageNum  int
+	Name    string       //搜索字
+	MsgNum  int          //结果数量
+	PageNum int          //分页数量
+	PageMsg [][]*Message //分页后的项目集合
 }
 
 //搜索
@@ -55,21 +55,17 @@ func (s *Service) search(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var ret *SearchDB
-	data, ok := db.GetDB("search").Get(req.Txt)
+	data, ok := db.GetClient("search").Get(req.Txt)
 	if ok {
 		ret = data.(*SearchDB)
 	} else {
 		ret = s.searchOnWeb(req.Txt)
 	}
 
-	if req.Page >= 0 && req.Page <= ret.PageNum {
-		result := []*Message{}
-		for i := req.Page * pageNum; i < (req.Page+1)*pageNum && i < ret.MsgNum; i++ {
-			result = append(result, ret.Messages[i])
-		}
+	if req.Page >= 0 && req.Page < ret.PageNum {
 		resp.Code = 1
-		resp.MsgNum = ret.MsgNum
-		resp.Messages = result
+		resp.PageNum = ret.PageNum
+		resp.Messages = ret.PageMsg[req.Page]
 
 	}
 
@@ -101,21 +97,31 @@ func (s *Service) searchOnWeb(txt string) *SearchDB {
 	logger.Infof("search txt:%s on web ok\n", txt)
 
 	// 分页
+	pageMsg := [][]*Message{}
 	length := len(msgs)
-	page := length / pageNum
-	if length%pageNum != 0 {
-		page += 1
+	var i = 0
+	for i < length {
+		var k = 0
+		var msg = []*Message{}
+		for k < pageNum && i < length {
+			msg = append(msg, msgs[i])
+			i++
+			k++
+		}
+		pageMsg = append(pageMsg, msg)
 	}
 
 	sdb := &SearchDB{
-		Name:     txt,
-		MsgNum:   length,
-		PageNum:  page,
-		Messages: msgs,
+		Name:    txt,
+		MsgNum:  length,
+		PageNum: len(pageMsg),
+		PageMsg: pageMsg,
 	}
 
+	logger.Debugf("sdb name %s, page_num %d, msg_num %d \n", sdb.Name, sdb.PageNum, sdb.MsgNum)
+
 	if length > 0 {
-		db.GetDB("search").Set(sdb.Name, sdb)
+		db.GetClient("search").Set(sdb.Name, sdb)
 	}
 
 	return sdb

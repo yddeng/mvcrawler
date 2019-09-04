@@ -31,3 +31,16 @@ func WriteFile(filePath, fileName string, reader io.Reader) (n int64, err error)
 	n, err = io.Copy(f, reader)
 	return
 }
+
+func writeFile(filePath, file string, data []byte) error {
+	os.MkdirAll(filePath, os.ModePerm)
+	return ioutil.WriteFile(path.Join(filePath, file), data, os.ModePerm)
+}
+
+func WriteString(filePath, file, data string) error {
+	return writeFile(filePath, file, []byte(data))
+}
+
+func WriteByte(filePath, file string, data []byte) error {
+	return writeFile(filePath, file, data)
+}
