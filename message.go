@@ -11,15 +11,23 @@ type Item struct {
 
 // 搜索返回结构
 type SearchRespone struct {
-	Code    int     `json:"code"`
-	PageNum int     `json:"page_num"`
-	Items   []*Item `json:"items"`
+	Code      string  `json:"code"`
+	Txt       string  `json:"txt"`        //搜索词
+	Page      int     `json:"page"`       //请求的页码
+	TotalPage int     `json:"total_page"` //总页妈
+	TotalItem int     `json:"total_item"` //总页妈
+	Items     []*Item `json:"items"`
 }
 
 //更新返回结构
 type UpdateRespone struct {
-	Code  int       `json:"code"`
+	Code  string    `json:"code"`
 	Items [][]*Item `json:"items"`
+}
+
+var code = map[string]string{
+	"ERR": "请求参数错误",
+	"OK":  "请求处理成功",
 }
 
 //去重

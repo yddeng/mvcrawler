@@ -13,23 +13,25 @@
 	</style>
 </head>
 <body>
-			  <div class="header">
-			   <div class="search">
-			     <input id="keyboard" type="text" name="Txt" autofocus="true" placeholder="搜索感兴趣的动漫" onkeydown="keySearch()" />
-			     <i id="search" class="fa fa-search" aria-hidden="true" onclick="search()"></i>
-			   </div>
-			</div>
- 
+    <div class="header">
+        <div class="search">
+            <input id="keyboard" type="text" name="Txt" autofocus="true" placeholder="搜索感兴趣的动漫" onkeydown="keySearch()" />
+            <i id="search" class="fa fa-search" aria-hidden="true" onclick="search()"></i>
+        </div>
+    </div>
+
     <div class="listBox">
 		<div id="title-top">
 			今日全网更新
 		</div>
-      <ul id="list">
+        <ul id="list">
 		  
-      </ul>
+        </ul>
+        <div id="page-content"></div>
     </div>
 </body>
    <script src="./js/jquery-2.2.4.js"></script>
    <script src="dist/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+   <script src="./js/const.js"></script>
    <script src="./js/index.js"></script>
 </html>

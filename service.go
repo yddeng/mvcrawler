@@ -30,8 +30,8 @@ func NewService() *Service {
 	s.hServer = dhttp.NewHttpServer(config.HttpAddr)
 
 	//注册路由
-	s.hServer.Register("/search", s.search)
-	s.hServer.Register("/update", s.update)
+	s.hServer.Register("/search", s.handleSearch)
+	s.hServer.Register("/update", s.handleUpdate)
 
 	go func() {
 		err := s.hServer.Listen()
@@ -50,23 +50,9 @@ func NewService() *Service {
 //update 抓取
 func (s *Service) updateLoop(dur time.Duration) {
 	tick := time.NewTicker(dur)
-	updateDB := GetClient("update")
 	for {
-		data := &UpdateDB{}
-		result := [][]*Item{}
-		for i := 0; i < 7; i++ {
-			result = append(result, []*Item{})
-		}
-		for _, m := range s.modules {
-			ret := m.Update()
-			for i, v1 := range ret {
-				result[i] = append(result[i], v1...)
-			}
-		}
-		data.Msgs = result
-		updateDB.Set("update", data)
-
-		logger.Infoln("updateLoop ok")
+		s.update()
+		logger.Debugf("updateLoop ok")
 		<-tick.C
 	}
 }
@@ -75,14 +61,14 @@ func (s *Service) updateLoop(dur time.Duration) {
 // 只更新缓存中的热数据
 func (s *Service) searchLoop(dur time.Duration) {
 	tick := time.NewTicker(dur)
-	searchDB := GetClient("search")
+	client := GetClient("search")
 	for {
-		kv := searchDB.GetAll()
+		kv := client.GetAll()
 		for k := range kv {
-			s.searchOnWeb(k)
+			s.search(k)
 		}
 
-		logger.Infof("searchLoop len %d ok\n", len(kv))
+		logger.Debugf("searchLoop len %d ok\n", len(kv))
 		<-tick.C
 	}
 }

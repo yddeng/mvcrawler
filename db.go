@@ -14,15 +14,15 @@ import (
 
 // 搜索存储结构
 type SearchDB struct {
-	Name    string    //搜索字
-	PageNum int       //分页数量
-	MsgNum  int       //结果数量
-	PageMsg [][]*Item //分页后的项目集合
+	Name      string    //搜索字
+	TotalItem int       //结果数量
+	TotalPage int       //页码数量
+	PageItems [][]*Item //分页后的项目集合
 }
 
 // 更新存储结构
 type UpdateDB struct {
-	Msgs [][]*Item //每日的项目集合
+	Items [][]*Item //每日的项目集合
 }
 
 type dbClient struct {

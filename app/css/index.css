@@ -3,7 +3,7 @@ html{
 }
 .header{
   text-align: center;
-  width; 100%;
+  width: 100%;
 }
 .search{
   width: 50%;
@@ -25,7 +25,7 @@ a{
 }
 @media screen and (min-width: 768px){
 	.listBox{
-	  width: 90%;
+	  width: 80%;
 	  margin: 0 auto;
 	}
 	.listBox ul{
@@ -109,7 +109,7 @@ a {
 }
 @media screen and (max-width: 768px){
 	.listBox{
-	  width: 90%;
+	  width: 80%;
 	  margin: 0 auto;
 	}
 	.listBox ul{

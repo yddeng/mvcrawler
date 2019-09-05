@@ -3,6 +3,7 @@ package util
 import (
 	"bytes"
 	"fmt"
+	"strconv"
 	"strings"
 )
 
@@ -47,4 +48,12 @@ func CheckAndInsertHead(s, substr, headStr string) string {
 		return s
 	}
 	return MergeString(headStr, s)
+}
+
+func ToInt(s string) int {
+	count, err := strconv.Atoi(s)
+	if err != nil {
+		return 0
+	}
+	return count
 }

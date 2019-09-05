@@ -2,6 +2,7 @@ package mvcrawler
 
 import (
 	"encoding/json"
+	"github.com/tagDong/mvcrawler/util"
 	"net/http"
 	"sync"
 )
@@ -12,33 +13,32 @@ import (
 
 var pageNum = 20
 
-//搜索
-type SearchReq struct {
-	Txt  string `json:"txt"`
-	Page int    `json:"page"`
-}
+// txt  搜索内容
+// page 页码
 
 //todo msgs 的数量大于一页显示的数量 立即返回给客户端，后端继续抓取所有数据
-func (s *Service) search(w http.ResponseWriter, r *http.Request) {
-	//logger.Infoln("http search request", r.Method)
+func (s *Service) handleSearch(w http.ResponseWriter, r *http.Request) {
+	_ = r.ParseForm()
+	logger.Infoln("handleSearch request", r.Method, r.Form)
 
 	//跨域
 	w.Header().Set("Access-Control-Allow-Origin", "*")             //允许访问所有域
 	w.Header().Add("Access-Control-Allow-Headers", "Content-Type") //header的类型
 	w.Header().Set("content-type", "application/json")             //返回数据格式是json
 
-	var req SearchReq
-	defer r.Body.Close()
-	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-		logger.Errorf("json err: %s", err)
-		return
+	var txt string
+	var page int
+	if t, ok := r.Form["txt"]; ok {
+		txt = t[0]
 	}
-	logger.Infoln("search request", req)
 
-	resp := &SearchRespone{Code: 0}
-	if req.Txt == "" {
+	if p, ok := r.Form["page"]; ok {
+		page = util.ToInt(p[0])
+	}
+
+	resp := &SearchRespone{Code: "ERR", Txt: txt, Page: page}
+	if txt == "" {
 		logger.Errorln("search txt is nil")
-
 		if err := json.NewEncoder(w).Encode(resp); err != nil {
 			logger.Errorf("search write err: %s", err)
 		}
@@ -46,30 +46,30 @@ func (s *Service) search(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var ret *SearchDB
-	data, ok := GetClient("search").Get(req.Txt)
+	data, ok := GetClient("search").Get(txt)
 	if ok {
 		ret = data.(*SearchDB)
 	} else {
-		ret = s.searchOnWeb(req.Txt)
+		ret = s.search(txt)
 	}
 
-	if req.Page >= 0 && req.Page < ret.PageNum {
-		resp.Code = 1
-		resp.PageNum = ret.PageNum
-		resp.Items = ret.PageMsg[req.Page]
+	if page >= 0 && page < ret.TotalPage {
+		resp.Code = "OK"
+		resp.TotalPage = ret.TotalPage
+		resp.TotalItem = ret.TotalItem
+		resp.Items = ret.PageItems[page]
 
 	}
 
-	logger.Debugln("search respone", *resp)
+	logger.Debugln("handleSearch response", *resp)
 	if err := json.NewEncoder(w).Encode(resp); err != nil {
 		logger.Errorf("search write err: %s", err)
 	}
 }
 
-var webMtx sync.Mutex
-
-func (s *Service) searchOnWeb(txt string) *SearchDB {
+func (s *Service) search(txt string) *SearchDB {
 	logger.Infof("search txt:%s on web\n", txt)
+	var webMtx sync.Mutex
 
 	msgs := []*Item{}
 	wg := sync.WaitGroup{}
@@ -103,13 +103,13 @@ func (s *Service) searchOnWeb(txt string) *SearchDB {
 	}
 
 	sdb := &SearchDB{
-		Name:    txt,
-		MsgNum:  length,
-		PageNum: len(pageMsg),
-		PageMsg: pageMsg,
+		Name:      txt,
+		TotalItem: length,
+		TotalPage: len(pageMsg),
+		PageItems: pageMsg,
 	}
 
-	logger.Debugf("sdb name %s, page_num %d, msg_num %d \n", sdb.Name, sdb.PageNum, sdb.MsgNum)
+	logger.Debugf("SearchDB name %s, totalItem %d, totalPage %d \n", sdb.Name, sdb.TotalItem, sdb.TotalPage)
 
 	if length > 0 {
 		GetClient("search").Set(sdb.Name, sdb)
