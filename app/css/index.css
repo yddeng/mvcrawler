@@ -4,30 +4,54 @@ html{
 .header{
   text-align: center;
   width: 100%;
+	/*background: #f1f3f4; */
 }
 .search{
-  width: 50%;
+  width: 20%;
   height: 4rem;
   margin: 2rem auto;
-  background: #f1f3f4; /*#f1f3f4*/
+  background: #f1f3f4;
   line-height: 4rem;
-  border-radius: 2rem;
+  border-radius: 1rem;
 }
 a{
-  text-decoration: none;
+  	text-decoration: none;
+	/*color: #666;*/
 }
 .search input{
-  font-size: 1.4rem;
-  height: 3rem;
-  width: 45%;
-  border: none;
-  background: #f1f3f4;
+	right: 0rem;
+    font-size: 1.4rem;
+	border-radius: 1rem;
+    height:3rem;
+	line-height: 3rem;
+    width: 90%;
+  	border: none;
+  	background: #f1f3f4;
 }
+
+.pagination{
+	text-align: center;
+}
+.pagination span{
+	width: 10rem;
+	height: 4rem;
+	line-height: 4rem;
+	background: #f1f3f4;
+	color: #000;
+	border-radius: 0rem;
+}
+/*class="swiper-pagination-bullet swiper-pagination-bullet-active"*/
+
 @media screen and (min-width: 768px){
 	.listBox{
-	  width: 80%;
+	  width: 60%;
 	  margin: 0 auto;
 	}
+
+	.listBox .swiper-wrapper{
+		width: 100%;
+	}
+
 	.listBox ul{
 	  display: flex;
 	  flex-wrap: wrap;
@@ -36,9 +60,9 @@ a{
 	}
 	
 	.listBox li{
-	  flex: 0 0 30rem;
+	  flex: 0 0 20rem;
 	  list-style: none;
-	  padding: 2rem;
+	  padding: 1rem;
 	  margin: 2rem 2rem;
 	  background: #f6f7f8;
 	  box-sizing: border-box;
@@ -47,6 +71,12 @@ a{
 	.listBox .box-img{
 		width: 20rem;
 	}
+
+	.listBox #page-content{
+		padding: 0;
+		margin: 2rem auto;
+		text-align: center;
+	}
 }
 .listBox li:hover{
   background: #fffae8;
@@ -54,17 +84,19 @@ a{
 .box img{
   width: 20rem;
   height: 25rem;
+	border-radius: 0.5rem;
 }
 .box{
 	position: relative;
 }
 .status{
 	position: absolute;
-	top: -2rem;
-	right: -4rem;
+	/*top: 1rem;*/
+	right: 0rem;
 	width: 8rem;
 	line-height: 1.6em;
 	background: rgba(0,0,0,.4);
+	border-radius: 0.5rem;
 	color: #fff;
 	
 }
@@ -74,9 +106,7 @@ input:focus{
 
   -webkit-user-modify:read-write-plaintext-only;
 }
-a {
-  color: #666;
-}
+
 .title{
   font-size: 1.6rem;
   color: #000;
@@ -107,36 +137,8 @@ a {
 #tips .fa{
 	margin-right: 2rem;
 }
-@media screen and (max-width: 768px){
-	.listBox{
-	  width: 80%;
-	  margin: 0 auto;
-	}
-	.listBox ul{
-	  width: 100%;
-	  padding: 0;
-	}
-   .listBox li{
-	 width: 80%;
-     list-style: none;
-     padding: 2rem;
-     margin: 2rem 0;
-     background: #f6f7f8;
-     box-sizing: border-box;
-     border-radius: 0.5rem;
-   }
-   .search{
-     width: 60%;
-     height: 4rem;
-     margin: 2rem auto;
-     background: #f1f3f4; /*#f1f3f4*/
-     line-height: 4rem;
-     border-radius: 2rem;
-   }
-   #title-top{
-   	width: 120rem;
-   	margin: 0 auto;
-   	font-size: 1.8rem;
-   	text-indent: 0;
-   }
+
+#page-content > a,span{
+	margin: 0 0.5rem;
+	font-size: 1.5rem;
 }
