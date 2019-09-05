@@ -1,5 +1,5 @@
-const BaseUrl = "http://127.0.0.1:12345"
-//const BaseUrl = "http://104.168.165.226:12345"
+//const BaseUrl = "http://127.0.0.1:12345"
+const BaseUrl = "http://104.168.165.226:12345"
 
 // http请求出错
 function httpErr() {
