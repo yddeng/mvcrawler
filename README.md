@@ -10,6 +10,10 @@
 - www.bimibimi.tv
 - www.5dm.tv (由于服务器在境外，访问该网站有权限问题)
 
+#### 前端展示
+
+![index](https://github.com/tagDong/mvcrawler/blob/master/assets/image/index.jpg)
+
 #### 安装
 
 服务器部署
