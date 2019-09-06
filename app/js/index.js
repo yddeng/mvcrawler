@@ -57,7 +57,6 @@ function showUpdateItems(items) {
         pagination: {//分页容器的css选择器
             el:'.pagination',
             clickable:true,
-            initialSlide:2,
             renderBullet:function (index, className) {
                 var text = '';
                 switch (index){
@@ -73,8 +72,20 @@ function showUpdateItems(items) {
             }
         },
     });
+
+    mySwiper.slideTo(getWeekIdx(),0)
 }
 
+// 星期转换
+function getWeekIdx() {
+    // 1星期日 2星期一 3星期二 ... 7星期六
+    let d = new Date();
+    // 数组由周一到周日（0-6）
+    let transform = new Array(6,0,1,2,3,4,5);
+    //console.log(d.getDate(),transform[d.getDate()]);
+    //console.log(d.toString(),d.toLocaleTimeString());
+    return transform[d.getDate()-1]
+}
 
 
 /*------------------------------------------------------------------------------------------------------*/
@@ -104,7 +115,10 @@ function getSearch(txt,page) {
         data: {"txt":txt,"page":page},
         success: function (res) {
             if(res.code == "OK"){
-                let text = String.format(`搜索"{0}" 共找到"{1}"个相关资源`,res.txt,res.total_item)
+                let text = String.format(`搜索"{0}" 共找到"{1}"个相关资源！`,res.txt,res.total_item);
+                if (res.total_item > 50){
+                    text += `资源太多，换一个关键词试试！`
+                }
                 $('#title-top').text(text);
                 showSearchItems(res.items);
                 showPage(res.txt,res.page,res.total_page)
