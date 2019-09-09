@@ -21,7 +21,8 @@ const (
 	Silisili = ModuleType(1)
 	Bimibimi = ModuleType(2)
 	Dm5      = ModuleType(3)
-	End      = ModuleType(4)
+	Dilidili = ModuleType(4)
+	End      = ModuleType(5)
 )
 
 var (

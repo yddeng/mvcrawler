@@ -6,9 +6,10 @@
 
 #### 收录网站
 
-- www.silisili.me
-- www.bimibimi.tv
-- www.5dm.tv (由于服务器在境外，访问该网站有权限问题)
+- www.silisili.me (嘶哩嘶哩)
+- www.bimibimi.tv (哔咪哔咪)
+- www.5dm.tv ()(由于服务器在境外，访问该网站403,故关闭)
+- www.dilidili.name (嘀哩嘀哩)
 
 #### 前端展示
 

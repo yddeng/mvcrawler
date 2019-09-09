@@ -97,9 +97,3 @@ mvcrawler.Register(mvcrawler.Silisili, func(l *util.Logger) mvcrawler.Module {
 })
 ```
 
-
-#### 收录的网站
-
-- www.silisili.me
-- www.bimibimi.tv
-- www.5dm.tv

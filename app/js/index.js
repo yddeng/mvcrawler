@@ -27,7 +27,7 @@ function getUpdate() {
 function showUpdateItems(items) {
     let tmp = `
         <li>
-            <a href="{0}" target="con">
+            <a href="{0}" target="con" title="{3}">
                 <div class="box">
                     <div class="status">{1}</div>
                     <div class="box-img"><img src="{2}"  onerror="this.src='./template/images/default_grey_pc.png'"></div>
