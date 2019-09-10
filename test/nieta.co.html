@@ -1,0 +1,2470 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>捏它追剧-nieta_一个神奇的追剧小站</title>
+    <meta name="keywords" content="nieta追剧" />
+    <meta name="description" content="提供最新最快的影视资讯和在线播放" />
+ <link rel="stylesheet" type="text/css" href="/template/b/css/home.css"/>
+<link rel="stylesheet" type="text/css" href="/template/b/css/style.css"/>
+<script type="text/javascript" src="/template/b/js/system.js"></script>
+<script type="text/javascript" src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script type="text/javascript" src="//cdn.bootcss.com/layer/3.1.0/layer.js"></script>
+<script src="https://cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+<script>var maccms={"path":"","mid":"","url":"www.nieta.co","wapurl":"www.nieta.co","mob_status":"2"};</script>
+<style>
+.b-header-mask-wrp .b-header-mask-bg,#header .header{background-image: url(http://api.hyzm.cc/acg);}
+.header .logo,.partner-banner {background-image: url(/upload/site/20190831-1/cd17f2b0419557263a84b6f51f136d60.png)!important;}
+.z_top.b-header-blur.b-header-blur-black .z_top_nav ul li.home {background-position: -910px -74px;}
+.z_top.b-header-blur.b-header-blur-black .z_top_nav li a.i-link, .z_top.b-header-blur.b-header-blur-black .uns_box li.u-i a.i-link {color: #000;font-size: 12px;}
+/*#container{background: #fdfdfd;width: 100%;margin-bottom: 0px;background-image: url(../images/bg.jpg);background-repeat: no-repeat;background-position: center 130px;background-attachment: fixed;background-image: url(https://ws3.sinaimg.cn/large/005BYqpgly1fyvunulhgmj31hc0u075z.jpg);}*/
+.block-clearfix{-background-color: #fdfdfd;background-color: #fff;}
+.index{background-color: transparent !important;}
+div::-webkit-scrollbar{width: 2px;/*height: 4px;*/}
+div::-webkit-scrollbar-thumb{border-radius: 10px;-webkit-box-shadow: inset 0 0 5px #e2e2e2;background: #e2e2e2;}
+div::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 5px #fafafa;border-radius: 0;background: #fafafa;}
+html::-webkit-scrollbar{width: 4px;height: 4px;}
+html::-webkit-scrollbar-thumb{border-radius: 10px;-webkit-box-shadow: inset 0 0 5px #00a4db;background: #00a4db;}
+html::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 5px #ddd;border-radius: 10px;background: #ddd;}
+body {cursor: url(https://i.loli.net/2019/04/23/5cbedb2dae545.png), default;} a:hover{cursor:url(https://i.loli.net/2019/04/23/5cbedb246fd81.png), pointer;}
+#backTop{opacity: 1;filter: alpha(opacity=100);position: fixed;_position: absolute;z-index: 9999;bottom: 0;right: 0;display: none;height: 278px;width: 130px;background: url(/template/b/images/backtop.png) no-repeat;cursor: pointer;}
+</style>
+<script>
+            (function ($) {
+                var max_width = 1420;
+                var min_top = 300;
+                var layer_hidden = true;
+                var update_layer = function () {
+                    if (($(window).width() >= max_width) && ($(window).scrollTop() > min_top)) {
+//                        layer_hidden && $('#backTop').fadeIn(1000);
+                        layer_hidden && $('#backTop').show();
+                        layer_hidden = false;
+                    }
+                    else {
+//                        layer_hidden || $('#backTop').fadeOut(1000);
+                        layer_hidden || $('#backTop').hide();
+                        layer_hidden = true;
+                    }
+                };
+
+                $(window).resize(function () {
+                    update_layer();
+                });
+
+                $(window).scroll(function () {
+                    update_layer();
+                });
+
+                $(document).ready(function () {
+                    update_layer();
+
+                    $("#backTop,.back-top").click(function () {
+                        $("body,html").animate({scrollTop: 0}, 1000);
+                        return false;
+                    });
+                });
+            })(jQuery)
+
+</script>  
+
+</head>
+<!--
+
+
+
+ *　　　　　　　　┏┓　　　┏┓+ +
+
+ *　　　　　　　┏┛┻━━━┛┻┓ + +
+
+ *　　　　　　　┃　　　　　　　┃ 　
+
+ *　　　　　　　┃　　　━　　　┃ ++ + + +
+
+ *　　　　　　 ████━████+
+
+ *　　　　　　　┃　　　　　　　┃ +
+
+ *　　　　　　　┃　　　┻　　　┃
+
+ *　　　　　　　┃　　　　　　　┃ + +
+
+ *　　　　　　　┗━┓　　　┏━┛
+
+ *　　　　　　　　　┃　　　┃　　　　　　　　　　　
+
+ *　　　　　　　　　┃　　　┃ + + + +
+
+ *　　　　　　　　　┃　　　┃　　　　　　　
+
+ *　　　　　　　　　┃　　　┃ + 　　　　神兽镇楼、不宕机、无BUG　
+
+ *　　　　　　　　　┃　　　┃
+
+ *　　　　　　　　　┃　　　┃　　+　　　　　　　　　
+
+ *　　　　　　　　　┃　 　　┗━━━┓ + +
+
+ *　　　　　　　　　┃ 　　　　　　　┣┓
+
+ *　　　　　　　　　┃ 　　　　　　　┏┛
+
+ *　　　　　　　　　┗┓┓┏━┳┓┏┛ + + + +
+
+ *　　　　　　　　　　┃┫┫　┃┫┫
+
+ *　　　　　　　　　　┗┻┛　┗┻┛+ + + +
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-->
+
+<body>
+<div id="header">
+<!-- 顶部菜单 -->
+    <div class="z_top b-header-blur b-header-blur-black">
+        <div class="container">
+            <div class="b-header-mask-wrp">
+                <div class="b-header-mask-bg"></div>
+                <div class="b-header-mask" style="background-color: hsla(0,0%,100%,0.13);"></div>
+            </div>
+            <div class="z_header">
+                <div class="z_top_nav">
+                    <ul>
+                        <li class="home" style=" background-position: -910px -74px;"><a class="i-link" href="/"><span>主站</span></a></li>
+                        <li class="b-gc"><a class="i-link" href="/index.php/user/login.html"  target="_blank" title="会员中心">会员中心</a></li>
+                                                <li class="b-zb"><a class="i-link" rel="nofollow"  href="https://www.lanzous.com/i4k7pzg" title="app追剧更方便"><font color="#19c3ff"><i class="iconfont">&#xe711;</i>&nbsp;APP下载</font></a></li>
+                    </ul>
+                </div>
+                <div class="uns_box">
+                    <ul>
+                        <div class="logon_menu">                        <ul class="menu_nav">
+                            <li style="line-height: 42px;">
+                                <a href="javascript:void(0);" class="do_login icon_list mac_user" id="logon_info">
+                                    <img class="avatar" title="个人中心" src="/template/b//images/akari.jpg">
+                                </a>
+                            </li>
+                        </ul></div>
+                <li class="u-i" id="history">				<a href="/index.php/user/plays.html" class="i-link">历史</a>
+                    <div class="mini-wnd history-wnd" style="margin-top: 1px;border-radius: 5px;">
+                        <div class="top-login"style="padding-top: 10px;">
+                            <p class="txt">登录后有更多功能哦~</p><a class="loginbtn" href="/index.php/user/login.html">登录</a>
+                        </div>
+                        <ul class="listh history mac_history">
+                            <li class="timeline" style="width: 95%;"><span class="date">最近播放记录</span>
+                            </li>
+                            <div class="ilist"></div>
+                        </ul>
+                    </div>                </li>
+                <li class="u-i b-post"><a class="i-link" href="/index.php/gbook/index.html">留 言</a>
+                    <ul class="s-menu">
+                        <li><a href="/index.php/gbook/index.html"><i class="icon icon-vp"></i><em>求 片</em></a></li>
+                        <li><a href="/index.php/gbook/index.html"><i class="icon icon-vm"></i><em>建 议</em></a></li>
+                        <li><a href="/index.php/gbook/index.html"><i class="icon icon-vc"></i><em>漏 洞</em></a></li>
+                    </ul>
+                </li>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 导航菜单 -->
+<div class="header">
+    <div class="container">
+        <div class="header-layer" style="height: 170px;"></div>
+            <a class="header-link" href="/" style="height: 170px;"></a>
+        <div class="h-center"><a href="/" title="捏它追剧-nieta_一个神奇的追剧小站" class="logo"></a></div>
+        <div class="num">
+            <div class="menu-wrapper">
+                <ul class="nav-menu" style="border-bottom: 0px solid #e5e9ef;">
+                    <li class="m-i home"><a class="i-link" href="/"><em>首页</em></a></li>
+					                    <li class="m-i">                        <ul class="i_num"></ul>
+                    </li>
+                    <li class="m-i  on"><a class="i-link" href="/index.php/vod/type/id/2.html"><em>连续剧</em><div class="v-num"><span class="addnew_5">39</span></div></a>                        <ul class="i_num">                            <li><a href="/index.php/vod/type/id/14.html"><b>港台剧<em></em></b></a>
+                            </li>                            <li><a href="/index.php/vod/type/id/15.html"><b>日韩剧<em></em></b></a>
+                            </li>                            <li><a href="/index.php/vod/type/id/16.html"><b>欧美剧<em></em></b></a>
+                            </li></ul>
+                    </li>
+					                    <li class="m-i "><a class="i-link" href="/index.php/vod/type/id/3.html"><em>综艺</em><div class="v-num"><span class="addnew_3">20</span></div></a>
+                    </li>                    <li class="m-i "><a class="i-link" href="/index.php/vod/type/id/4.html"><em>动漫</em><div class="v-num"><span class="addnew_4">20</span></div></a>
+                    </li>                    <li class="m-i "><a class="i-link" href="/index.php/art/type/id/5.html"><em>资讯</em><div class="v-num"><span class="addnew_5">0</span></div></a>
+                    </li>                    <!--li class="m-i m-i-zt m-i-ex"><a class="i-link" href="/index.php/topic/index.html"><em>专题</em></a></li-->
+                    <li class="m-i m-i-square m-i-ex"><a class="i-link" href="javascript:void(0)"><em>专栏</em></a>
+                        <div class="i_num">
+                            <ul>                                <li><a href="/index.php/art/type/id/5.html"><i class="icon icon-n-activity"></i><b>电影资讯</b></a></li>                                <li><a href="/index.php/topic/index.html"><i class="icon icon-n-gc"></i><b>影视专题</b></a></li><li><a href="/index.php/label/live.html"><i class="icon icon-n-new"></i><b>在线电视</b></a></li>
+                                <li><a href="/index.php/rss/baidu.xml"><i class="icon icon-n-h"></i><b>网站地图</b></a></li>
+                                <li><a href="javascript:;"><i class="icon icon-n-mango"></i><b>等待添加</b></a></li>
+                            </ul>
+                            <div class="square-pmt-field">
+                                <div class="square-pmt-item" title="活动">
+                                    <a href="/index.php/topic/index.html">
+                                        <img src="https://ae01.alicdn.com/kf/HTB1CLdsVzDpK1RjSZFrq6y78VXa0.jpg">
+                                    </a>
+                                </div>
+                                <div class="square-pmt-item" title="话题">
+                                    <a href="/index.php/topic/index.html">
+                                        <img src="https://ae01.alicdn.com/kf/HTB1ZRNwVrPpK1RjSZFFq6y5PpXag.jpg">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="m-i m-i-zl m-i-ex"><a class="i-link" href="/index.php/label/music.html"><em>音乐</em></a></li>
+                    <li class="m-i m-i-live m-i-last animate-bounce-up"><a class="i-link i-live" href="/index.php/label/live.html"><em>直播</em></a></li>
+                </ul>
+				<span class="sitenav-on"><i class="icon-list"></i></span>
+
+                <div class="menu-r">
+                    <a id="mobile_p" class="mobile-p" href="#" target="_blank">
+                        <div class="mobile-p-box">
+                            <div class="mobile-p-qrcode"></div>
+                        </div>
+                    </a>
+                    <a href="/vod/search/wd/魔法禁书.html" title="美琴" class="random-p">
+                        <img src="https://ae01.alicdn.com/kf/HTB1gbhCVrvpK1RjSZFq5jcXUVXaI.gif" alt="">
+                    </a>
+                </div>
+                <div class="search">
+                    <form action="/index.php/vod/search.html" onSubmit="return qrsearch();" id="searchform" method="post">
+                        <input id="wd" type="text" class="search-keyword wd mac_wd" id="search-keyword" autocomplete="off" name="wd" accesskey="s" onclick="chkblk(this)" value=""  " placeholder="输入关键词,请少字也别错字... " value=" ">
+                        <button id="button " type="submit " class="search-submit "  target="_blank " ></button>
+                    </form>
+					<a class="link-ranking " href="/index.php/label/rank.html "><span>排行榜</span></a>
+				</div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+ <div id="container" class="index">
+
+   <div class="container">
+
+<!-- 幻灯片推荐 -->
+
+            <section class="section" id="banner" name="【top】轮播+6个推荐">
+
+			<!-- 幻灯片 -->
+
+<style>
+
+ul{margin: 0;padding: 0;list-style: none;}
+
+.carousel-content{width:440px;height: 220px;position: relative;display: inline-block;float:left;border-radius: 4px;overflow: hidden;position: relative;margin: 15px 0 17px 0;}
+
+.carousel{width: 100%;height: 100%;overflow: hidden;}
+
+.carousel li{top:0;left:0;position: absolute;display: none;}
+
+.carousel li,.carousel li img{width: auto;height: 100%;}
+
+.img-index{position: absolute;text-align: center;bottom: 8px;right: 8px;font-size: 0;}
+
+.img-index li{float: left;width: 10px;height: 10px;line-height: 18px;text-align: center;border-radius: 10px;background-color: #fff;-font-size: 12px;cursor: pointer;margin: 0 5px;color: #fff0;}
+
+.img-index li.index{background-position: -855px -727px;width: 18px;height: 18px;background-color: transparent;transition: none;background-image: url(/template/b/images/icons.png);margin-top: -4px;}
+
+.img-index li:hover{background-color: rgb(0, 161, 214);}
+
+.carousel-prev,.carousel-next{position: absolute;display: inline-block;top: 40%;cursor: pointer;}
+
+.carousel-prev{left: 0;}
+
+.carousel-next{right: 0;}
+
+.caption{position: absolute;z-index: 2;font-size: 14px;color: #fff;bottom: 6px;padding: 0px 20px;}
+
+.pic{width: 440px;height: 220px;position: relative;}
+
+</style>
+
+               
+
+	<div class="carousel-content"style="background-color: #f5f5f5;">
+
+		<ul class="carousel">
+      	   	<li><a href="/index.php/vod/detail/id/42279.html" target="_blank"  title="街角魔族 连载09"><div class="pic" style="background: url(http://source.upupoo.com/station/80d1291a31bb4f78b74322234fe6ea2e.png) no-repeat center rgba(0,0,0,0);background-size: cover;"></div></a><p class="caption">〓街角魔族〓 连载09</p></li>
+      	   	<li><a href="/index.php/vod/detail/id/36656.html" target="_blank"  title="重来吧、魔王大人 更新至10集"><div class="pic" style="background: url(http://source.upupoo.com/station/b21ded1b82644fce87e87391a860584e.jpg) no-repeat center rgba(0,0,0,0);background-size: cover;"></div></a><p class="caption">〓重来吧、魔王大人〓 更新至10集</p></li>
+      	   	<li><a href="/index.php/vod/detail/id/36653.html" target="_blank"  title="你遭难了吗 更新至10集"><div class="pic" style="background: url(https://tva1.sinaimg.cn/large/007X8olVly1g6i5hlaibuj30rx0e54ji.jpg) no-repeat center rgba(0,0,0,0);background-size: cover;"></div></a><p class="caption">〓你遭难了吗〓 更新至10集</p></li>
+		</ul>
+
+		<ul class="img-index"></ul>
+
+		<!--div class="carousel-prev"><img src="/template/b/images/1.png"></div>
+
+		<div class="carousel-next"><img src="/template/b/images/2.png"></div-->
+
+	</div>
+
+                 
+
+            <!-- 6个推荐 -->
+
+                <div class="slader-r" style=" width: 720px;">
+
+                    <ul>
+                       <div class="groom-module home-card">
+
+                       	<a href="/index.php/vod/detail/id/37011.html" target="_blank" title="鬼灭之刃 更新至23集">
+
+                       			<!--div class="lazy-img"><img src="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6lk64jsubj307i0aldgc.jpg" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'" alt="鬼灭之刃"></div-->
+<div class="lazy-img"><img src="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6lk64jsubj307i0aldgc.jpg" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'" alt="鬼灭之刃"></div>                           	
+
+		            		<div class="card-mark">
+
+                            	<p class="title">鬼灭之刃</p>
+
+                            	<p class="author">UP：更新至 第23集</p>
+
+                            	<p class="play"><span class="pull-left"><i class="iconfont">&#xe732;</i>530</span><span class="pull-right"><i class="iconfont">&#xe612;</i>09-09</span></span></p>
+
+		                	</div>
+
+                       	</a>
+
+					   </div>
+                       <div class="groom-module home-card">
+
+                       	<a href="/index.php/vod/detail/id/42377.html" target="_blank" title="骚动时节的少女们啊 连载10">
+
+                       			<!--div class="lazy-img"><img src="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m6k7mhk9j307i0angm1.jpg" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'" alt="骚动时节的少女们啊"></div-->
+<div class="lazy-img"><img src="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m6k7mhk9j307i0angm1.jpg" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'" alt="骚动时节的少女们啊"></div>                           	
+
+		            		<div class="card-mark">
+
+                            	<p class="title">骚动时节的少女们啊</p>
+
+                            	<p class="author">UP：更新至 第10集</p>
+
+                            	<p class="play"><span class="pull-left"><i class="iconfont">&#xe732;</i>79</span><span class="pull-right"><i class="iconfont">&#xe612;</i>09-08</span></span></p>
+
+		                	</div>
+
+                       	</a>
+
+					   </div>
+                       <div class="groom-module home-card">
+
+                       	<a href="/index.php/vod/detail/id/41645.html" target="_blank" title="普通攻击是全体攻击而且能二次攻击的妈妈你喜欢 更新至9集">
+
+                       			<!--div class="lazy-img"><img src="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m5l8xik4j307i0alwgh.jpg" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'" alt="普通攻击是全体攻击而且能二次攻击的妈妈你喜欢"></div-->
+<div class="lazy-img"><img src="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m5l8xik4j307i0alwgh.jpg" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'" alt="普通攻击是全体攻击而且能二次攻击的妈妈你喜欢"></div>                           	
+
+		            		<div class="card-mark">
+
+                            	<p class="title">普通攻击是全体攻击而且能二次攻击的妈妈你喜欢</p>
+
+                            	<p class="author">UP：更新至9集</p>
+
+                            	<p class="play"><span class="pull-left"><i class="iconfont">&#xe732;</i>97</span><span class="pull-right"><i class="iconfont">&#xe612;</i>09-07</span></span></p>
+
+		                	</div>
+
+                       	</a>
+
+					   </div>
+                       <div class="groom-module home-card">
+
+                       	<a href="/index.php/vod/detail/id/42282.html" target="_blank" title="为了女儿，我说不定连魔王都能干掉 更新至10集">
+
+                       			<!--div class="lazy-img"><img src="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m6gc3rb4j307i0afwgn.jpg" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'" alt="为了女儿，我说不定连魔王都能干掉"></div-->
+<div class="lazy-img"><img src="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m6gc3rb4j307i0afwgn.jpg" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'" alt="为了女儿，我说不定连魔王都能干掉"></div>                           	
+
+		            		<div class="card-mark">
+
+                            	<p class="title">为了女儿，我说不定连魔王都能干掉</p>
+
+                            	<p class="author">UP：更新至10集</p>
+
+                            	<p class="play"><span class="pull-left"><i class="iconfont">&#xe732;</i>120</span><span class="pull-right"><i class="iconfont">&#xe612;</i>09-06</span></span></p>
+
+		                	</div>
+
+                       	</a>
+
+					   </div>
+                       <div class="groom-module home-card">
+
+                       	<a href="/index.php/vod/detail/id/41932.html" target="_blank" title="平凡职业造就世界最强 更新至8集">
+
+                       			<!--div class="lazy-img"><img src="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m5fqbfzoj307i0alabk.jpg" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'" alt="平凡职业造就世界最强"></div-->
+<div class="lazy-img"><img src="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m5fqbfzoj307i0alabk.jpg" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'" alt="平凡职业造就世界最强"></div>                           	
+
+		            		<div class="card-mark">
+
+                            	<p class="title">平凡职业造就世界最强</p>
+
+                            	<p class="author">UP：更新至8集</p>
+
+                            	<p class="play"><span class="pull-left"><i class="iconfont">&#xe732;</i>429</span><span class="pull-right"><i class="iconfont">&#xe612;</i>09-04</span></span></p>
+
+		                	</div>
+
+                       	</a>
+
+					   </div>
+                       <div class="groom-module home-card">
+
+                       	<a href="/index.php/vod/detail/id/41998.html" target="_blank" title="只要可爱即使是变态你也会喜欢我吧？ 更新至9集">
+
+                       			<!--div class="lazy-img"><img src="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m5fw61uqj30bh0fft9r.jpg" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'" alt="只要可爱即使是变态你也会喜欢我吧？"></div-->
+<div class="lazy-img"><img src="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m5fw61uqj30bh0fft9r.jpg" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'" alt="只要可爱即使是变态你也会喜欢我吧？"></div>                           	
+
+		            		<div class="card-mark">
+
+                            	<p class="title">只要可爱即使是变态你也会喜欢我吧？</p>
+
+                            	<p class="author">UP：更新至9集</p>
+
+                            	<p class="play"><span class="pull-left"><i class="iconfont">&#xe732;</i>154</span><span class="pull-right"><i class="iconfont">&#xe612;</i>09-03</span></span></p>
+
+		                	</div>
+
+                       	</a>
+
+					   </div>
+                       <div class="groom-module home-card">
+
+                       	<a href="/index.php/vod/detail/id/22125.html" target="_blank" title="海贼王：狂热行动 TC">
+
+                       			<!--div class="lazy-img"><img src="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6mm8a7oa6j307i0am0tm.jpg" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'" alt="海贼王：狂热行动"></div-->
+<div class="lazy-img"><img src="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6mm8a7oa6j307i0am0tm.jpg" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'" alt="海贼王：狂热行动"></div>                           	
+
+		            		<div class="card-mark">
+
+                            	<p class="title">海贼王：狂热行动</p>
+
+                            	<p class="author">UP：TC</p>
+
+                            	<p class="play"><span class="pull-left"><i class="iconfont">&#xe732;</i>169</span><span class="pull-right"><i class="iconfont">&#xe612;</i>08-30</span></span></p>
+
+		                	</div>
+
+                       	</a>
+
+					   </div>
+                       <div class="groom-module home-card">
+
+                       	<a href="/index.php/vod/detail/id/6675.html" target="_blank" title="期待在地下城邂逅有错吗 完结">
+
+                       			<!--div class="lazy-img"><img src="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m0x8jxzgj307i0b9aao.jpg" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'" alt="期待在地下城邂逅有错吗"></div-->
+<div class="lazy-img"><img src="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m0x8jxzgj307i0b9aao.jpg" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'" alt="期待在地下城邂逅有错吗"></div>                           	
+
+		            		<div class="card-mark">
+
+                            	<p class="title">期待在地下城邂逅有错吗</p>
+
+                            	<p class="author">UP：完结</p>
+
+                            	<p class="play"><span class="pull-left"><i class="iconfont">&#xe732;</i>66</span><span class="pull-right"><i class="iconfont">&#xe612;</i>08-28</span></span></p>
+
+		                	</div>
+
+                       	</a>
+
+					   </div>
+					</ul>
+
+                </div>
+
+            </section>
+
+<!-- 热门推荐 -->
+            <section class="section" name="【hot】最热榜+1个活动位"> 
+
+               <div class="column-rgt">
+		          <div class="r-con"><div class="online"><a href="#" target="_blank" title="视频总数">视频总数：41145</a><em></em><a href="#"target="_blank">今日更新：98</a></div></div>
+                     <div name="活动位" class="pic-box"></div>
+                </div>
+                  <div class="column-lft"><h3 class="sort_nav_tit"><i class="icon ico_hot"></i><span>站长推荐</span><b></b></h3>
+
+                    <div class="sort_lst_bx" id="movie_content_div">
+
+                      <ul class="sort_lst" style=""><!--{maccms:vod num="10" type="all" order="desc" by="day"}-->
+					                             <li><a href="/index.php/vod/detail/id/44621.html" title="进击的巨人第二季 完结"><div class="lazy-img"><img src="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m8n5tlatj30ow0vtwof.jpg" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'" alt="进击的巨人第二季"></div><div class="play_hv">08-31</div><div class="play_hv2"><i class="iconfont">&#xe62d;</i></div><div class="play_hv3"></div><div class="play_hv3 xtui"></div><div class="space-danmaku"></div></a><figcaption class="block-title"><b>进击的巨人第二季</b><p class="otherinfo">完结</p><p class="block-clearfix">梶裕貴,石川由依,井上麻里奈,谷山紀章</p></figcaption></li>                           <li><a href="/index.php/vod/detail/id/44637.html" title="进击的巨人第一季 完结"><div class="lazy-img"><img src="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m8ndo67fj30c80h4abg.jpg" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'" alt="进击的巨人第一季"></div><div class="play_hv">08-30</div><div class="play_hv2"><i class="iconfont">&#xe62d;</i></div><div class="play_hv3"></div><div class="play_hv3 xtui"></div><div class="space-danmaku"></div></a><figcaption class="block-title"><b>进击的巨人第一季</b><p class="otherinfo">完结</p><p class="block-clearfix">艾伦·耶格尔,阿诺德,阿克曼</p></figcaption></li>                           <li><a href="/index.php/vod/detail/id/14363.html" title="进击的巨人第三季Part.2 更新至10集"><div class="lazy-img"><img src="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6lr9r4ep1j307i0anjs0.jpg" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'" alt="进击的巨人第三季Part.2"></div><div class="play_hv">08-28</div><div class="play_hv2"><i class="iconfont">&#xe62d;</i></div><div class="play_hv3"></div><div class="play_hv3 xtui"></div><div class="space-danmaku"></div></a><figcaption class="block-title"><b>进击的巨人第三季Part.2</b><p class="otherinfo">更新至10集</p><p class="block-clearfix">梶裕贵,石川由依,井上麻里奈,神谷浩史,小野大辅,下野纮,小林优,三上枝织,谷山纪章,细谷佳正,桥诘知久,朴璐美,子安武人</p></figcaption></li>                           <li><a href="/index.php/vod/detail/id/6810.html" title="魔物新娘的同居日常 更新至12集"><div class="lazy-img"><img src="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m0vo5vb5j307i0b9gmi.jpg" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'" alt="魔物新娘的同居日常"></div><div class="play_hv">08-28</div><div class="play_hv2"><i class="iconfont">&#xe62d;</i></div><div class="play_hv3"></div><div class="play_hv3 xtui"></div><div class="space-danmaku"></div></a><figcaption class="block-title"><b>魔物新娘的同居日常</b><p class="otherinfo">更新至12集</p><p class="block-clearfix">雨宫天,小泽亚李,相川奈都姫</p></figcaption></li>                           <li><a href="/index.php/vod/detail/id/1505.html" title="新妹魔王的契约者第一季 完结"><div class="lazy-img"><img src="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m2t1zxurj307i0b9wf7.jpg" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'" alt="新妹魔王的契约者第一季"></div><div class="play_hv">08-28</div><div class="play_hv2"><i class="iconfont">&#xe62d;</i></div><div class="play_hv3"></div><div class="play_hv3 xtui"></div><div class="space-danmaku"></div></a><figcaption class="block-title"><b>新妹魔王的契约者第一季</b><p class="otherinfo">完结</p><p class="block-clearfix">中村悠一,朝井彩加,福原香织,布里德卡特·塞拉·惠美,浅川悠,藤原启治,杉田智和,野水伊织,井上刚,平川大辅,吉田圣子,津田健次郎,佳月大人,西原久美子,兴津和幸,乃村健次</p></figcaption></li>                      </ul>
+
+                    </div>
+                  </div>
+            </section>
+<!-- 新番更新 -->
+<section class="section" name="【0】新番更新+榜单">
+                <div class="column-lft" id="week" >
+         			<div class="sort_nav ">
+       						        <h3 class="sort_nav_tit"><i class="icon icon_t icon-dvbox"></i><span>新番节目表</span></h3>
+               						<div class="tab-title" id="mytabsweek">
+									<li class="item"><a href="javascript:void(0);">最新</a></li>
+									<li class="item "><a href="javascript:void(0);">一</a></li>
+									<li class="item "><a href="javascript:void(0);">二</a></li>
+									<li class="item "><a href="javascript:void(0);">三</a></li>
+									<li class="item "><a href="javascript:void(0);">四</a></li>
+									<li class="item"><a href="javascript:void(0);">今天</a></li>
+									<li class="item "><a href="javascript:void(0);">六</a></li>
+									<li class="item "><a href="javascript:void(0);">日</a></li>
+									</div>				    
+									<div class="tab-cont" id="mytabweek"><li class="item cur"><ul class="tab-content">
+									<div id="loader" style="width: 387;margin: 0 auto;">
+									<img src="/template/b/images/bgm-loading.png">
+									</div></ul></li>
+									
+									
+						    </div>
+                    </div>
+
+                </div>
+                <div class="column-rgt">
+                    <div class="section_aside_tit sort_nav">
+                        <h3>热播榜</h3>
+                        <div class="module-tab"><a class="aMore" href="/index.php/label/rank.html target="_blank""><span class="more">更多<i class="icon"></i></span></a></div>                    </div>
+                    <div class="module-box" id="mytab6r">
+                        <ul><li class="rank-item  sl first highlight"style="height: 52px;"><l class="ri-num">1</l><a href="/index.php/vod/detail/id/17612.html"target="_blank"class="ri-info-wrap clearfix"><div class="lazy-img ri-pw"><img class="item-lazy" src="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6lq2ur66jj304h069aae.jpg" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'" alt="王雅君音乐分享会南京站"></div><div class="rl"><p class="ri-title">《王雅君音乐分享会南京站》「HD高清」&nbsp;中国大陆综艺</p><!--p class="ri-point">评分:10.0&nbsp;&nbsp;&nbsp;&nbsp;更新时间:08-28</p--></div></a></li>
+                            <li class="hot"><i>2</i><a href="/index.php/vod/detail/id/9546.html" target="_blank" title="枪冢完结">枪冢 &nbsp;&nbsp;完结</a><!--span>08-28</span--></li>
+                            <li class="hot"><i>3</i><a href="/index.php/vod/detail/id/7039.html" target="_blank" title="对某飞行员的回忆HD高清">对某飞行员的回忆 &nbsp;&nbsp;HD高清</a><!--span>08-28</span--></li>
+                            <li><i>4</i><a href="/index.php/vod/detail/id/22258.html" target="_blank" title="家有喜旺第一季完结">家有喜旺第一季 &nbsp;&nbsp;完结</a><!--span>08-28</span--></li>
+                            <li><i>5</i><a href="/index.php/vod/detail/id/8921.html" target="_blank" title="梦想改造家第一季完结">梦想改造家第一季 &nbsp;&nbsp;完结</a><!--span>08-28</span--></li>
+                            <li><i>6</i><a href="/index.php/vod/detail/id/7388.html" target="_blank" title="国民老公带回家第二季完结">国民老公带回家第二季 &nbsp;&nbsp;完结</a><!--span>09-06</span--></li>
+                            <li><i>7</i><a href="/index.php/vod/detail/id/20423.html" target="_blank" title="一切安好第一季完结">一切安好第一季 &nbsp;&nbsp;完结</a><!--span>08-28</span--></li>                        </ul>
+                        <a href="/index.php/vod/type/id/4.html" target="_blank" class="more-link" style=" display: block; height: 24px; line-height: 24px; background-color: #e5e9ef; text-align: center; border: 1px solid #e0e6ed; color: #222; border-radius: 4px; transition: .2s;">查看更多&nbsp;＞</a>                    </div>
+                </div>
+</section>
+
+
+
+<!-- 视频列表 -->
+            <!-- 热播电影 -->
+            <section class="section" name="【1】电影+榜单" id="1">
+                <div class="column-rgt">
+                    <div class="section_aside_tit sort_nav">
+                        <h3>电影播榜</h3>
+                        <div class="module-tab pull-right" id="mytabs2r"><span class="active">日榜</span><span>周榜</span><span>总榜</span></div>
+                    </div>
+                    <div class="module-box" id="mytab2r">
+                        <ul>                        </ul>
+                        <ul class="dn">                        </ul>
+                        <ul class="dn">                       </ul>
+                                            </div>
+                </div>
+                <div class="column-lft">
+                    <div class="sort_nav">
+                        <h3 class="sort_nav_tit"><i class="icon icon_t icon-mvbox"></i><span>电影</span></h3>
+                        <div class="sort_nav_bx">
+                            <div class="module-tab pull-left" id="mytabs3"><span class="active">最新更新</span><span id="tuijian">小编推荐</span></div>
+                            <div class="module-tab"><span class="update">今日更新<b>19</b>部</span><span class="more">更多<i class="icon"></i></span></a></div>
+                        </div>
+                    </div>
+                    <div class="sort_lst_bx" id="mytab3">
+                        <ul class="sort_lst">                        </ul>
+                        <ul class="sort_lst dn">                        </ul>
+                    </div>
+                </div>
+            </section>
+            <!-- 热播电视剧 -->
+            <section class="section" name="【2】连续剧+榜单" id="2">
+                <div class="column-rgt">
+                    <div class="section_aside_tit sort_nav">
+                        <h3>连续剧热播榜</h3>
+                        <div class="module-tab pull-right" id="mytabs3r"><span class="active">日榜</span><span>周榜</span><span>总榜</span></div>
+                    </div>
+                    <div class="module-box" id="mytab3r">
+                        <ul><li class="rank-item  sl first highlight"style="height: 52px;"><l class="ri-num">1</l><a href="/index.php/vod/detail/id/22258.html"target="_blank"class="ri-info-wrap clearfix"><div class="lazy-img ri-pw"><img class="item-lazy" src="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6loc6k26qj307i0b1aaf.jpg" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'" alt="家有喜旺第一季"></div><div class="rl"><p class="ri-title">《家有喜旺第一季》「完结」&nbsp;美国欧美剧</p><!--p class="ri-point">评分:9.0&nbsp;&nbsp;&nbsp;&nbsp;更新时间:08-28</p--></div></a></li>
+                            <li class="hot"><i>2</i><a href="/index.php/vod/detail/id/20423.html" target="_blank" title="一切安好第一季完结">一切安好第一季 &nbsp;&nbsp;完结</a><!--span>08-28</span--></li>
+                            <li class="hot"><i>3</i><a href="/index.php/vod/detail/id/20084.html" target="_blank" title="德里女孩第一季完结">德里女孩第一季 &nbsp;&nbsp;完结</a><!--span>08-28</span--></li>
+                            <li><i>4</i><a href="/index.php/vod/detail/id/17367.html" target="_blank" title="戛萨珑花香更新至15集">戛萨珑花香 &nbsp;&nbsp;更新至15集</a><!--span>08-28</span--></li>
+                            <li><i>5</i><a href="/index.php/vod/detail/id/15385.html" target="_blank" title="爱情零度C完结">爱情零度C &nbsp;&nbsp;完结</a><!--span>08-28</span--></li>
+                            <li><i>6</i><a href="/index.php/vod/detail/id/10523.html" target="_blank" title="触不可及完结">触不可及 &nbsp;&nbsp;完结</a><!--span>08-28</span--></li>
+                            <li><i>7</i><a href="/index.php/vod/detail/id/18433.html" target="_blank" title="雇佣女友完结">雇佣女友 &nbsp;&nbsp;完结</a><!--span>08-28</span--></li>
+                            <li><i>8</i><a href="/index.php/vod/detail/id/15537.html" target="_blank" title="功夫足球完结">功夫足球 &nbsp;&nbsp;完结</a><!--span>08-28</span--></li>                        </ul>
+                        <ul class="dn">                            <li class="hot"><i>1</i><a href="/index.php/vod/detail/id/16995.html" target="_blank" title="牵手向明天完结">牵手向明天&nbsp;&nbsp;完结</a></li>                            <li class="hot"><i>2</i><a href="/index.php/vod/detail/id/15271.html" target="_blank" title="轻率的爱更新至5集">轻率的爱&nbsp;&nbsp;更新至5集</a></li>                            <li class="hot"><i>3</i><a href="/index.php/vod/detail/id/19765.html" target="_blank" title="心理追凶第三季完结">心理追凶第三季&nbsp;&nbsp;完结</a></li>                            <li><i>4</i><a href="/index.php/vod/detail/id/21661.html" target="_blank" title="冲破囚笼完结">冲破囚笼&nbsp;&nbsp;完结</a></li>                            <li><i>5</i><a href="/index.php/vod/detail/id/16296.html" target="_blank" title="天使的面孔完结">天使的面孔&nbsp;&nbsp;完结</a></li>                            <li><i>6</i><a href="/index.php/vod/detail/id/13105.html" target="_blank" title="稍息立正我爱你完结">稍息立正我爱你&nbsp;&nbsp;完结</a></li>                            <li><i>7</i><a href="/index.php/vod/detail/id/21206.html" target="_blank" title="谁在撒谎第一季完结">谁在撒谎第一季&nbsp;&nbsp;完结</a></li>                            <li><i>8</i><a href="/index.php/vod/detail/id/18615.html" target="_blank" title="浪漫医生金师傅完结">浪漫医生金师傅&nbsp;&nbsp;完结</a></li>                            <li><i>9</i><a href="/index.php/vod/detail/id/10512.html" target="_blank" title="只是相爱的关系更新至16集">只是相爱的关系&nbsp;&nbsp;更新至16集</a></li>                            <li><i>10</i><a href="/index.php/vod/detail/id/20666.html" target="_blank" title="丧气老妈第一季完结">丧气老妈第一季&nbsp;&nbsp;完结</a></li>                        </ul>
+                        <ul class="dn">                            <li class="hot"><i>1</i><a href="/index.php/vod/detail/id/36854.html" target="_blank" title="轮到你了更新至23话">轮到你了&nbsp;&nbsp;更新至23话</a></li>                            <li class="hot"><i>2</i><a href="/index.php/vod/detail/id/64635.html" target="_blank" title="轮到你了第二季 轮到你了-反击篇更新至10集">轮到你了第二季 轮到你了-反击篇&nbsp;&nbsp;更新至10集</a></li>                            <li class="hot"><i>3</i><a href="/index.php/vod/detail/id/36791.html" target="_blank" title="可疑的岳母更新至78话">可疑的岳母&nbsp;&nbsp;更新至78话</a></li>                            <li><i>4</i><a href="/index.php/vod/detail/id/64605.html" target="_blank" title="轮到你了第二季反击篇更新至9集">轮到你了第二季反击篇&nbsp;&nbsp;更新至9集</a></li>                            <li><i>5</i><a href="/index.php/vod/detail/id/42805.html" target="_blank" title="炎炎消防队更新至9话">炎炎消防队&nbsp;&nbsp;更新至9话</a></li>                            <li><i>6</i><a href="/index.php/vod/detail/id/14474.html" target="_blank" title="轮到你了番外篇房门之内更新至18集">轮到你了番外篇房门之内&nbsp;&nbsp;更新至18集</a></li>                            <li><i>7</i><a href="/index.php/vod/detail/id/42803.html" target="_blank" title="黑袍纠察队 第一季完结">黑袍纠察队 第一季&nbsp;&nbsp;完结</a></li>                            <li><i>8</i><a href="/index.php/vod/detail/id/41308.html" target="_blank" title="轮到你了 第二季 轮到你了-反击篇更新至9集">轮到你了 第二季 轮到你了-反击篇&nbsp;&nbsp;更新至9集</a></li>                            <li><i>9</i><a href="/index.php/vod/detail/id/44057.html" target="_blank" title="全裸导演完结">全裸导演&nbsp;&nbsp;完结</a></li>                            <li><i>10</i><a href="/index.php/vod/detail/id/45811.html" target="_blank" title="我是大哥大更新至10话">我是大哥大&nbsp;&nbsp;更新至10话</a></li>                       </ul>
+                        <a href="/index.php/vod/type/id/2.html" target="_blank" class="more-link" style=" display: block; height: 24px; line-height: 24px; background-color: #e5e9ef; text-align: center; border: 1px solid #e0e6ed; color: #222; border-radius: 4px; transition: .2s;">查看更多&nbsp;＞</a>                    </div>
+                </div>
+                <div class="column-lft">
+                    <div class="sort_nav">
+                        <h3 class="sort_nav_tit"><i class="icon icon_t icon-teleplay"></i><span>连续剧</span></h3>
+                        <div class="sort_nav_bx">
+                            <div class="module-tab pull-left" id="mytabs2"><span class="active">最新更新</span><span>港台剧</span><span>日韩剧</span><span>欧美剧</span></div>
+                            <div class="module-tab"><a class="aMore" href="/index.php/vod/type/id/2.html"><span class="update">今日更新<b>39</b>部</span><span class="more">更多<i class="icon"></i></span></a></div>
+                        </div>
+                    </div>
+                    <div class="sort_lst_bx" id="mytab2">
+                        <ul class="sort_lst">                            <li>
+
+    <a href="/index.php/vod/detail/id/65168.html" target="_blank" title="网红的疯狂世界 更新至1集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6skt1xrghj305f078mxe.jpg" alt="网红的疯狂世界">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】网红的疯狂世界</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>《网红的疯狂世界》是2019年三立华人电视剧周日十点档系列的第四十七部作品由吴思贤、项婕如、言明澔、卓毓彤领衔主演。2019年8月15日开镜，将于9月8日播出，接档《月村欢迎你》 。</p>
+
+        <p class="block-clearfix">更新至1集</p>
+
+    </figcaption>
+
+</li>                            <li>
+
+    <a href="/index.php/vod/detail/id/22186.html" target="_blank" title="权欲第六季 更新至03集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6lmkk8dq5j307i0b9glw.jpg" alt="权欲第六季">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】权欲第六季</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>Starz续订《权欲》第六季，该季首播集将由Curtis “50 Cent” Jackson负责执导</p>
+
+        <p class="block-clearfix">更新至03集</p>
+
+    </figcaption>
+
+</li>                            <li>
+
+    <a href="/index.php/vod/detail/id/64918.html" target="_blank" title="街坊财爷国语版 更新至5集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6pordkyw3j307i0b93z4.jpg" alt="街坊财爷国语版">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】街坊财爷国语版</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>                                　　「貴利王」戴金仔一直用江湖手法，經營財務放數，用不良手法追債，縱有妻朱露絲屢勸金盤洗手，仍不知悔改金仔經營手法及追債過程中，惹來一直</p>
+
+        <p class="block-clearfix">更新至5集</p>
+
+    </figcaption>
+
+</li>                            <li>
+
+    <a href="/index.php/vod/detail/id/64353.html" target="_blank" title="他人都是地狱 更新至04集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m49a3i19j307i0aot8p.jpg" alt="他人都是地狱">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】他人都是地狱</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>李栋旭确定出演OCN新剧《他人即地狱》本剧改编自韩国同名人气网漫，讲述开始在首尔的考试院生活的年轻人意外遭遇了他人制造的地狱的惊悚故事。李栋旭将在剧中饰演在考试院附近一家牙科诊所的牙科医生徐文朝，将会</p>
+
+        <p class="block-clearfix">更新至&nbsp;第4话</p>
+
+    </figcaption>
+
+</li>                            <li>
+
+    <a href="/index.php/vod/detail/id/12619.html" target="_blank" title="世界上最美丽的我的女儿 更新至100集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6lmkijcf4j307i0b7jrz.jpg" alt="世界上最美丽的我的女儿">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】世界上最美丽的我的女儿</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>                                　　该剧通过当今时代的母亲和女儿的关系，讲述韩国目前面临的低生育率、高离婚率、不婚等年轻世代的问题
+                  </p>
+
+        <p class="block-clearfix">更新至100集</p>
+
+    </figcaption>
+
+</li>                            <li>
+
+    <a href="/index.php/vod/detail/id/64366.html" target="_blank" title="他人即地狱 更新至4集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m49533bdj307i0aojrq.jpg" alt="他人即地狱">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】他人即地狱</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>                                　　故事以考试院为背景，描述从乡村来到首尔生活的一位少年发生的一连串奇怪的事件，而且身旁的每个人也都怪怪的……
+            </p>
+
+        <p class="block-clearfix">更新至4集</p>
+
+    </figcaption>
+
+</li>                            <li>
+
+    <a href="/index.php/vod/detail/id/41682.html" target="_blank" title="我分享了老公 更新至10集,番外至9.5集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m5n2wopwj30b90fhdgc.jpg" alt="我分享了老公">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】我分享了老公</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>　本剧讲述的是爱上了同一个男人的3个单身母亲所展开的悬疑故事，小池在片中饰演的是养育着12岁女儿的单身妈妈兼职业女性·森下晴美，她将和涼（46）饰演的养育着15岁儿子的禁欲系健身教练小椋加奈子以及#岡</p>
+
+        <p class="block-clearfix">更新至&nbsp;第10话</p>
+
+    </figcaption>
+
+</li>                            <li>
+
+    <a href="/index.php/vod/detail/id/36505.html" target="_blank" title="阿斯达年代记 更新至14集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6lnkko5nmj307i0apweq.jpg" alt="阿斯达年代记">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】阿斯达年代记</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>
+                    
+                        
+                                　　【宋仲基将出演新剧《阿斯达年代记》 时</p>
+
+        <p class="block-clearfix">更新至&nbsp;第14话</p>
+
+    </figcaption>
+
+</li>                            <li>
+
+    <a href="/index.php/vod/detail/id/43377.html" target="_blank" title="学园爆笑王 更新至7集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m7p0p872j307i09ujry.jpg" alt="学园爆笑王">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】学园爆笑王</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>间宫祥太朗×渡边大知W主演《学园爆笑王》，改编自森田真法的同名漫画，以漫才为题材故事讲述主角上妻圭右（间宫祥太朗）目标是成为学园爆笑王，无论何时何地，只要找到题材就尽量搞笑，逗得身边人都很开心，然而有</p>
+
+        <p class="block-clearfix">更新至&nbsp;第7话</p>
+
+    </figcaption>
+
+</li>                            <li>
+
+    <a href="/index.php/vod/detail/id/44665.html" target="_blank" title="雅努斯之镜 更新至04集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m5g56nluj30850avwij.jpg" alt="雅努斯之镜">
+       <div class="play_hv">0</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】雅努斯之镜</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>本剧改编自1981~1982年间连载于《周刊seventeen》的宫胁明子原作漫画，该作品曾于1985年改编成电视剧，时隔34年后于今夏再次决定真人化原作描写了家教严格的优等生小泽裕美在一次被严厉的祖</p>
+
+        <p class="block-clearfix">更新至&nbsp;第4话</p>
+
+    </figcaption>
+
+</li>                        </ul>
+                        <ul class="sort_lst dn">                        </ul>
+                        <ul class="sort_lst dn">                            <li>
+
+    <a href="/index.php/vod/detail/id/65168.html" target="_blank" title="网红的疯狂世界 更新至1集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6skt1xrghj305f078mxe.jpg" alt="网红的疯狂世界">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】网红的疯狂世界</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>《网红的疯狂世界》是2019年三立华人电视剧周日十点档系列的第四十七部作品由吴思贤、项婕如、言明澔、卓毓彤领衔主演。2019年8月15日开镜，将于9月8日播出，接档《月村欢迎你》 。</p>
+
+        <p class="block-clearfix">更新至1集</p>
+
+    </figcaption>
+
+</li>                            <li>
+
+    <a href="/index.php/vod/detail/id/64918.html" target="_blank" title="街坊财爷国语版 更新至5集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6pordkyw3j307i0b93z4.jpg" alt="街坊财爷国语版">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】街坊财爷国语版</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>                                　　「貴利王」戴金仔一直用江湖手法，經營財務放數，用不良手法追債，縱有妻朱露絲屢勸金盤洗手，仍不知悔改金仔經營手法及追債過程中，惹來一直</p>
+
+        <p class="block-clearfix">更新至5集</p>
+
+    </figcaption>
+
+</li>                            <li>
+
+    <a href="/index.php/vod/detail/id/63993.html" target="_blank" title="她她她的少女時代 国语 连载15">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m4f6t4x7j307i09vt94.jpg" alt="她她她的少女時代 国语">
+       <div class="play_hv">2018</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】她她她的少女時代 国语</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>新剧开拍消息： 《她她。她的少女时代》造型出席艺人： 田蕊妮、曹永廉、李思捷、李国麟、韦家雄、林凯恩、李绮雯、罗天宇、 林师杰、余思霆、m.77mi.cc林宣妤、尹诗沛、 徐玟晴、李君妍、白云、梁芷珮</p>
+
+        <p class="block-clearfix">更新至&nbsp;第15话</p>
+
+    </figcaption>
+
+</li>                            <li>
+
+    <a href="/index.php/vod/detail/id/65172.html" target="_blank" title="云海玉弓缘 完结">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6smjl9bb7j307i0b9wf3.jpg" alt="云海玉弓缘">
+       <div class="play_hv">2002</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】云海玉弓缘</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>                                　　远离中原的蛇岛上，独龙尊者带着徒弟金世遗（林峰 饰）生活，将毕生绝学传授给他一天毒龙尊者突然走火入魔而死，临死前吩咐金世遗带着亲笔书</p>
+
+        <p class="block-clearfix">完结</p>
+
+    </figcaption>
+
+</li>                            <li>
+
+    <a href="/index.php/vod/detail/id/65165.html" target="_blank" title="非常大状 完结">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6sj2wymh3j307i0aw0t6.jpg" alt="非常大状">
+       <div class="play_hv">2006</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-08】非常大状</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>蒋文韬（郑少秋 饰）是香港最成功的大狀之一，他能言善辩，专为富豪们解决官非，因此得以跻身上流社会虽然家财千万，但他却喜欢跟跟计较，为人尖酸刻薄，连女儿思庭（唐宁 饰）十分讨厌父亲这种为人，所以虽然她也</p>
+
+        <p class="block-clearfix">完结</p>
+
+    </figcaption>
+
+</li>                            <li>
+
+    <a href="/index.php/vod/detail/id/61685.html" target="_blank" title="你那边怎样我这边ok 更新至02集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6mqqcpyeyj307109i0v1.jpg" alt="你那边怎样我这边ok">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-08】你那边怎样我这边ok</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>本剧以2016年轰动台湾的自动提款机吐钞盗领案件为背景，剧情将双线开展，一条故事线在新加坡，另一条故事线则在台北分别发生在台湾和新加坡的两条故事线看似毫不相关，却又紧密结合观众可以选择单看其中一条戏剧</p>
+
+        <p class="block-clearfix">更新至&nbsp;第4话</p>
+
+    </figcaption>
+
+</li>                            <li>
+
+    <a href="/index.php/vod/detail/id/36423.html" target="_blank" title="用九柑仔店 连载04">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6ljl15kigj307i0a3q7r.jpg" alt="用九柑仔店">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-08】用九柑仔店</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>《用九柑仔店》（英语：Yong-Jia Grocery Store），改编自漫画家阮光民的漫画作品，曾获金漫奖最佳青年漫画奖和年度漫画大奖双料获奖，也是该作者继《东华春理发厅》后第二部被改编的作品，预</p>
+
+        <p class="block-clearfix">更新至&nbsp;第4话</p>
+
+    </figcaption>
+
+</li>                            <li>
+
+    <a href="/index.php/vod/detail/id/65156.html" target="_blank" title="秀才遇着兵 完结">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6sfm0wqolj307i0awdgd.jpg" alt="秀才遇着兵">
+       <div class="play_hv">2005</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-08】秀才遇着兵</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>                                　　明朝时期有一名女飞贼飞鹰（米雪 饰）劫富济贫，神捕陆战（元华 饰）也被她的风姿吸引，两人结合后生下一女，名叫陆拾义（周丽淇 饰），飞</p>
+
+        <p class="block-clearfix">完结</p>
+
+    </figcaption>
+
+</li>                            <li>
+
+    <a href="/index.php/vod/detail/id/44858.html" target="_blank" title="她。她。她的少女时代(国语) 更新至15集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m8rt6pm3j307i09vt94.jpg" alt="她。她。她的少女时代(国语)">
+       <div class="play_hv">2018</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-08】她。她。她的少女时代(国语)</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>新剧开拍消息： 《她她。她的少女时代》造型出席艺人： 田蕊妮、曹永廉、李思捷、李国麟、韦家雄、林凯恩、李绮雯、罗天宇、 林师杰、余思霆、m.77mi.cc林宣妤、尹诗沛、 徐玟晴、李君妍、白云、梁芷珮</p>
+
+        <p class="block-clearfix">更新至15集</p>
+
+    </figcaption>
+
+</li>                            <li>
+
+    <a href="/index.php/vod/detail/id/64664.html" target="_blank" title="街坊财爷(国语) 更新至05集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6mtkt0wj8j307i07iq39.jpg" alt="街坊财爷(国语)">
+       <div class="play_hv">2018</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-08】街坊财爷(国语)</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>香港电视广播有限公司拍摄制作的时装都市喜剧题材的电视剧；由郑则仕、邵美琪、黎诺懿、黄智雯及苑琼丹领衔主演，并由吴业坤、郭少芸、古明华、袁文杰、朱咪咪及樊奕敏联合主演，监制为梁材远</p>
+
+        <p class="block-clearfix">更新至05集</p>
+
+    </figcaption>
+
+</li>                       </ul>
+                        <ul class="sort_lst dn">                            <li>
+
+    <a href="/index.php/vod/detail/id/64353.html" target="_blank" title="他人都是地狱 更新至04集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m49a3i19j307i0aot8p.jpg" alt="他人都是地狱">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】他人都是地狱</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>李栋旭确定出演OCN新剧《他人即地狱》本剧改编自韩国同名人气网漫，讲述开始在首尔的考试院生活的年轻人意外遭遇了他人制造的地狱的惊悚故事。李栋旭将在剧中饰演在考试院附近一家牙科诊所的牙科医生徐文朝，将会</p>
+
+        <p class="block-clearfix">更新至&nbsp;第4话</p>
+
+    </figcaption>
+
+</li>                            <li>
+
+    <a href="/index.php/vod/detail/id/12619.html" target="_blank" title="世界上最美丽的我的女儿 更新至100集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6lmkijcf4j307i0b7jrz.jpg" alt="世界上最美丽的我的女儿">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】世界上最美丽的我的女儿</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>                                　　该剧通过当今时代的母亲和女儿的关系，讲述韩国目前面临的低生育率、高离婚率、不婚等年轻世代的问题
+                  </p>
+
+        <p class="block-clearfix">更新至100集</p>
+
+    </figcaption>
+
+</li>                            <li>
+
+    <a href="/index.php/vod/detail/id/64366.html" target="_blank" title="他人即地狱 更新至4集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m49533bdj307i0aojrq.jpg" alt="他人即地狱">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】他人即地狱</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>                                　　故事以考试院为背景，描述从乡村来到首尔生活的一位少年发生的一连串奇怪的事件，而且身旁的每个人也都怪怪的……
+            </p>
+
+        <p class="block-clearfix">更新至4集</p>
+
+    </figcaption>
+
+</li>                            <li>
+
+    <a href="/index.php/vod/detail/id/41682.html" target="_blank" title="我分享了老公 更新至10集,番外至9.5集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m5n2wopwj30b90fhdgc.jpg" alt="我分享了老公">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】我分享了老公</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>　本剧讲述的是爱上了同一个男人的3个单身母亲所展开的悬疑故事，小池在片中饰演的是养育着12岁女儿的单身妈妈兼职业女性·森下晴美，她将和涼（46）饰演的养育着15岁儿子的禁欲系健身教练小椋加奈子以及#岡</p>
+
+        <p class="block-clearfix">更新至&nbsp;第10话</p>
+
+    </figcaption>
+
+</li>                            <li>
+
+    <a href="/index.php/vod/detail/id/43377.html" target="_blank" title="学园爆笑王 更新至7集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m7p0p872j307i09ujry.jpg" alt="学园爆笑王">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】学园爆笑王</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>间宫祥太朗×渡边大知W主演《学园爆笑王》，改编自森田真法的同名漫画，以漫才为题材故事讲述主角上妻圭右（间宫祥太朗）目标是成为学园爆笑王，无论何时何地，只要找到题材就尽量搞笑，逗得身边人都很开心，然而有</p>
+
+        <p class="block-clearfix">更新至&nbsp;第7话</p>
+
+    </figcaption>
+
+</li>                            <li>
+
+    <a href="/index.php/vod/detail/id/44665.html" target="_blank" title="雅努斯之镜 更新至04集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m5g56nluj30850avwij.jpg" alt="雅努斯之镜">
+       <div class="play_hv">0</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】雅努斯之镜</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>本剧改编自1981~1982年间连载于《周刊seventeen》的宫胁明子原作漫画，该作品曾于1985年改编成电视剧，时隔34年后于今夏再次决定真人化原作描写了家教严格的优等生小泽裕美在一次被严厉的祖</p>
+
+        <p class="block-clearfix">更新至&nbsp;第4话</p>
+
+    </figcaption>
+
+</li>                            <li>
+
+    <a href="/index.php/vod/detail/id/64417.html" target="_blank" title="诈欺刑警 更新至02集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m48b2zfzj307i0ahaah.jpg" alt="诈欺刑警">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】诈欺刑警</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>詐欺犯の実態に肉薄し、何としてでも摘発しようと心血を注ぐ、捜査二課・知能犯担当の今宮(木村文乃)の活躍を描く社会派ヒューマンドラマ脚本は「透明なゆりかご」(2018年、NHK総合)や「きのう何食べた？</p>
+
+        <p class="block-clearfix">更新至&nbsp;第2话</p>
+
+    </figcaption>
+
+</li>                            <li>
+
+    <a href="/index.php/vod/detail/id/63654.html" target="_blank" title="浪漫的体质 更新至10集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m4kpqsfkj312w0dw141.jpg" alt="浪漫的体质">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】浪漫的体质</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>该剧讲述三十多岁的女性朋友们的工作和恋爱琐碎日常的故事</p>
+
+        <p class="block-clearfix">更新至&nbsp;第10话</p>
+
+    </figcaption>
+
+</li>                            <li>
+
+    <a href="/index.php/vod/detail/id/63191.html" target="_blank" title="法医学者柚木贵志的案件 修复08">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6mnvaww56j307i08174m.jpg" alt="法医学者柚木贵志的案件">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】法医学者柚木贵志的案件</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>以日本法医学研究院所为舞台，真实呈现犯罪调查过程和法医们的调查，根据尸体上留下来的微小细节解开各种案件的真相</p>
+
+        <p class="block-clearfix">更新至&nbsp;第8话</p>
+
+    </figcaption>
+
+</li>                            <li>
+
+    <a href="/index.php/vod/detail/id/52365.html" target="_blank" title="痛症医师车耀汉 完结">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6mgi52utuj307i0b7wek.jpg" alt="痛症医师车耀汉">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】痛症医师车耀汉</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>                                　　该剧是讲述痛症医学医生们的人性医疗剧，池晟将在剧中饰演天才医生、麻醉科最年轻的教授车约汉
+                     </p>
+
+        <p class="block-clearfix">更新至&nbsp;第16话</p>
+
+    </figcaption>
+
+</li>                        </ul>
+                        <ul class="sort_lst dn">                           <li>
+
+    <a href="/index.php/vod/detail/id/22186.html" target="_blank" title="权欲第六季 更新至03集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6lmkk8dq5j307i0b9glw.jpg" alt="权欲第六季">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】权欲第六季</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>Starz续订《权欲》第六季，该季首播集将由Curtis “50 Cent” Jackson负责执导</p>
+
+        <p class="block-clearfix">更新至03集</p>
+
+    </figcaption>
+
+</li>                           <li>
+
+    <a href="/index.php/vod/detail/id/36505.html" target="_blank" title="阿斯达年代记 更新至14集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6lnkko5nmj307i0apweq.jpg" alt="阿斯达年代记">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】阿斯达年代记</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>
+                    
+                        
+                                　　【宋仲基将出演新剧《阿斯达年代记》 时</p>
+
+        <p class="block-clearfix">更新至&nbsp;第14话</p>
+
+    </figcaption>
+
+</li>                           <li>
+
+    <a href="/index.php/vod/detail/id/44378.html" target="_blank" title="极地恶灵 第二季 更新至05集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m8e0kgw8j30bm0e5q3h.jpg" alt="极地恶灵 第二季">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】极地恶灵 第二季</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>AMC恐怖剧集《极地恶灵》第2季发布首个预告本季名叫《骇人事件：罪行昭彰》(The Terror:Infamy)，相对第一季是全新的剧情和设定。由Derek Mio(《明日危机》)、竹井乔治(《星际迷</p>
+
+        <p class="block-clearfix">更新至&nbsp;第5话</p>
+
+    </figcaption>
+
+</li>                           <li>
+
+    <a href="/index.php/vod/detail/id/44968.html" target="_blank" title="权欲 第六季 连载03">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m8t3pkl9j307i0b9glw.jpg" alt="权欲 第六季">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】权欲 第六季</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>Starz续订《权欲》第六季，该季首播集将由Curtis “50 Cent” Jackson负责执导</p>
+
+        <p class="block-clearfix">更新至&nbsp;第3话</p>
+
+    </figcaption>
+
+</li>                           <li>
+
+    <a href="/index.php/vod/detail/id/63461.html" target="_blank" title="潘尼沃斯 连载07">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6mrb00raqj307i0b4aa9.jpg" alt="潘尼沃斯">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】潘尼沃斯</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>《哥谭》运作人布鲁诺·海勒打造，设定在1960年代的伦敦，托马斯·韦恩被形容为“一个年轻、面带稚气的亿万富翁，来自美国东海岸，自信、极度自律，这个年轻的贵族遇到了一个意想不到的搭档——潘尼沃斯”，潘尼</p>
+
+        <p class="block-clearfix">更新至&nbsp;第7话</p>
+
+    </figcaption>
+
+</li>                           <li>
+
+    <a href="/index.php/vod/detail/id/63894.html" target="_blank" title="49号旅舍 第二季 连载05">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m4gwxuchj307i0b0weh.jpg" alt="49号旅舍 第二季">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】49号旅舍 第二季</b>
+
+        <p class="otherinfo"><i class="iconfont"></i></p>
+
+        <p class="block-clearfix">更新至&nbsp;第4话</p>
+
+    </figcaption>
+
+</li>                           <li>
+
+    <a href="/index.php/vod/detail/id/65175.html" target="_blank" title="赎金第二季 更新至11集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6syonqjsvj307i0b1dgb.jpg" alt="赎金第二季">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】赎金第二季</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>                                                                            　　Ransom is inspired by </p>
+
+        <p class="block-clearfix">更新至&nbsp;第13话</p>
+
+    </figcaption>
+
+</li>                           <li>
+
+    <a href="/index.php/vod/detail/id/20103.html" target="_blank" title="潘尼沃斯第一季 更新至7集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6lp5bzokyj307i0b4aa9.jpg" alt="潘尼沃斯第一季">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】潘尼沃斯第一季</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>                                　　《哥谭》运作人布鲁诺·海勒打造，设定在1960年代的伦敦，托马斯·韦恩被形容为“一个年轻、面带稚气的亿万富翁，来自美国东海岸，自信、</p>
+
+        <p class="block-clearfix">更新至7集</p>
+
+    </figcaption>
+
+</li>                           <li>
+
+    <a href="/index.php/vod/detail/id/36697.html" target="_blank" title="赎金 第二季 更新至11集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6lnaqc3b3j307i0b1dgb.jpg" alt="赎金 第二季">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】赎金 第二季</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>                                                                            　　Ransom is inspired by </p>
+
+        <p class="block-clearfix">更新至&nbsp;第13话</p>
+
+    </figcaption>
+
+</li>                           <li>
+
+    <a href="/index.php/vod/detail/id/65166.html" target="_blank" title="科幻大师 完结">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6sj2xog24j307i0ak74n.jpg" alt="科幻大师">
+       <div class="play_hv">2007</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-08】科幻大师</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>                                　　《科幻大师》是ABC于2007年制作的一套科幻剧集它的整体创意与恐怖大师系列相同，每集都是延请不同的导演来讲述一则发生在未来的故事，</p>
+
+        <p class="block-clearfix">完结</p>
+
+    </figcaption>
+
+</li>                        </ul>
+                     </div>
+                </div>
+            </section>
+            <!-- 热播综艺 -->
+            <section class="section" name="【3】综艺+榜单" id="3">
+                <div class="column-rgt">
+                    <div class="section_aside_tit sort_nav">
+                        <h3>综艺热播榜</h3>
+                        <div class="module-tab pull-right" id="mytabs4r"><span class="active">日榜</span><span>周榜</span><span>总榜</span></div>
+                    </div>
+                    <div class="module-box" id="mytab4r">
+                        <ul><li class="rank-item  sl first highlight"style="height: 52px;"><l class="ri-num">1</l><a href="/index.php/vod/detail/id/17612.html"target="_blank"class="ri-info-wrap clearfix"><div class="lazy-img ri-pw"><img class="item-lazy" src="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6lq2ur66jj304h069aae.jpg" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'" alt="王雅君音乐分享会南京站"></div><div class="rl"><p class="ri-title">《王雅君音乐分享会南京站》「HD高清」&nbsp;中国大陆综艺</p><!--p class="ri-point">评分:10.0&nbsp;&nbsp;&nbsp;&nbsp;更新时间:08-28</p--></div></a></li>
+                            <li class="hot"><i>2</i><a href="/index.php/vod/detail/id/8921.html" target="_blank" title="梦想改造家第一季完结">梦想改造家第一季 &nbsp;&nbsp;完结</a><!--span>08-28</span--></li>
+                            <li class="hot"><i>3</i><a href="/index.php/vod/detail/id/1468.html" target="_blank" title="跟着贝尔去冒险第一季更新至08期">跟着贝尔去冒险第一季 &nbsp;&nbsp;更新至08期</a><!--span>08-28</span--></li>
+                            <li><i>4</i><a href="/index.php/vod/detail/id/8079.html" target="_blank" title="变形计之平行世界更新至24期">变形计之平行世界 &nbsp;&nbsp;更新至24期</a><!--span>08-28</span--></li>
+                            <li><i>5</i><a href="/index.php/vod/detail/id/13552.html" target="_blank" title="来自星星的事更新至20190905期">来自星星的事 &nbsp;&nbsp;更新至20190905期</a><!--span>09-06</span--></li>
+                            <li><i>6</i><a href="/index.php/vod/detail/id/9982.html" target="_blank" title="无限挑战更新至1705133期">无限挑战 &nbsp;&nbsp;更新至1705133期</a><!--span>08-28</span--></li>                        </ul>
+                        <ul class="dn">                            <li class="hot"><i>1</i><a href="/index.php/vod/detail/id/1348.html" target="_blank" title="新舞林大会更新至20180808期">新舞林大会&nbsp;&nbsp;更新至20180808期</a></li>                            <li class="hot"><i>2</i><a href="/index.php/vod/detail/id/9271.html" target="_blank" title="东方卫视梦圆东方2019跨年盛典HD高清">东方卫视梦圆东方2019跨年盛典&nbsp;&nbsp;HD高清</a></li>                            <li class="hot"><i>3</i><a href="/index.php/vod/detail/id/8917.html" target="_blank" title="大片起来嗨第二季更新至180606期">大片起来嗨第二季&nbsp;&nbsp;更新至180606期</a></li>                            <li><i>4</i><a href="/index.php/vod/detail/id/1607.html" target="_blank" title="妈妈是超人第三季更新至20180607期">妈妈是超人第三季&nbsp;&nbsp;更新至20180607期</a></li>                            <li><i>5</i><a href="/index.php/vod/detail/id/11838.html" target="_blank" title="神科普：嘿嘿嘿的那些小秘密2018完结">神科普：嘿嘿嘿的那些小秘密2018&nbsp;&nbsp;完结</a></li>                            <li><i>6</i><a href="/index.php/vod/detail/id/21730.html" target="_blank" title="不做家务做什么更新至190908期">不做家务做什么&nbsp;&nbsp;更新至190908期</a></li>                            <li><i>7</i><a href="/index.php/vod/detail/id/10911.html" target="_blank" title="2019年山西卫视春节联欢晚会HD高清">2019年山西卫视春节联欢晚会&nbsp;&nbsp;HD高清</a></li>                            <li><i>8</i><a href="/index.php/vod/detail/id/19042.html" target="_blank" title="国宝档案更新至190906期">国宝档案&nbsp;&nbsp;更新至190906期</a></li>                        </ul>
+                        <ul class="dn">                            <li class="hot"><i>1</i><a href="/index.php/vod/detail/id/20973.html" target="_blank" title="晚吹之啪啪Partner更新至18期">晚吹之啪啪Partner&nbsp;&nbsp;更新至18期</a></li>                            <li class="hot"><i>2</i><a href="/index.php/vod/detail/id/63561.html" target="_blank" title="中餐厅 第三季更新至20190906话">中餐厅 第三季&nbsp;&nbsp;更新至20190906话</a></li>                            <li class="hot"><i>3</i><a href="/index.php/vod/detail/id/21457.html" target="_blank" title="做家务的男人更新至20190906期">做家务的男人&nbsp;&nbsp;更新至20190906期</a></li>                            <li><i>4</i><a href="/index.php/vod/detail/id/19880.html" target="_blank" title="脱口秀大会第二季更新至190908期">脱口秀大会第二季&nbsp;&nbsp;更新至190908期</a></li>                            <li><i>5</i><a href="/index.php/vod/detail/id/63038.html" target="_blank" title="晚吹 - 啪啪 Partner更新至14话">晚吹 - 啪啪 Partner&nbsp;&nbsp;更新至14话</a></li>                            <li><i>6</i><a href="/index.php/vod/detail/id/64648.html" target="_blank" title="哎呀好身材更新至20190902话">哎呀好身材&nbsp;&nbsp;更新至20190902话</a></li>                            <li><i>7</i><a href="/index.php/vod/detail/id/59566.html" target="_blank" title="RunningMan2019更新至20190908话">RunningMan2019&nbsp;&nbsp;更新至20190908话</a></li>                            <li><i>8</i><a href="/index.php/vod/detail/id/9829.html" target="_blank" title="Running Man更新至190908期">Running Man&nbsp;&nbsp;更新至190908期</a></li>                        </ul>
+                         <a href="/index.php/vod/type/id/3.html" target="_blank" class="more-link" style=" display: block; height: 24px; line-height: 24px; background-color: #e5e9ef; text-align: center; border: 1px solid #e0e6ed; color: #222; border-radius: 4px; transition: .2s;">查看更多&nbsp;＞</a></a>                    </div>
+                    <div class="module-bottom clearfix"></div>
+                </div>
+                <div class="column-lft">
+                    <div class="sort_nav">
+                        <h3 class="sort_nav_tit"><i class="icon icon_t icon-evbox"></i><span>综艺</span></h3>
+                        <div class="sort_nav_bx">
+                            <div class="module-tab pull-left" id="mytabs"><span class="active">最新更新</span><em><a href="/index.php/vod/detail/id/1348.html" target="_blank" title="新舞林大会 更新至20180808期">新舞林大会</a></em><em><a href="/index.php/vod/detail/id/9271.html" target="_blank" title="东方卫视梦圆东方2019跨年盛典 HD高清">东方卫视梦圆东方2019跨年盛典</a></em><em><a href="/index.php/vod/detail/id/8917.html" target="_blank" title="大片起来嗨第二季 更新至180606期">大片起来嗨第二季</a></em></div>
+                            <div class="module-tab"><a class="aMore" href="/index.php/vod/type/id/3.html"><span class="update">今日更新<b>20</b>部</span><span class="more">更多<i class="icon"></i></span></a></div>
+                        </div>
+                    </div>
+                    <div class="sort_lst_bx" id="mytab">
+                        <ul class="sort_lst">                             <li>
+
+    <a href="/index.php/vod/detail/id/50957.html" target="_blank" title="圆桌派第四季 更新至20190908集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6md62sffdj307i0dbdgb.jpg" alt="圆桌派第四季">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】圆桌派第四季</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>《圆桌派》是一档最下饭的聊天综艺节目，由著名媒体人、文化名嘴窦文涛携手优酷“看理想”倾力打造不设剧本，即兴聊天，平等视角，智慧分享。</p>
+
+        <p class="block-clearfix">更新至&nbsp;第20190715话</p>
+
+    </figcaption>
+
+</li>                             <li>
+
+    <a href="/index.php/vod/detail/id/43389.html" target="_blank" title="综艺大集合2019 更新至20190908期">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6mp86qrxoj307i0b979x.jpg" alt="综艺大集合2019">
+       <div class="play_hv">2001</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】综艺大集合2019</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>《综艺大集合》是台湾的综艺节目，于2001年11月11日在民视首播主持人为胡瓜、董至成、浩角翔起、谢忻、小娴。开播之初，播出时间为周日晚间八点至晚间九点十分；而后逐步延长至十点。于2011年4月24日</p>
+
+        <p class="block-clearfix">更新至&nbsp;第20190908话</p>
+
+    </figcaption>
+
+</li>                             <li>
+
+    <a href="/index.php/vod/detail/id/43388.html" target="_blank" title="大陆寻奇2019 更新至20190908期">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m5g19fc7j307i0b9tcl.jpg" alt="大陆寻奇2019">
+       <div class="play_hv">1990</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】大陆寻奇2019</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>《大陆寻奇》是台湾地区录制的一档以祖国大陆各地有特色的风景名胜、文物古迹和民俗风情为主要内容的电视专题纪录片该节目于1990年8月11日开播，是中国电视公司（中视）最长寿的社教节目。</p>
+
+        <p class="block-clearfix">更新至20190908期</p>
+
+    </figcaption>
+
+</li>                             <li>
+
+    <a href="/index.php/vod/detail/id/46427.html" target="_blank" title="天天向上 更新至20190908期">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m5gc3d8vj304p06qt9e.jpg" alt="天天向上">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】天天向上</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>脱口秀节目天天向上，是一档非常国际化的高品位高水准的娱乐节目，以游戏、即兴短剧为主，把标准的世界礼仪通过幽默的形式轻松传递给每一位观众 节目的主题固定为世界礼仪知识。从“世界礼仪”四个字不难看出节目本</p>
+
+        <p class="block-clearfix">更新至&nbsp;第20190908话</p>
+
+    </figcaption>
+
+</li>                             <li>
+
+    <a href="/index.php/vod/detail/id/43375.html" target="_blank" title="认识的哥哥 更新至20190907期">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m7p1oe7uj307i0ahafc.jpg" alt="认识的哥哥">
+       <div class="play_hv">2015</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】认识的哥哥</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>《认识的哥哥》节目是根据主题不同，以存在于人生中，虽不是很重大，却会让人好奇不已，不得到答案就浑身不自在的问题为主题，通过各种方式为其寻求解答的综艺节目</p>
+
+        <p class="block-clearfix">更新至&nbsp;第20190907话</p>
+
+    </figcaption>
+
+</li>                             <li>
+
+    <a href="/index.php/vod/detail/id/47448.html" target="_blank" title="大陆寻奇 更新至20190908期">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6ma6uqpy8j304h06qjsf.jpg" alt="大陆寻奇">
+       <div class="play_hv">2015</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】大陆寻奇</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>「大陆寻奇」节目於1990年8月11日开播，足迹遍及大陆各地区，以地理、历史、文化及民俗风情为主要内容历年来，经过许多学者、专家的指导，製作群逐渐成熟，即开始规划大系列製作，以趣味性的包装，把历史、地</p>
+
+        <p class="block-clearfix">更新至20190908期</p>
+
+    </figcaption>
+
+</li>                             <li>
+
+    <a href="/index.php/vod/detail/id/14299.html" target="_blank" title="蒙面歌王 更新至190908期">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6lraok8dyj307i0adjrm.jpg" alt="蒙面歌王">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】蒙面歌王</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>《蒙面歌王》是韩国MBC电视台的一档音乐艺能节目节目形式为参赛者带上特殊的假面以隐藏身份，不管年龄、性别、职业、资历，只凭歌声一决胜负的节目形式引人关注！在听歌的同时猜测歌手到底是谁也成为节目的一大特</p>
+
+        <p class="block-clearfix">更新至190908期</p>
+
+    </figcaption>
+
+</li>                             <li>
+
+    <a href="/index.php/vod/detail/id/9829.html" target="_blank" title="Running Man 更新至190908期">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6mp82k34rj307i0avaae.jpg" alt="Running Man">
+       <div class="play_hv">2010</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】Running Man</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>Running Man是韩国SBS电视台周末娱乐节目《星期天真好》新的版块，是韩国著名主持人刘在石自“家族诞生”第一季结束后时隔五个月接手的SBS新艺能节目，作为刘在石的SBS艺能节目回归之作，run</p>
+
+        <p class="block-clearfix">更新至190908期</p>
+
+    </figcaption>
+
+</li>                             <li>
+
+    <a href="/index.php/vod/detail/id/43383.html" target="_blank" title="超人回来了 更新至20190908期">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m5gnb9kmj30cg0iotbb.jpg" alt="超人回来了">
+       <div class="play_hv">2013</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】超人回来了</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>kbs最新推出的亲子综艺（快乐星期天），内容为父亲带着孩子，在没有妈妈的情况下度过48小时现4位父子参演艺人：为秋成勋与女儿tablo与女儿张铉诚的儿子们李辉才的双胞胎儿子收视率分布：131103 K</p>
+
+        <p class="block-clearfix">更新至&nbsp;第20190908话</p>
+
+    </figcaption>
+
+</li>                             <li>
+
+    <a href="/index.php/vod/detail/id/44377.html" target="_blank" title="中国达人秀第六季 更新至190908期">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m8e0tuhlj305p08b0sw.jpg" alt="中国达人秀第六季">
+       <div class="play_hv">0</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】中国达人秀第六季</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>《中国达人秀》是东方卫视推出的中国第一档达人秀节目阔别五年，荣耀归来！沈腾、杨幂、金星、蔡国庆四位艺人齐聚达人秀，担任梦想观察员，延续“相信梦想，相信奇迹”节目宗旨，真实表现平凡人追梦过程。</p>
+
+        <p class="block-clearfix">更新至&nbsp;第20190908话</p>
+
+    </figcaption>
+
+</li>                      </ul>
+                    </div>
+                </div>
+            </section>
+            <!-- 热播动漫 -->
+
+            <section class="section" name="【4】动漫+榜单" id="4">
+
+                <div class="column-rgt">
+
+                    <div class="section_aside_tit sort_nav">
+
+                        <h3>动漫热播榜</h3>
+
+                        <div class="module-tab pull-right" id="mytabs5r"><span class="active">日榜</span><span>周榜</span><span>总榜</span></div>
+
+                    </div>
+
+                    <div class="module-box" id="mytab5r">
+
+                        <ul>
+                            <li class="hot"><i>1</i><a href="/index.php/vod/detail/id/9546.html" target="_blank" title="枪冢 完结">枪冢</a><span>08-28</span></li>
+                            <li class="hot"><i>2</i><a href="/index.php/vod/detail/id/7039.html" target="_blank" title="对某飞行员的回忆 HD高清">对某飞行员的回忆</a><span>08-28</span></li>
+                            <li class="hot"><i>3</i><a href="/index.php/vod/detail/id/7388.html" target="_blank" title="国民老公带回家第二季 完结">国民老公带回家第二季</a><span>09-06</span></li>
+                            <li><i>4</i><a href="/index.php/vod/detail/id/11306.html" target="_blank" title="飞翔吧！战机少女 全12集">飞翔吧！战机少女</a><span>08-30</span></li>
+                            <li><i>5</i><a href="/index.php/vod/detail/id/17946.html" target="_blank" title="高桥留美子梦幻剧场 乱马1/2特别篇 恶梦!春眠香 HD高清">高桥留美子梦幻剧场 乱马1/2特别篇 恶梦!春眠香</a><span>08-28</span></li>
+                            <li><i>6</i><a href="/index.php/vod/detail/id/13521.html" target="_blank" title="江海渔童之巨龟奇缘 HD">江海渔童之巨龟奇缘</a><span>08-30</span></li>
+                        </ul>
+
+                        <ul class="dn">
+                            <li class="hot"><i>1</i><a href="/index.php/vod/detail/id/11690.html" target="_blank" title="神厨小福贵 完结">神厨小福贵</a><span>08-28</span></li>
+                            <li class="hot"><i>2</i><a href="/index.php/vod/detail/id/14657.html" target="_blank" title="芭比之森林公主 HD高清">芭比之森林公主</a><span>08-28</span></li>
+                            <li class="hot"><i>3</i><a href="/index.php/vod/detail/id/20218.html" target="_blank" title="元气少女缘结神第2季 更新至12集">元气少女缘结神第2季</a><span>08-28</span></li>
+                            <li><i>4</i><a href="/index.php/vod/detail/id/5215.html" target="_blank" title="书店的骸骨店员本田君 完结">书店的骸骨店员本田君</a><span>09-05</span></li>
+                            <li><i>5</i><a href="/index.php/vod/detail/id/17078.html" target="_blank" title="小长门有希的消失 更新至16集">小长门有希的消失</a><span>08-28</span></li>
+                            <li><i>6</i><a href="/index.php/vod/detail/id/293.html" target="_blank" title="丁丁历险记 BD中英双字">丁丁历险记</a><span>08-31</span></li>
+                        </ul>
+
+                        <ul class="dn">
+                            <li class="hot"><i>1</i><a href="/index.php/vod/detail/id/37011.html" target="_blank" title="鬼灭之刃 更新至23集">鬼灭之刃</a><span>09-09</span></li>
+                            <li class="hot"><i>2</i><a href="/index.php/vod/detail/id/41932.html" target="_blank" title="平凡职业造就世界最强 更新至8集">平凡职业造就世界最强</a><span>09-04</span></li>
+                            <li class="hot"><i>3</i><a href="/index.php/vod/detail/id/36656.html" target="_blank" title="重来吧、魔王大人 更新至10集">重来吧、魔王大人</a><span>09-05</span></li>
+                            <li><i>4</i><a href="/index.php/vod/detail/id/22125.html" target="_blank" title="海贼王：狂热行动 TC">海贼王：狂热行动</a><span>08-30</span></li>
+                            <li><i>5</i><a href="/index.php/vod/detail/id/42281.html" target="_blank" title="新石纪 更新至10集">新石纪</a><span>09-07</span></li>
+                            <li><i>6</i><a href="/index.php/vod/detail/id/41998.html" target="_blank" title="只要可爱即使是变态你也会喜欢我吧？ 更新至9集">只要可爱即使是变态你也会喜欢我吧？</a><span>09-03</span></li>
+                        </ul>
+
+                    </div>
+
+                    <div class="module-bottom clearfix">
+                        <ul>
+                            <li><a href="/index.php/vod/show/class/%E6%83%85%E6%84%9F/id/4.html">情感</a></li>
+
+                            
+                            <li><a href="/index.php/vod/show/class/%E7%A7%91%E5%B9%BB/id/4.html">科幻</a></li>
+
+                            
+                            <li><a href="/index.php/vod/show/class/%E7%83%AD%E8%A1%80/id/4.html">热血</a></li>
+
+                            
+                            <li><a href="/index.php/vod/show/class/%E6%8E%A8%E7%90%86/id/4.html">推理</a></li>
+
+                            
+                            <li><a href="/index.php/vod/show/class/%E6%90%9E%E7%AC%91/id/4.html">搞笑</a></li>
+
+                            
+                            <li><a href="/index.php/vod/show/class/%E5%86%92%E9%99%A9/id/4.html">冒险</a></li>
+
+                            
+                            <li><a href="/index.php/vod/show/class/%E8%90%9D%E8%8E%89/id/4.html">萝莉</a></li>
+
+                            
+                            <li><a href="/index.php/vod/show/class/%E6%A0%A1%E5%9B%AD/id/4.html">校园</a></li>
+
+                            
+                            <li><a href="/index.php/vod/show/class/%E5%8A%A8%E4%BD%9C/id/4.html">动作</a></li>
+
+                            
+                            <li><a href="/index.php/vod/show/class/%E6%9C%BA%E6%88%98/id/4.html">机战</a></li>
+
+                            
+                            <li><a href="/index.php/vod/show/class/%E8%BF%90%E5%8A%A8/id/4.html">运动</a></li>
+
+                            
+                            <li><a href="/index.php/vod/show/class/%E6%88%98%E4%BA%89/id/4.html">战争</a></li>
+
+                            
+                            <li><a href="/index.php/vod/show/class/%E5%B0%91%E5%B9%B4/id/4.html">少年</a></li>
+
+                            
+                            <li><a href="/index.php/vod/show/class/%E5%B0%91%E5%A5%B3/id/4.html">少女</a></li>
+
+                            
+                            <li><a href="/index.php/vod/show/class/%E7%A4%BE%E4%BC%9A/id/4.html">社会</a></li>
+
+                            
+                            <li><a href="/index.php/vod/show/class/%E5%8E%9F%E5%88%9B/id/4.html">原创</a></li>
+
+                            
+                            <li><a href="/index.php/vod/show/class/%E4%BA%B2%E5%AD%90/id/4.html">亲子</a></li>
+
+                            
+                            <li><a href="/index.php/vod/show/class/%E7%9B%8A%E6%99%BA/id/4.html">益智</a></li>
+
+                            
+                            <li><a href="/index.php/vod/show/class/%E5%8A%B1%E5%BF%97/id/4.html">励志</a></li>
+
+                            
+                            <li><a href="/index.php/vod/show/class/%E5%85%B6%E4%BB%96/id/4.html">其他</a></li>
+
+                            
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="column-lft">
+
+                    <div class="sort_nav">
+
+                        <h3 class="sort_nav_tit"><i class="icon icon_t icon-dvbox"></i><span>动漫</span></h3>
+
+                        <div class="sort_nav_bx">
+
+                            <div class="module-tab pull-left" id="mytabs"><span class="active">最新动漫</span><em><a href="/index.php/vod/detail/id/11690.html" target="_blank" title="神厨小福贵 完结">神厨小福贵</a></em><em><a href="/index.php/vod/detail/id/14657.html" target="_blank" title="芭比之森林公主 HD高清">芭比之森林公主</a></em><em><a href="/index.php/vod/detail/id/20218.html" target="_blank" title="元气少女缘结神第2季 更新至12集">元气少女缘结神第2季</a></em></div>
+
+                            <div class="module-tab"><a class="aMore" href="/index.php/vod/type/id/4.html"><span class="update">今日更新<b>20</b>部</span><span class="more">更多<i class="icon"></i></span></a></div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="sort_lst_bx" id="mytab">
+
+                        <ul class="sort_lst">
+                            <li>
+
+    <a href="/index.php/vod/detail/id/44883.html" target="_blank" title="美味大挑战 更新至15集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m8s17itrj307i09nt8z.jpg" alt="美味大挑战">
+       <div class="play_hv">1988</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】美味大挑战</b>
+
+        <p class="otherinfo"><i class="iconfont"></i></p>
+
+        <p class="block-clearfix">更新至15集</p>
+
+    </figcaption>
+
+</li>
+                            <li>
+
+    <a href="/index.php/vod/detail/id/42965.html" target="_blank" title="擅长捉弄的高木同学 第二季 更新至10集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m5ggkl2pj307i0amq3d.jpg" alt="擅长捉弄的高木同学 第二季">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】擅长捉弄的高木同学 第二季</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>某所中学，总是被邻座的女生高木同学捉弄的男生西片他为了对此反击而用尽计策，却总是被高木同学看透。季节轮回，升入2年级的西片，这一次他是否能够顺利反击高木同学呢…？ 「令人心动的微笑」必至，先害羞就输了</p>
+
+        <p class="block-clearfix">更新至&nbsp;第10话</p>
+
+    </figcaption>
+
+</li>
+                            <li>
+
+    <a href="/index.php/vod/detail/id/18860.html" target="_blank" title="暗芝居第七季 更新至10集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6lpmh32c9j307i0ala9z.jpg" alt="暗芝居第七季">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】暗芝居第七季</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>                                　　这是一部以"数码纸芝居"形式制作的恐怖动画，将用昭和风格的纸芝居艺术来讲述各种都市怪谈，为你的夏夜增添别样回忆所谓纸芝居（连环画剧，</p>
+
+        <p class="block-clearfix">更新至10集</p>
+
+    </figcaption>
+
+</li>
+                            <li>
+
+    <a href="/index.php/vod/detail/id/18846.html" target="_blank" title="战姬绝唱第五季 更新至10集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6lpmon1v0j307i0akq3c.jpg" alt="战姬绝唱第五季">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】战姬绝唱第五季</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>《战姬绝唱Symphogear XV》是由SATELIGHT制作的《战姬绝唱Symphogear》第5期电视动画，于2019年7月7日起每周日1:00（东京时间）TOKYO MX、BS11首播
+   </p>
+
+        <p class="block-clearfix">更新至10集</p>
+
+    </figcaption>
+
+</li>
+                            <li>
+
+    <a href="/index.php/vod/detail/id/59913.html" target="_blank" title="地灵曲 更新至33集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6mpbhyizuj307i0alaaf.jpg" alt="地灵曲">
+       <div class="play_hv">2017</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】地灵曲</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>华夏龙脉始于昆仑，终于归墟，得九州之险，藏八方地灵相传，千古奇才鬼谷子为续华夏永昌而建鬼谷一派，以唤龙经为绝学，广授门徒，遍寻龙脉上的聚灵石，筑天、地、人三级古斗，成就寻龙、降龙，镇龙、御龙四大品阶，</p>
+
+        <p class="block-clearfix">更新至&nbsp;第31话</p>
+
+    </figcaption>
+
+</li>
+                            <li>
+
+    <a href="/index.php/vod/detail/id/19407.html" target="_blank" title="妖怪人贝姆 更新至7集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6lmkjogucj307i0almxr.jpg" alt="妖怪人贝姆">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】妖怪人贝姆</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>                                　　「早く人間になりた～い！」という名ぜりふで知られる人気アニメ「妖怪人間べム」の新作テレビアニメ「BEM」が制作され、2019年に放送</p>
+
+        <p class="block-clearfix">更新至&nbsp;第7话</p>
+
+    </figcaption>
+
+</li>
+                            <li>
+
+    <a href="/index.php/vod/detail/id/42279.html" target="_blank" title="街角魔族 连载09">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6ljtekk5qj307i0boabu.jpg" alt="街角魔族">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="play_hv3 xtui"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】街角魔族</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>某天早晨，突然觉醒了暗之力量的女高中生·吉田优子，为了解除一族所遭受的诅咒而准备开始打倒魔法少女！！但对方却是自己的救命恩人！？而且根本就没可能打赢！？废柴系庶民派魔族与高冷系肌肉魔法少女编织的日常系</p>
+
+        <p class="block-clearfix">更新至&nbsp;第9话</p>
+
+    </figcaption>
+
+</li>
+                            <li>
+
+    <a href="/index.php/vod/detail/id/42703.html" target="_blank" title="暗芝居 第七季 连载10">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m3zp9nfxj30dc0hstg5.jpg" alt="暗芝居 第七季">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】暗芝居 第七季</b>
+
+        <p class="otherinfo"><i class="iconfont"></i></p>
+
+        <p class="block-clearfix">更新至&nbsp;第10话</p>
+
+    </figcaption>
+
+</li>
+                            <li>
+
+    <a href="/index.php/vod/detail/id/65077.html" target="_blank" title="情报：锁定 更新至1集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6riobwp91j307i0b93z7.jpg" alt="情报：锁定">
+       <div class="play_hv">2019</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】情报：锁定</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>迈克尔·B·乔丹加盟动画剧集《情报：锁定》(gen:LOCK)，为主角Julian Chase配音剧中地球上最后一个自由社会因饱受全球战争的摧残而濒临崩溃，政府招募了一支由年轻飞行员组成的多样化团队来</p>
+
+        <p class="block-clearfix">更新至&nbsp;第1话</p>
+
+    </figcaption>
+
+</li>
+                            <li>
+
+    <a href="/index.php/vod/detail/id/43380.html" target="_blank" title="火影忍者：博人传之次世代继承者 更新至123集">
+
+        <img class="item-lazy" src="/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif" onerror="this.src='/upload/site/20190902-1/f6a9d0c253a9f15853c7226db4236410.gif'"  data-echo="https://wxt.sinaimg.cn/mw690/00747wQSgy1g6m7p0aqb5j30ay0da0tw.jpg" alt="火影忍者：博人传之次世代继承者">
+       <div class="play_hv">2017</div>
+
+        <div class="play_hv2"><i class="iconfont"></i>
+
+        </div>
+
+        <div class="play_hv3"></div>
+        <div class="space-danmaku"></div>
+
+    </a>
+
+    <figcaption class="block-title"><b>【09-09】火影忍者：博人传之次世代继承者</b>
+
+        <p class="otherinfo"><i class="iconfont"></i>随着和平的到来而走向近代化的木叶忍者村高楼林立，巨大显示屏中播放出影像，连结各区域的电车在村里奔驰。虽说是忍者村，但一般民众也增多，忍者的生存方式也在逐渐改变的这个时代——村子的领袖，第七代火影·漩涡</p>
+
+        <p class="block-clearfix">更新至&nbsp;第123话</p>
+
+    </figcaption>
+
+</li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </section>
+ <!-- 悬浮列表 -->
+<div class="elevator-module" id="sideBar">
+<style>
+.elevator-module{position:fixed;z-index:10;left:50%;top:248px;margin-left:610px;transition:top .3s}
+@media screen and (max-width:1400px){.elevator-module{margin-left:590px}}
+.elevator-module.edit-state{z-index:10001}
+.elevator-module .nav-bg{opacity:0;top:-15px;right:0;height:100%;padding-bottom:20px;width:60px;position:absolute;background:hsla(0,0%,100%,.8);border-radius:4px;overflow:hidden;transition:all .3s cubic-bezier(.68,-.55,.27,1.55)}
+.elevator-module .nav-list{position:relative;background-color:#f6f9fa;border:1px solid #e5e9ef;overflow:hidden;border-radius:4px}
+.elevator-module .nav-list .item{width:48px;height:32px;line-height:32px;text-align:center;transition:background-color .3s,color .3s;cursor:pointer;-ms-user-select:none;user-select:none}
+.elevator-module .nav-list .item p{width: 24px;white-space: nowrap;overflow: hidden;margin-left:12px;}
+.elevator-module .nav-list .item.select{position:absolute;z-index:1;background-color:#00a1d6;color:#fff}
+.elevator-module .nav-list .item.on,.elevator-module .nav-list .item:hover{background-color:#00a1d6;color:#fff}
+.elevator-module .nav-list .customize{height:38px;line-height:20px;padding:8px 0;border-top:1px solid #e5e9ef}
+.elevator-module .nav-list .customize:hover{color:#fff}
+.elevator-module .nav-list .customize:hover .icon{background-position:-727px -151px}
+.elevator-module .nav-list .customize .icon{display:block;margin:0 auto 4px;background-position:-663px -151px;height:18px;width:18px}
+.elevator-module .s-line{position:relative;border-left:1px solid #ddd;border-right:1px solid #ddd;height:9px;width:30px;margin:0 auto}
+.elevator-module .back-top{width: 48px;position:relative;display:block;cursor:pointer;height:48px;background-position:-648px -72px;background-color:#f6f9fa;border:1px solid #e5e9ef;overflow:hidden;border-radius:4px}
+.elevator-module .back-top:hover{background-color:#00a1d6;background-position:-714px -72px;border-color:#00a1d6}
+.elevator-module .app-download{position:relative;width:50px;height:70px}
+.elevator-module .app-download .app-icon{position:absolute;left:-15px;width:80px;height:80px;background-image:url(//s1.hdslb.com/bfs/static/jinkela/home/asserts/app-download.png)}
+.elevator-module .app-download .app-tips-icon{display:none;position:absolute;left:-110px;top:-20px;width:106px;height:44px;background-image:url(//s1.hdslb.com/bfs/static/jinkela/home/asserts/app-download-tips.png)}
+</style>
+	<div class="nav-bg">
+		<div class="tips-img"></div>
+	</div>
+	<div class="nav-list">
+		<a rel="nofollow" href="#1"><p class="item sortable">番剧</p></a>
+		<a rel="nofollow" href="#2"><p class="item sortable">动漫</p></a>
+		<a rel="nofollow" href="#3"><p class="item sortable">剧场</p></a>
+		<a rel="nofollow" href="#4"><p class="item sortable">TV剧</p></a>
+				<a href="/index.php/vod/type/id/14.html"><div class="item" href="/index.php/vod/type/id/14.html"><p>港台剧</p></div></a>
+        		<a href="/index.php/vod/type/id/15.html"><div class="item" href="/index.php/vod/type/id/15.html"><p>日韩剧</p></div></a>
+        		<a href="/index.php/vod/type/id/16.html"><div class="item" href="/index.php/vod/type/id/16.html"><p>欧美剧</p></div></a>
+        		<a href="/index.php/art/type/id/17.html"><div class="item" href="/index.php/art/type/id/17.html"><p>公告</p></div></a>
+        		<a href="/index.php/art/type/id/18.html"><div class="item" href="/index.php/art/type/id/18.html"><p>头条</p></div></a>
+        		<a href="/index.php/label/live.html"><div class="item"><p>直播</p></div></a>
+		<div class="item customize"><i class="icon"></i>列表</div>		
+	</div>
+	<div class="s-line"></div>
+    <div class="back-top icon"></div>
+	<div class="app-download">
+		<a href="https://www.lanzous.com/i4k7pzg/" target="_blank">
+			<div id="elevator-mobile-app" class="app-icon">
+			</div>
+			<div class="app-tips-icon"></div>
+		</a>
+	</div>
+</div>
+    <div class="back-top icon" id="backTop" onclick="pageScroll()"></div>
+
+
+
+<script type="text/javascript" src="/template/b/js/appdown.js"></script>   
+
+ </div>
+
+<!-- 页脚 -->
+<div class="footer bili-footer report-wrap-module">
+<div id="footer"></div>
+	<div class="footer-wrp">
+		<div class="footer-cnt clearfix report-wrap-module">
+			<ul class="boston-postcards">
+				<li class="link">
+					<div class="tips">
+						捏它追剧-nieta_一个神奇的追剧小站					</div>
+					<div class="cards">
+						<a target="_blank" href="#">
+							关于我们
+						</a>
+					</div>
+					<div class="cards">
+						<a target="_blank" href="/index.php/gbook/index.html">
+							联系我们
+						</a>
+					</div>
+					<div class="cards">
+						<a target="_blank" href="/index.php/gbook/index.html">
+							加入我们
+						</a>
+					</div>
+					<div class="cards">
+						<a target="_blank" href="/index.php/gbook/index.html">
+							求片留言
+						</a>
+					</div>
+					<div class="cards">
+						<a target="_blank" href="/index.php/rss/index.xml">
+							RSS订阅
+						</a>
+					</div>
+					<div class="cards">
+						<a target="_blank" href="#">
+							Investor Relations
+						</a>
+					</div>
+				</li>
+				<li class="links">
+					<div class="tips">
+						友情链接
+					</div>					<div class="cards">
+						<a target="_blank" href="#">
+							帮助中心
+						</a>
+					</div>
+					<div class="cards">
+						<a target="_blank" href="影视大全">
+							视频专题页
+						</a>
+					</div>
+					<div class="cards">
+						<a target="_blank" href="/index.php/gbook/index.html">
+							侵权申诉
+						</a>
+					</div>
+					<div class="cards">
+						<a target="_blank" href="#">
+							用户反馈论坛
+						</a>
+					</div>
+				</li>
+				<li class="over">
+					<div class="block right">
+						<a href="/app/app.apk">
+							<div class="phone">
+								<div class="pic" id="footer-mobile-app">
+								</div>
+								<em style="bottom: -12px;">
+									客户端下载<br>(Android)
+								</em>
+								<div class="qrcode-box-wrp">
+									<div class="qrcode-box qrcode-app">
+										<div class="qrcode-box-arrow">
+										</div>
+									</div>
+								</div>
+							</div>
+						</a>
+						<a target="_blank" href="#">
+							<div class="weibo">
+								<div class="pic">
+								</div>
+								<em>
+									新浪微博
+								</em>
+								<div class="qrcode-box-wrp">
+									<div class="qrcode-box qrcode-weibo">
+										<div class="qrcode-box-arrow">
+										</div>
+									</div>
+								</div>
+							</div>
+						</a>
+						<a id="weixin">
+							<div class="weixin">
+								<div class="pic">
+								</div>
+								<em>
+									官方微信
+								</em>
+								<div class="qrcode-box-wrp bigvip-qrcode">
+									<div class="qrcode-box qrcode-weixin">
+										<div class="qrcode-box-arrow">
+										</div>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</li>
+			</ul>
+			<div class="partner">
+				<div class="block left" style="padding-top:14px;">
+					<div class="partner-banner">
+					</div>
+					<a id="jvs-cert" href="https://webcert.cnmstl.net/cert/grade?sn=d3ec53ae63a84350945198bab0251d59"
+					target="_blank" style="display: block; max-width: 132px;">
+						<div id="jvs-certifyOuter" class="jvs-certifyOuter" style="width: 100%; position: relative;">
+							<img id="certify-img1" class="                                                                                                                                                                                  "
+							crossorigin="anonymous" src="//backup.hdslb.com/bfs/mainfront/websafe.png"
+							style="position: absolute; left: 0px; top: 0px; display: block; width: 100%; height: auto; opacity: 1; max-height: none; border: none;">
+							<img id="certify-img2" class="                                                                                                                                                                                  act"
+							crossorigin="anonymous" src="//backup.hdslb.com/bfs/mainfront/confirm.png"
+							style="position: absolute; left: 0px; top: 0px; display: block; max-height: none; width: 100%; height: auto; opacity: 0; border: none;">
+						</div>
+					</a>
+				</div>
+				<div class="block left" style="margin: 0px 68px 0 115px;line-height:24px;float: none;">
+					<p>
+						互联网ICP备案：
+						<a href="#" target="_blank">
+													</a>
+						| 侵权处理邮箱：<a class="yumi" href="mailto:yaojingo#outlook.com">yaojingo#outlook.com</a> | 违法不良信息举报电话：110 |<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1275767006'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s5.cnzz.com/z_stat.php%3Fid%3D1275767006%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+            <p>本站不提供任何视听上传储存服务，所有内容均来至网络自动采集，只提供web页面浏览服务，并不提供影片资源存储，也不参与任何视频录制、上传.</p>
+            <p>若本站收录的节目无意侵犯了贵司权利，请给我们来信，我们会及时处理和删除，谢谢！Copyright &#169; 2018 <a class="yumi" href="www.nieta.co" target="_blank">捏它追剧-nieta_一个神奇的追剧小站</a> All Rights Reserved.</p>
+					<p>
+						<a href="http://report.12377.cn:13225/toreportinputNormal_anis.do" target="_blank">
+							网上有害信息举报专区：
+							<img src="//static.hdslb.com/images/12377.png" width="16" height="16"
+							style="vertical-align: sub;">
+							中国互联网违法和不良信息举报中心
+						</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<script type="text/javascript" src="/template/b/js/jdyzm_pc.js"></script>
+<script type="text/javascript" src="/template/b/js/-bon.min.js"></script>
+<script type="text/javascript" src="/template/b/js/pace.min.js"></script>
+<div id="backTop"><a href="javascript:;"></a></div>
+</div></div>
+
+
+
+
+
+ </div>
+
+
+
+
+
+</body>
+
+</html>
+
+
+
+ 

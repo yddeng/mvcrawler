@@ -2,6 +2,7 @@ package module
 
 import (
 	"github.com/PuerkitoBio/goquery"
+	"github.com/tagDong/dutil/dstring"
 	"github.com/tagDong/dutil/log"
 	"github.com/tagDong/mvcrawler"
 	"github.com/tagDong/mvcrawler/dhttp"
@@ -70,7 +71,7 @@ func (this *Bimibimi) search(doc *goquery.Document, result *[]*mvcrawler.Item) {
 	doc.Find("#long-page li a").EachWithBreak(func(i int, selection *goquery.Selection) bool {
 		if selection.Text() == "下一页" {
 			if url, ok := selection.Attr("href"); ok {
-				url = util.MergeString(this.baseUrl, url)
+				url = dstring.MergeString(this.baseUrl, url)
 				this.logger.Debugln("next page", url)
 
 				resp, err := dhttp.Get(url, 0)
@@ -131,8 +132,8 @@ func (this *Bimibimi) Update() [][]*mvcrawler.Item {
 			msgs = append(msgs, &mvcrawler.Item{
 				Title:  title,
 				From:   this.GetName(),
-				Img:    util.MergeString(this.baseUrl, img),
-				Url:    util.MergeString(this.baseUrl, url),
+				Img:    util.CheckAndInsertHead(img, "http", this.baseUrl),
+				Url:    util.CheckAndInsertHead(url, "http", this.baseUrl),
 				Status: status,
 			})
 		})

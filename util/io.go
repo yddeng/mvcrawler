@@ -28,7 +28,7 @@ func WriteFile(filePath, fileName string, reader io.Reader) (n int64, err error)
 	}
 	f, err := os.Create(path.Join(filePath, fileName))
 	defer f.Close()
-	n, err = io.Copy(f, reader)
+	n, err = copyBuffer(f, reader)
 	return
 }
 
@@ -43,4 +43,33 @@ func WriteString(filePath, file, data string) error {
 
 func WriteByte(filePath, file string, data []byte) error {
 	return writeFile(filePath, file, data)
+}
+
+func copyBuffer(writer io.Writer, reader io.Reader) (written int64, err error) {
+	buff := make([]byte, 32*1024)
+	written = 0
+	for {
+		nr, er := reader.Read(buff)
+		if nr > 0 {
+			nw, ew := writer.Write(buff[0:nr])
+			if nw > 0 {
+				written += int64(nw)
+			}
+			if ew != nil {
+				err = ew
+				break
+			}
+			if nr != nw {
+				err = io.ErrShortWrite
+				break
+			}
+		}
+		if er != nil {
+			if er != io.EOF {
+				err = er
+			}
+			break
+		}
+	}
+	return written, err
 }

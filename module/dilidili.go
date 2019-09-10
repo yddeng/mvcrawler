@@ -5,6 +5,7 @@ package module
 
 import (
 	"github.com/PuerkitoBio/goquery"
+	"github.com/tagDong/dutil/dstring"
 	"github.com/tagDong/dutil/log"
 	"github.com/tagDong/mvcrawler"
 	"github.com/tagDong/mvcrawler/dhttp"
@@ -60,7 +61,7 @@ func (this *Dilidili) search(doc *goquery.Document, result *[]*mvcrawler.Item) {
 			if url, ok := selection.Attr("href"); ok {
 
 				url = strings.Replace(url, "&amp;", "&", -1)
-				url = util.MergeString(this.baseUrl, url)
+				url = dstring.MergeString(this.baseUrl, url)
 				this.logger.Debugln("next page", url)
 
 				resp, err := dhttp.Get(url, 0)

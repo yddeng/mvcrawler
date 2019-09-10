@@ -2,7 +2,7 @@ package mvcrawler
 
 import (
 	"encoding/json"
-	"github.com/tagDong/mvcrawler/util"
+	"github.com/tagDong/dutil/dstring"
 	"net/http"
 	"sync"
 )
@@ -33,7 +33,7 @@ func (s *Service) handleSearch(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if p, ok := r.Form["page"]; ok {
-		page = util.ToInt(p[0])
+		page = dstring.ToInt(p[0])
 	}
 
 	resp := &SearchRespone{Code: "ERR", Txt: txt, Page: page}
