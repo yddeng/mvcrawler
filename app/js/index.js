@@ -78,13 +78,13 @@ function showUpdateItems(items) {
 
 // 星期转换
 function getWeekIdx() {
-    // 1星期日 2星期一 3星期二 ... 7星期六
+    // 0星期日 1星期一 2星期二 ... 6星期六
     let d = new Date();
     // 数组由周一到周日（0-6）
     let transform = new Array(6,0,1,2,3,4,5);
-    //console.log(d.getDate(),transform[d.getDate()]);
+    console.log(d.getDay(),transform[d.getDay()]);
     //console.log(d.toString(),d.toLocaleTimeString());
-    return transform[d.getDate()-1]
+    return transform[d.getDay()]
 }
 
 
