@@ -1,33 +1,31 @@
-### 动漫网爬虫
+## 动漫网爬虫
 
 有时候想看番剧，由于更新时间的不一致、资源不通，需要在切换到各类网站上搜索。
 
 尝试写一个定向爬取各类网站当日更新的网站；搜索在所有网站上搜索。
 
-#### 收录网站
+### 收录网站
 
 - www.silisili.me (嘶哩嘶哩)
 - www.bimibimi.tv (哔咪哔咪)
 - www.5dm.tv ()(由于服务器在境外，访问该网站403,故关闭)
 - www.dilidili.name (嘀哩嘀哩)
 
-#### 前端展示
+### 前端展示
 
 ![index](https://github.com/tagDong/mvcrawler/blob/master/assets/image/index.jpg)
 
-#### 安装
+### 安装
 
 服务器部署
 ```
 1. go get github.com/tagDong/mvcrawler
 2. 配置 conf/conf.toml
 3. make 
-4. ./start.sh  
+4. ./start.sh
 ```
 
-网页部署
-
-[网站部署](./fileSev/README.md)
+网页部署 [网站部署](./fileSev/README.md)
 
 #### 目录结构
 ```
@@ -56,7 +54,7 @@ mvcrawler/
 └── README.md
 ```
 
-#### 低配版冷热数据库
+### 低配版冷热数据库
 
 ```
 set数据时
@@ -71,21 +69,18 @@ get数据时
 
 ```
 
-#### Modele
+### Modele
 
 收录网站：添加网站方法
 
 [网站模块注册](./module/README.md)
 
-#### 更新日志
+### 更新日志
 
 [更新日志](./UPDATE.md)
 
-#### TODO
 
-[TODO](./TODO.md)
-
-#### 交流反馈
+### 交流反馈
 
 网站收录或建议 提交Issues:[Issues](https://github.com/tagDong/mvcrawler/issues)
 
