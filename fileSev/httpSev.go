@@ -30,7 +30,7 @@ func main() {
 	conf := getConfig(os.Args[1])
 	fmt.Printf("httpServer on %s, loadPath on %s\n", conf.Addr, conf.LoadPath)
 
-	http.Handle("/", http.FileServer(http.Dir(conf.LoadPath)))
+	http.Handle("/", http.StripPrefix("/", http.FileServer(http.Dir(conf.LoadPath))))
 	err := http.ListenAndServe(conf.Addr, nil)
 	if err != nil {
 		panic(err)
