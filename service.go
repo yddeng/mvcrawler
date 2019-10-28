@@ -1,8 +1,8 @@
 package mvcrawler
 
 import (
-	"github.com/tagDong/mvcrawler/conf"
-	"github.com/tagDong/mvcrawler/dhttp"
+	"github.com/yddeng/mvcrawler/conf"
+	"github.com/yddeng/mvcrawler/dhttp"
 	"time"
 )
 

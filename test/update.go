@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/tagDong/mvcrawler/dhttp"
+	"github.com/yddeng/mvcrawler/dhttp"
 	"io/ioutil"
 )
 

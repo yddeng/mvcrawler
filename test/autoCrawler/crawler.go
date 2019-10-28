@@ -5,10 +5,10 @@ package main
 
 import (
 	"github.com/PuerkitoBio/goquery"
-	"github.com/tagDong/dutil/log"
-	"github.com/tagDong/dutil/queue"
-	"github.com/tagDong/mvcrawler/dhttp"
-	"github.com/tagDong/mvcrawler/util"
+	"github.com/yddeng/dutil/log"
+	"github.com/yddeng/dutil/queue"
+	"github.com/yddeng/mvcrawler/dhttp"
+	"github.com/yddeng/mvcrawler/util"
 	"sync"
 	"time"
 )

@@ -2,8 +2,8 @@ package downloader
 
 import (
 	"fmt"
-	"github.com/tagDong/mvcrawler/dhttp"
-	"github.com/tagDong/mvcrawler/util"
+	"github.com/yddeng/mvcrawler/dhttp"
+	"github.com/yddeng/mvcrawler/util"
 	"net/http"
 	"path"
 	"strings"

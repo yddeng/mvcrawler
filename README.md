@@ -13,13 +13,13 @@
 
 ### 前端展示
 
-![index](https://github.com/tagDong/mvcrawler/blob/master/assets/image/index.jpg)
+![index](https://github.com/yddeng/mvcrawler/blob/master/assets/image/index.jpg)
 
 ### 安装
 
 服务器部署
 ```
-1. go get github.com/tagDong/mvcrawler
+1. go get github.com/yddeng/mvcrawler
 2. 配置 conf/conf.toml
 3. make 
 4. ./start.sh
@@ -82,6 +82,6 @@ get数据时
 
 ### 交流反馈
 
-网站收录或建议 提交Issues:[Issues](https://github.com/tagDong/mvcrawler/issues)
+网站收录或建议 提交Issues:[Issues](https://github.com/yddeng/mvcrawler/issues)
 
 

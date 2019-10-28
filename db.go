@@ -6,9 +6,9 @@ package mvcrawler
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/tagDong/dutil/cache"
-	"github.com/tagDong/mvcrawler/conf"
-	"github.com/tagDong/mvcrawler/util"
+	"github.com/yddeng/dutil/cache"
+	"github.com/yddeng/mvcrawler/conf"
+	"github.com/yddeng/mvcrawler/util"
 	"time"
 )
 

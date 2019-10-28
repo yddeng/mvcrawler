@@ -2,11 +2,11 @@ package module
 
 import (
 	"github.com/PuerkitoBio/goquery"
-	"github.com/tagDong/dutil/dstring"
-	"github.com/tagDong/dutil/log"
-	"github.com/tagDong/mvcrawler"
-	"github.com/tagDong/mvcrawler/dhttp"
-	"github.com/tagDong/mvcrawler/util"
+	"github.com/yddeng/dutil/dstring"
+	"github.com/yddeng/dutil/log"
+	"github.com/yddeng/mvcrawler"
+	"github.com/yddeng/mvcrawler/dhttp"
+	"github.com/yddeng/mvcrawler/util"
 	"net/url"
 )
 

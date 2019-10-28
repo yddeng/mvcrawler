@@ -1,7 +1,7 @@
 package util
 
 import (
-	"github.com/tagDong/dutil/dstring"
+	"github.com/yddeng/dutil/dstring"
 )
 
 // 判读s串中是否有str子串

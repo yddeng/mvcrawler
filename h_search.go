@@ -2,7 +2,7 @@ package mvcrawler
 
 import (
 	"encoding/json"
-	"github.com/tagDong/dutil/dstring"
+	"github.com/yddeng/dutil/dstring"
 	"net/http"
 	"sync"
 )

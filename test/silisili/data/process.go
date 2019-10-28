@@ -6,8 +6,8 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/tagDong/dutil/dstring"
-	"github.com/tagDong/dutil/io"
+	"github.com/yddeng/dutil/dstring"
+	"github.com/yddeng/dutil/io"
 	"strings"
 )
 

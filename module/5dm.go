@@ -6,9 +6,9 @@ package module
 /*
 import (
 	"github.com/PuerkitoBio/goquery"
-	"github.com/tagDong/dutil/log"
-	"github.com/tagDong/mvcrawler"
-	"github.com/tagDong/mvcrawler/dhttp"
+	"github.com/yddeng/dutil/log"
+	"github.com/yddeng/mvcrawler"
+	"github.com/yddeng/mvcrawler/dhttp"
 	"net/url"
 	"strings"
 )

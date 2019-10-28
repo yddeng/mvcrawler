@@ -6,12 +6,12 @@ package main
 import (
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
-	"github.com/tagDong/dutil/dstring"
-	"github.com/tagDong/dutil/io"
-	"github.com/tagDong/dutil/log"
-	"github.com/tagDong/dutil/queue"
-	"github.com/tagDong/mvcrawler/dhttp"
-	"github.com/tagDong/mvcrawler/util"
+	"github.com/yddeng/dutil/dstring"
+	"github.com/yddeng/dutil/io"
+	"github.com/yddeng/dutil/log"
+	"github.com/yddeng/dutil/queue"
+	"github.com/yddeng/mvcrawler/dhttp"
+	"github.com/yddeng/mvcrawler/util"
 	"strings"
 	"time"
 )

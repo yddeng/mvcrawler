@@ -1,8 +1,8 @@
 package downloader_test
 
 import (
-	"github.com/tagDong/mvcrawler/core/downloader"
-	"github.com/tagDong/mvcrawler/util"
+	"github.com/yddeng/mvcrawler/core/downloader"
+	"github.com/yddeng/mvcrawler/util"
 	"testing"
 )
 

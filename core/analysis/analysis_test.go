@@ -2,7 +2,7 @@ package analysis_test
 
 import (
 	"fmt"
-	analysis2 "github.com/tagDong/mvcrawler/core/analysis"
+	analysis2 "github.com/yddeng/mvcrawler/core/analysis"
 	"net/http"
 	"testing"
 )

@@ -1,7 +1,7 @@
 package mvcrawler
 
 import (
-	"github.com/tagDong/dutil/log"
+	"github.com/yddeng/dutil/log"
 )
 
 type Module interface {

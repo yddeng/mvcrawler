@@ -3,7 +3,7 @@ package analysis
 import (
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
-	"github.com/tagDong/mvcrawler/dhttp"
+	"github.com/yddeng/mvcrawler/dhttp"
 	"net/http"
 	"strings"
 	"sync/atomic"

@@ -4,8 +4,8 @@ package mvcrawler
  mvcrawler logger 日志
 */
 import (
-	"github.com/tagDong/dutil/log"
-	"github.com/tagDong/mvcrawler/conf"
+	"github.com/yddeng/dutil/log"
+	"github.com/yddeng/mvcrawler/conf"
 )
 
 var logger *log.Logger

@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/tagDong/mvcrawler"
-	"github.com/tagDong/mvcrawler/conf"
-	_ "github.com/tagDong/mvcrawler/module"
+	"github.com/yddeng/mvcrawler"
+	"github.com/yddeng/mvcrawler/conf"
+	_ "github.com/yddeng/mvcrawler/module"
 	"os"
 )
 

@@ -45,7 +45,7 @@
 - www.bimibimi.tv (哔咪哔咪)
 - www.dilidili.name (嘀哩嘀哩)
 
-github地址： https://github.com/tagDong/mvcrawler （觉得不错点个赞吧 :)   )
+github地址： https://github.com/yddeng/mvcrawler （觉得不错点个赞吧 :)   )
 
 前端测试页：http://www.yddeng.xyz
 
