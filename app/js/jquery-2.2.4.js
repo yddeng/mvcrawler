@@ -7991,7 +7991,7 @@ var
 	rts = /([?&])_=[^&]*/,
 	rheaders = /^(.*?):[ \t]*([^\r\n]*)$/mg,
 
-	// #7653, #8125, #8152: local protocol detection
+	// #7653, #8125, #8152: local protobuf detection
 	rlocalProtocol = /^(?:about|app|app-storage|.+-extension|file|res|widget):$/,
 	rnoContent = /^(?:GET|HEAD)$/,
 	rprotocol = /^\/\//,
@@ -8491,7 +8491,7 @@ jQuery.extend( {
 		jqXHR.error = jqXHR.fail;
 
 		// Remove hash character (#7531: and string promotion)
-		// Add protocol if not provided (prefilters might expect it)
+		// Add protobuf if not provided (prefilters might expect it)
 		// Handle falsy url in the settings object (#10093: consistency with old signature)
 		// We also use the url parameter if available
 		s.url = ( ( url || s.url || location.href ) + "" ).replace( rhash, "" )
@@ -9039,7 +9039,7 @@ jQuery.ajaxSettings.xhr = function() {
 
 var xhrSuccessStatus = {
 
-		// File protocol always yields status code 0, assume 200
+		// File protobuf always yields status code 0, assume 200
 		0: 200,
 
 		// Support: IE9
@@ -9114,7 +9114,7 @@ jQuery.ajaxTransport( function( options ) {
 								} else {
 									complete(
 
-										// File: protocol always yields status 0; see #8605, #14207
+										// File: protobuf always yields status 0; see #8605, #14207
 										xhr.status,
 										xhr.statusText
 									);

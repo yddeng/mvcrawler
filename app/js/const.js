@@ -3,19 +3,19 @@ const BaseUrl = "http://104.168.244.58:12345"
 
 // http请求出错
 function httpErr() {
-    let list = document.getElementById('list')
+    let list = document.getElementById('item-list')
     list.innerHTML = `<div id="tips"><i class="fa fa-exclamation-circle"></i>网络开小差了,请稍后再试!</div>`
 }
 
 // code
 function codeErr() {
-    let list = document.getElementById('list')
+    let list = document.getElementById('item-list')
     list.innerHTML = `<div id="tips"><i class="fa fa-circle-o-notch"></i>code err!</div>`
 }
 
 // 没有资源
 function noData() {
-    let list = document.getElementById('list')
+    let list = document.getElementById('item-list')
     list.innerHTML = `<div id="tips"><i class="fa fa-circle-o-notch"></i>暂时没有资源呢!</div>`
 }
 
